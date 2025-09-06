@@ -303,3 +303,115 @@ footer {
   color: white;
   font-size: 14px;
 }
+
+/* Thank You Section */
+.thankyou {
+  text-align: center;
+  padding: 100px 20px;
+}
+
+.thankyou h2 {
+  font-size: 28px;
+  color: #0072ff;
+  margin-bottom: 20px;
+}
+
+.thankyou p {
+  font-size: 18px;
+  margin-bottom: 30px;
+  color: #444;
+}
+
+.thankyou a {
+  display: inline-block;
+  padding: 12px 20px;
+  background: #0072ff;
+  color: white;
+  text-decoration: none;
+  border-radius: 30px;
+  transition: 0.3s;
+}
+
+.thankyou a:hover {
+  background: #0056cc;
+}
+
+/* ====== Mobile Responsiveness (only affects screens <= 768px) ====== */
+@media (max-width: 768px) {
+  /* Header */
+  header {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 15px 20px;
+  }
+
+  nav ul {
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+  }
+
+  nav ul li a {
+    display: block;
+    width: 100%;
+    padding: 10px 0;
+  }
+
+  /* Hero Section */
+  .hero h1 {
+    font-size: 28px;
+  }
+
+  .hero p {
+    font-size: 16px;
+  }
+
+  /* About / Products / Contact Headings */
+  .about h2, .products h2, .contact h2 {
+    font-size: 22px;
+  }
+
+  .about p, .products .subtitle, .contact-info {
+    font-size: 15px;
+  }
+
+  /* Product Cards */
+  .product-grid {
+    grid-template-columns: 1fr; /* single column on mobile */
+  }
+
+  .card img {
+    height: 200px; /* maintain good aspect ratio */
+  }
+
+  /* Appointment Section */
+  .appointment {
+    padding: 40px 15px;
+  }
+
+  .form-container {
+    padding: 30px 20px;
+  }
+
+  .appointment-form input,
+  .appointment-form textarea,
+  .appointment-form button {
+    font-size: 15px;
+    padding: 12px;
+  }
+
+  /* Thank You Section */
+  .thankyou h2 {
+    font-size: 24px;
+  }
+
+  .thankyou p {
+    font-size: 16px;
+  }
+
+  /* Footer */
+  footer {
+    font-size: 13px;
+    padding: 15px 10px;
+  }
+}
