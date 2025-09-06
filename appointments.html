@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Book Appointment - Bilawal Clinic</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <nav class="navbar">
+      <div class="logo">Bilawal Clinic</div>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="medicines.html">Medicines</a></li>
+        <li><a href="appointments.html" class="active">Appointments</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="appointment-section">
+    <div class="appointment-container">
+      <div class="appointment-header">
+        <h2>Book an Appointment</h2>
+        <p>
+         Please fill out the form below to confirm 
+         your appointment at our clinic and schedule your visit.
+        </p>
+      </div>
+      <form class="appointment-form">
+        <input type="text" placeholder="Full Name" required>
+        <input type="email" placeholder="Email Address" required>
+        <input type="tel" placeholder="Phone Number" required>
+        <input type="date" required>
+        <input type="time" required>
+        <textarea placeholder="Health Concern (Optional)"></textarea>
+        <button type="submit">Submit Appointment</button>
+      </form>
+    </div>
+  </section>
+</body>
+</html>
