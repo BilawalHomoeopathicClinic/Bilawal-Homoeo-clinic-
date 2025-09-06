@@ -24,17 +24,25 @@
       <div class="appointment-header">
         <h2>Book an Appointment</h2>
         <p>
-         Please fill out the form below to confirm 
-         your appointment at our clinic and schedule your visit.
+          Please fill out the form below to confirm 
+          your appointment at our clinic and schedule your visit.
         </p>
       </div>
-      <form class="appointment-form">
-        <input type="text" placeholder="Full Name" required>
-        <input type="email" placeholder="Email Address" required>
-        <input type="tel" placeholder="Phone Number" required>
-        <input type="date" required>
-        <input type="time" required>
-        <textarea placeholder="Health Concern (Optional)"></textarea>
+
+      <!-- Web3Forms Appointment Form -->
+      <form class="appointment-form" action="https://api.web3forms.com/submit" method="POST">
+        <!-- Web3Forms Access Key -->
+        <input type="hidden" name="access_key" value="ae943642-5d7b-48c2-927a-216d05b1360b">
+
+        <!-- Redirect to Thank You page -->
+        <input type="hidden" name="redirect" value="thankyou.html">
+
+        <input type="text" name="name" placeholder="Full Name" required>
+        <input type="email" name="email" placeholder="Email Address" required>
+        <input type="tel" name="phone" placeholder="Phone Number" required>
+        <input type="date" name="date" required>
+        <input type="time" name="time" required>
+        <textarea name="notes" placeholder="Health Concern (Optional)"></textarea>
         <button type="submit">Submit Appointment</button>
       </form>
     </div>
