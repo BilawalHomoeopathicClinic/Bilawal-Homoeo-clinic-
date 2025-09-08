@@ -14,58 +14,50 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 
   <style>
-    /* Order Form Popup */
-    .order-popup {
+    /* Simple popup modal styles */
+    .order-form {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0px 4px 10px rgba(0,0,0,0.2);
+      width: 350px;
+      z-index: 1000;
+    }
+    .order-form h3 {
+      margin-top: 0;
+      color: #333;
+    }
+    .order-form input, 
+    .order-form textarea, 
+    .order-form button {
+      width: 100%;
+      margin: 8px 0;
+      padding: 10px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+    .order-form button {
+      background: #28a745;
+      color: #fff;
+      font-weight: bold;
+      border: none;
+      cursor: pointer;
+    }
+    .order-form button:hover {
+      background: #218838;
+    }
+    .overlay {
       display: none;
       position: fixed;
       top: 0; left: 0;
       width: 100%; height: 100%;
-      background: rgba(0,0,0,0.6);
-      justify-content: center;
-      align-items: center;
-      z-index: 2000;
-    }
-    .order-form {
-      background: #fff;
-      padding: 25px;
-      border-radius: 12px;
-      max-width: 450px;
-      width: 90%;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
-    }
-    .order-form h2 {
-      margin-bottom: 15px;
-      color: #0072ff;
-      font-size: 22px;
-    }
-    .order-form label {
-      display: block;
-      margin: 10px 0 5px;
-      font-weight: 500;
-    }
-    .order-form input, .order-form textarea {
-      width: 100%;
-      padding: 12px;
-      margin-bottom: 12px;
-      border: 1px solid #ccc;
-      border-radius: 8px;
-    }
-    .order-form button {
-      width: 100%;
-      padding: 12px;
-      background: #0072ff;
-      color: #fff;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      font-size: 16px;
-    }
-    .order-form button:hover {
-      background: #0056cc;
-    }
-    .close-btn {
-      background: #ccc;
-      margin-top: 5px;
+      background: rgba(0,0,0,0.5);
+      z-index: 999;
     }
   </style>
 </head>
@@ -104,7 +96,7 @@
         <h3>Medicine B</h3>
         <p>Relief for digestive problems.</p>
         <p class="price">Rs 300</p>
-        <button onclick="openOrder('Medicine A')">Order Now</button>
+        <button onclick="openOrder('Medicine B')">Order Now</button>
       </div>
 
       <!-- Medicine Card 3 -->
@@ -113,34 +105,36 @@
         <h3>Medicine C</h3>
         <p>Boosts immunity and energy.</p>
         <p class="price">Rs 400</p>
-        <button onclick="openOrder('Medicine A')">Order Now</button>
+        <button onclick="openOrder('Medicine C')">Order Now</button>
       </div>
     </div>
   </section>
 
-  <!-- Hidden Order Form -->
-  <div class="order-popup" id="orderPopup">
-    <div class="order-form">
-      <h2>Place Your Order</h2>
-      <form action="https://api.web3forms.com/submit" method="POST">
-        <input type="hidden" name="access_key" value="ae943642-5d7b-48c2-927a-216d05b1360b">
+  <!-- Overlay -->
+  <div class="overlay" id="overlay" onclick="closeOrder()"></div>
 
-        <label for="product">Product Name</label>
-        <input type="text" id="product" name="product" readonly>
+  <!-- Order Form Modal -->
+  <div class="order-form" id="orderForm">
+    <h3>Order Form</h3>
+    <form action="https://api.web3forms.com/submit" method="POST">
+      <input type="hidden" name="access_key" value="ae943642-5d7b-48c2-927a-216d05b1360b">
+      <input type="hidden" name="Medicine" id="medicine">
 
-        <label for="name">Full Name</label>
-        <input type="text" id="name" name="name" required>
+      <label>Your Name</label>
+      <input type="text" name="name" required>
 
-        <label for="phone">Phone Number</label>
-        <input type="tel" id="phone" name="phone" required>
+      <label>Email</label>
+      <input type="email" name="email" required>
 
-        <label for="address">Delivery Address</label>
-        <textarea id="address" name="address" rows="3" required></textarea>
+      <label>Phone</label>
+      <input type="text" name="phone" required>
 
-        <button type="submit">Confirm Order</button>
-        <button type="button" class="close-btn" onclick="closeOrder()">Cancel</button>
-      </form>
-    </div>
+      <label>Address</label>
+      <textarea name="address" required></textarea>
+
+      <button type="submit">Place Order</button>
+      <button type="button" onclick="closeOrder()" style="background:#dc3545;">Cancel</button>
+    </form>
   </div>
 
   <!-- Footer -->
@@ -149,15 +143,15 @@
   </footer>
 
   <script>
-    function openOrder(productName) {
-      document.getElementById('product').value = productName;
-      document.getElementById('orderPopup').style.display = 'flex';
+    function openOrder(product) {
+      document.getElementById("medicine").value = product;
+      document.getElementById("orderForm").style.display = "block";
+      document.getElementById("overlay").style.display = "block";
     }
     function closeOrder() {
-      document.getElementById('orderPopup').style.display = 'none';
+      document.getElementById("orderForm").style.display = "none";
+      document.getElementById("overlay").style.display = "none";
     }
   </script>
 </body>
 </html>
-
-
