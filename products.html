@@ -1,9 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Our Medicines - Bilawal Homoeopathic Clinic</title>
+
+  <!-- SEO Meta -->
+  <meta name="description" content="Bilawal Homoeopathic Clinic: safe natural remedies. Order by Cash on Delivery." />
+  <meta name="robots" content="index, follow" />
+
   <link rel="stylesheet" href="style.css">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 </head>
@@ -19,160 +24,268 @@
         <li><a href="contact.html">Contact</a></li>
       </ul>
     </nav>
-    <div class="cart-icon" onclick="openCart()">
-      🛒 Cart <span class="cart-count" id="cart-count">0</span>
+
+    <!-- Cart button -->
+    <div class="cart-wrap">
+      <button id="openCart" class="cart-btn">Cart 🛒 <span id="cartCount" class="cart-count">0</span></button>
     </div>
   </header>
 
-  <!-- Medicines Section -->
-  <section class="products">
-    <h2>Available Homoeopathic Medicines</h2>
+  <!-- Hero (optional) -->
+  <section class="hero">
+    <h1>Available Homoeopathic Medicines</h1>
+    <p>Trusted homeopathic care — safe, natural, and evidence informed.</p>
+  </section>
+
+  <!-- Products Section -->
+  <main class="products">
     <p class="subtitle">High-quality and authentic remedies for natural healing.</p>
 
     <div class="product-grid">
-      <!-- Medicine Card 1 -->
+      <!-- Product 1 -->
       <div class="card">
         <img src="images/medicine1.jpg" alt="Medicine A">
-        <h3>Medicine A</h3>
+        <h3>Arsenicum Album 30</h3>
+        <p class="short">Used for anxiety, cold/flu and digestive upset.</p>
         <p class="price">Rs 500</p>
-        <button onclick="showDescription('Medicine A','Effective for cold & flu symptoms.')">Description</button>
-        <button onclick="addToCart('Medicine A', 500)">Add to Cart</button>
+        <div class="card-actions">
+          <button class="desc-btn" onclick="openModal('modal1')">Description</button>
+          <button class="add-btn" onclick="addToCart('Arsenicum Album 30',500)">Add to Cart</button>
+        </div>
       </div>
 
-      <!-- Medicine Card 2 -->
+      <!-- Product 2 -->
       <div class="card">
         <img src="images/medicine2.jpg" alt="Medicine B">
-        <h3>Medicine B</h3>
+        <h3>Belladonna 30</h3>
+        <p class="short">Helpful for sudden fever, sore throat and heat symptoms.</p>
         <p class="price">Rs 300</p>
-        <button onclick="showDescription('Medicine B','Relief for digestive problems.')">Description</button>
-        <button onclick="addToCart('Medicine B', 300)">Add to Cart</button>
+        <div class="card-actions">
+          <button class="desc-btn" onclick="openModal('modal2')">Description</button>
+          <button class="add-btn" onclick="addToCart('Belladonna 30',300)">Add to Cart</button>
+        </div>
       </div>
 
-      <!-- Medicine Card 3 -->
+      <!-- Product 3 -->
       <div class="card">
         <img src="images/medicine3.jpg" alt="Medicine C">
-        <h3>Medicine C</h3>
+        <h3>Nux Vomica 30</h3>
+        <p class="short">Used for digestive complaints, nausea and irritability.</p>
         <p class="price">Rs 400</p>
-        <button onclick="showDescription('Medicine C','Boosts immunity and energy.')">Description</button>
-        <button onclick="addToCart('Medicine C', 400)">Add to Cart</button>
+        <div class="card-actions">
+          <button class="desc-btn" onclick="openModal('modal3')">Description</button>
+          <button class="add-btn" onclick="addToCart('Nux Vomica 30',400)">Add to Cart</button>
+        </div>
       </div>
     </div>
-  </section>
+  </main>
 
-  <!-- Description Modal -->
-  <div id="descModal" class="modal">
+  <!-- Description Modals -->
+  <div id="modal1" class="modal">
     <div class="modal-content">
-      <span class="close-btn" onclick="closeModal()">&times;</span>
-      <h2 id="descTitle"></h2>
-      <p id="descText"></p>
+      <span class="close-btn" onclick="closeModal('modal1')">&times;</span>
+      <h3>Arsenicum Album 30</h3>
+      <p>Commonly used for anxiety with restlessness, chilly patients, burning pains, cold/flu symptoms and certain digestive disturbances. Dose and potency should be guided by a qualified homoeopath.</p>
+      <p><strong>Price:</strong> Rs 500</p>
     </div>
   </div>
 
-  <!-- Cart Section -->
-  <section class="cart-page" id="cart-page" style="display:none;">
-    <h2>Your Cart</h2>
-    <table class="cart-table" id="cart-table">
-      <thead>
-        <tr>
-          <th>Product</th>
-          <th>Price</th>
-          <th>Quantity</th>
-          <th>Total</th>
-          <th>Remove</th>
-        </tr>
-      </thead>
-      <tbody></tbody>
-    </table>
+  <div id="modal2" class="modal">
+    <div class="modal-content">
+      <span class="close-btn" onclick="closeModal('modal2')">&times;</span>
+      <h3>Belladonna 30</h3>
+      <p>Useful in cases of sudden high fever, flushed face, throbbing pains and sensitivity to light/noise. Use under practitioner guidance.</p>
+      <p><strong>Price:</strong> Rs 300</p>
+    </div>
+  </div>
 
-    <!-- Checkout Form -->
-    <div class="checkout-form">
-      <h3>Checkout - Cash on Delivery</h3>
-      <form action="https://api.web3forms.com/submit" method="POST">
+  <div id="modal3" class="modal">
+    <div class="modal-content">
+      <span class="close-btn" onclick="closeModal('modal3')">&times;</span>
+      <h3>Nux Vomica 30</h3>
+      <p>Often indicated for indigestion, nausea, overwork-related symptoms, irritability and constipation. Follow dosage advice from your homeopath.</p>
+      <p><strong>Price:</strong> Rs 400</p>
+    </div>
+  </div>
+
+  <!-- Cart Modal (Checkout) -->
+  <div id="cartModal" class="modal">
+    <div class="modal-content">
+      <span class="close-btn" id="closeCart">&times;</span>
+      <h3>Your Cart</h3>
+
+      <div class="cart-items" id="cartItems">Cart is empty.</div>
+
+      <div class="cart-summary">
+        <p><strong>Total: Rs <span id="cartTotal">0</span></strong></p>
+      </div>
+
+      <!-- Checkout form (Web3Forms) -->
+      <form id="checkoutForm" class="order-form" action="https://api.web3forms.com/submit" method="POST">
+        <!-- Web3Forms access key (your key) -->
         <input type="hidden" name="access_key" value="ae943642-5d7b-48c2-927a-216d05b1360b">
+        <!-- Send readable order details -->
         <input type="hidden" id="orderDetails" name="orderDetails">
 
-        <div class="form-group">
-          <label for="name">Full Name</label>
-          <input type="text" name="name" required>
-        </div>
+        <label for="cust-name">Full Name</label>
+        <input id="cust-name" name="name" type="text" placeholder="Full name" required>
 
-        <div class="form-group">
-          <label for="email">Email</label>
-          <input type="email" name="email" required>
-        </div>
+        <label for="cust-email">Email</label>
+        <input id="cust-email" name="email" type="email" placeholder="Email address" required>
 
-        <div class="form-group">
-          <label for="phone">Phone</label>
-          <input type="text" name="phone" required>
-        </div>
+        <label for="cust-phone">Phone</label>
+        <input id="cust-phone" name="phone" type="tel" placeholder="Phone number" required>
 
-        <div class="form-group">
-          <label for="address">Full Address</label>
-          <textarea name="address" rows="3" required></textarea>
-        </div>
+        <label for="cust-address">Full Address</label>
+        <textarea id="cust-address" name="address" rows="3" placeholder="House, Street, City, Postal" required></textarea>
 
-        <button type="submit">Place Order (Cash on Delivery)</button>
+        <!-- Delivery method (optional) -->
+        <label for="cust-delivery">Delivery Method</label>
+        <select id="cust-delivery" name="delivery" required>
+          <option value="Home Delivery">Home Delivery</option>
+          <option value="Pick Up at Clinic">Pick Up at Clinic</option>
+        </select>
+
+        <!-- Payment fixed to Cash on Delivery -->
+        <input type="hidden" name="payment" value="Cash on Delivery">
+        <p class="fixed-note">Payment: <strong>Cash on Delivery</strong></p>
+
+        <label for="cust-note">Special instructions (optional)</label>
+        <textarea id="cust-note" name="note" rows="2" placeholder="E.g., preferred delivery time"></textarea>
+
+        <button type="submit" class="submit-btn">Place Order</button>
       </form>
     </div>
-  </section>
+  </div>
 
   <!-- Footer -->
   <footer>
     <p>&copy; 2025 Bilawal Homoeopathic Clinic. All Rights Reserved.</p>
   </footer>
 
-  <!-- JavaScript -->
+  <!-- JavaScript: cart + modal + checkout -->
   <script>
-    let cart = [];
+    // Load cart from localStorage or start empty
+    let cart = JSON.parse(localStorage.getItem('bhc_cart') || '[]');
 
-    function showDescription(title, text) {
-      document.getElementById("descTitle").innerText = title;
-      document.getElementById("descText").innerText = text;
-      document.getElementById("descModal").style.display = "block";
+    // Utility: save cart to localStorage and update UI
+    function saveCart() {
+      localStorage.setItem('bhc_cart', JSON.stringify(cart));
+      updateCartCount();
     }
 
-    function closeModal() {
-      document.getElementById("descModal").style.display = "none";
+    // Update cart counter in header
+    function updateCartCount() {
+      const count = cart.reduce((sum, item) => sum + item.quantity, 0);
+      document.getElementById('cartCount').textContent = count;
     }
 
-    function addToCart(product, price) {
-      let existing = cart.find(item => item.product === product);
-      if(existing){
-        existing.quantity++;
+    // Add item (or increase qty)
+    function addToCart(name, price) {
+      const idx = cart.findIndex(i => i.name === name && i.price === price);
+      if (idx > -1) {
+        cart[idx].quantity += 1;
       } else {
-        cart.push({ product, price, quantity: 1 });
+        cart.push({ name, price, quantity: 1 });
       }
-      updateCart();
+      saveCart();
+      alert(name + " added to cart");
     }
 
-    function updateCart() {
-      document.getElementById("cart-count").innerText = cart.length;
-      let tbody = document.querySelector("#cart-table tbody");
-      tbody.innerHTML = "";
+    // Update cart UI inside modal
+    function updateCartUI() {
+      const container = document.getElementById('cartItems');
+      const totalEl = document.getElementById('cartTotal');
+      if (!container) return;
+      if (cart.length === 0) {
+        container.innerHTML = "<p>Cart is empty.</p>";
+        totalEl.textContent = '0';
+        document.getElementById('orderDetails').value = '';
+        return;
+      }
+
+      let html = '<table class="cart-table"><thead><tr><th>Product</th><th>Price</th><th>Qty</th><th>Subtotal</th><th></th></tr></thead><tbody>';
       let total = 0;
-      cart.forEach((item, index) => {
-        let row = `<tr>
-          <td>${item.product}</td>
+      cart.forEach((item, i) => {
+        const subtotal = item.price * item.quantity;
+        total += subtotal;
+        html += `<tr>
+          <td>${escapeHtml(item.name)}</td>
           <td>Rs ${item.price}</td>
           <td>${item.quantity}</td>
-          <td>Rs ${item.price * item.quantity}</td>
-          <td><button onclick="removeFromCart(${index})">X</button></td>
+          <td>Rs ${subtotal}</td>
+          <td>
+            <button class="qty-btn" onclick="changeQty(${i},1)">+</button>
+            <button class="qty-btn" onclick="changeQty(${i},-1)">-</button>
+            <button class="remove-btn" onclick="removeItem(${i})">Remove</button>
+          </td>
         </tr>`;
-        tbody.innerHTML += row;
-        total += item.price * item.quantity;
       });
-      document.getElementById("orderDetails").value = JSON.stringify(cart);
+      html += '</tbody></table>';
+      container.innerHTML = html;
+      totalEl.textContent = total;
+
+      // prepare orderDetails for Web3Forms (multiline text)
+      const orderText = cart.map(it => `${it.name} — Rs ${it.price} × ${it.quantity} = Rs ${it.price * it.quantity}`)
+        .join("\\n");
+      document.getElementById('orderDetails').value = orderText + "\\nTotal: Rs " + total;
     }
 
-    function removeFromCart(index) {
-      cart.splice(index, 1);
-      updateCart();
+    // Quantity change and remove
+    function changeQty(index, delta) {
+      cart[index].quantity += delta;
+      if (cart[index].quantity <= 0) cart.splice(index,1);
+      saveCart();
+      updateCartUI();
     }
 
-    function openCart() {
-      document.getElementById("cart-page").style.display = "block";
-      window.scrollTo(0, document.getElementById("cart-page").offsetTop);
+    function removeItem(index) {
+      cart.splice(index,1);
+      saveCart();
+      updateCartUI();
     }
+
+    // Modal open/close helpers
+    const cartModal = document.getElementById('cartModal');
+    document.getElementById('openCart').addEventListener('click', () => {
+      updateCartUI();
+      cartModal.style.display = 'flex';
+    });
+    document.getElementById('closeCart').addEventListener('click', () => cartModal.style.display = 'none');
+    window.addEventListener('click', (e) => {
+      if (e.target === cartModal) cartModal.style.display = 'none';
+    });
+
+    // Description modals
+    function openModal(id) {
+      const m = document.getElementById(id);
+      if (m) m.style.display = 'flex';
+    }
+    function closeModal(id) {
+      const m = document.getElementById(id);
+      if (m) m.style.display = 'none';
+    }
+    window.addEventListener('click', (e) => {
+      // close any description modal if clicked outside content
+      ['modal1','modal2','modal3'].forEach(id => {
+        const m = document.getElementById(id);
+        if (m && e.target === m) m.style.display = 'none';
+      });
+    });
+
+    // Escape HTML (small helper)
+    function escapeHtml(text) {
+      const map = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' };
+      return String(text).replace(/[&<>"']/g, function(m) { return map[m]; });
+    }
+
+    // On load set counts
+    document.addEventListener('DOMContentLoaded', () => {
+      updateCartCount();
+    });
+
+    // Optional: you can clear cart on successful submit by using Web3Forms redirect to a "thank you" page
+    // or by hooking the form submit event to clear localStorage after a short delay.
   </script>
 </body>
 </html>
