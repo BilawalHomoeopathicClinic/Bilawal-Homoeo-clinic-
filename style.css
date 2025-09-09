@@ -181,7 +181,19 @@ nav ul li a.active {
   color: #0072ff;
 }
 
-.card button {
+/* New Buttons */
+.card .coming-soon {
+  background: #ccc;
+  color: #333;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 8px;
+  cursor: not-allowed;
+  font-size: 14px;
+  margin-top: 8px;
+}
+
+.card .desc-btn {
   background: #0072ff;
   color: #fff;
   border: none;
@@ -189,11 +201,47 @@ nav ul li a.active {
   border-radius: 8px;
   cursor: pointer;
   font-size: 14px;
+  margin: 5px;
   transition: 0.3s;
 }
 
-.card button:hover {
+.card .desc-btn:hover {
   background: #0056cc;
+}
+
+/* Modal Popup */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 2000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.6);
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background: #fff;
+  padding: 30px;
+  border-radius: 12px;
+  max-width: 500px;
+  width: 90%;
+  text-align: left;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.2);
+}
+
+.close-btn {
+  float: right;
+  font-size: 22px;
+  cursor: pointer;
+  color: #333;
+}
+
+.close-btn:hover {
+  color: #0072ff;
 }
 
 /* Appointment Section Modern Style */
@@ -336,9 +384,8 @@ footer {
   background: #0056cc;
 }
 
-/* ====== Mobile Responsiveness (only affects screens <= 768px) ====== */
+/* ====== Mobile Responsiveness ====== */
 @media (max-width: 768px) {
-  /* Header */
   header {
     flex-direction: column;
     align-items: flex-start;
@@ -357,7 +404,6 @@ footer {
     padding: 10px 0;
   }
 
-  /* Hero Section */
   .hero h1 {
     font-size: 28px;
   }
@@ -366,7 +412,6 @@ footer {
     font-size: 16px;
   }
 
-  /* About / Products / Contact Headings */
   .about h2, .products h2, .contact h2 {
     font-size: 22px;
   }
@@ -375,16 +420,14 @@ footer {
     font-size: 15px;
   }
 
-  /* Product Cards */
   .product-grid {
-    grid-template-columns: 1fr; /* single column on mobile */
+    grid-template-columns: 1fr;
   }
 
   .card img {
-    height: 200px; /* maintain good aspect ratio */
+    height: 200px;
   }
 
-  /* Appointment Section */
   .appointment {
     padding: 40px 15px;
   }
@@ -400,7 +443,6 @@ footer {
     padding: 12px;
   }
 
-  /* Thank You Section */
   .thankyou h2 {
     font-size: 24px;
   }
@@ -409,7 +451,6 @@ footer {
     font-size: 16px;
   }
 
-  /* Footer */
   footer {
     font-size: 13px;
     padding: 15px 10px;
