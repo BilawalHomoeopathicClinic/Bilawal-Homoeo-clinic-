@@ -181,19 +181,8 @@ nav ul li a.active {
   color: #0072ff;
 }
 
-/* New Buttons */
-.card .coming-soon {
-  background: #ccc;
-  color: #333;
-  border: none;
-  padding: 10px 16px;
-  border-radius: 8px;
-  cursor: not-allowed;
-  font-size: 14px;
-  margin-top: 8px;
-}
-
-.card .desc-btn {
+/* Buttons inside product cards */
+.card button {
   background: #0072ff;
   color: #fff;
   border: none;
@@ -201,50 +190,181 @@ nav ul li a.active {
   border-radius: 8px;
   cursor: pointer;
   font-size: 14px;
-  margin: 5px;
   transition: 0.3s;
+  margin: 5px;
 }
 
-.card .desc-btn:hover {
+.card button:hover {
   background: #0056cc;
 }
 
-/* Modal Popup */
+/* Coming Soon button */
+.card .coming-soon {
+  background: #888;
+  cursor: not-allowed;
+}
+.card .coming-soon:hover {
+  background: #777;
+}
+
+/* Description Modal */
 .modal {
   display: none;
   position: fixed;
   z-index: 2000;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
+  left: 0; top: 0;
+  width: 100%; height: 100%;
   background: rgba(0,0,0,0.6);
-  justify-content: center;
-  align-items: center;
+  overflow: auto;
 }
 
 .modal-content {
   background: #fff;
-  padding: 30px;
+  margin: 8% auto;
+  padding: 25px;
   border-radius: 12px;
-  max-width: 500px;
-  width: 90%;
+  max-width: 600px;
   text-align: left;
-  box-shadow: 0 6px 16px rgba(0,0,0,0.2);
+  position: relative;
+}
+
+.modal-content h2 {
+  margin-bottom: 15px;
+  color: #0072ff;
+}
+
+.modal-content p {
+  color: #444;
+  line-height: 1.6;
 }
 
 .close-btn {
-  float: right;
-  font-size: 22px;
-  cursor: pointer;
+  position: absolute;
+  right: 15px;
+  top: 10px;
+  font-size: 24px;
+  font-weight: bold;
   color: #333;
+  cursor: pointer;
 }
-
 .close-btn:hover {
   color: #0072ff;
 }
 
-/* Appointment Section Modern Style */
+/* Cart Icon in Header */
+.cart-icon {
+  position: relative;
+  font-size: 18px;
+  background: #fff;
+  color: #0072ff;
+  padding: 6px 12px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.cart-icon:hover {
+  background: #f0f0f0;
+}
+
+.cart-count {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  background: red;
+  color: white;
+  font-size: 12px;
+  padding: 2px 6px;
+  border-radius: 50%;
+}
+
+/* Cart Page */
+.cart-page {
+  padding: 60px 20px;
+  max-width: 900px;
+  margin: auto;
+}
+
+.cart-page h2 {
+  font-size: 26px;
+  margin-bottom: 20px;
+  color: #0072ff;
+  text-align: center;
+}
+
+.cart-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 30px;
+}
+
+.cart-table th, .cart-table td {
+  border: 1px solid #ddd;
+  padding: 12px;
+  text-align: center;
+}
+
+.cart-table th {
+  background: #0072ff;
+  color: #fff;
+}
+
+.cart-table td img {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+/* Checkout Form */
+.checkout-form {
+  background: #fff;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+}
+
+.checkout-form h3 {
+  margin-bottom: 20px;
+  color: #0072ff;
+}
+
+.checkout-form .form-group {
+  margin-bottom: 15px;
+}
+
+.checkout-form label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 500;
+}
+
+.checkout-form input, .checkout-form textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1.5px solid #ddd;
+  border-radius: 10px;
+  font-size: 15px;
+}
+
+.checkout-form button {
+  background: #0072ff;
+  color: #fff;
+  border: none;
+  padding: 14px;
+  width: 100%;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.checkout-form button:hover {
+  background: #0056cc;
+}
+
+/* Appointment Section */
 .appointment {
   padding: 60px 20px;
   display: flex;
@@ -384,7 +504,7 @@ footer {
   background: #0056cc;
 }
 
-/* ====== Mobile Responsiveness ====== */
+/* ====== Mobile Responsiveness (only affects screens <= 768px) ====== */
 @media (max-width: 768px) {
   header {
     flex-direction: column;
