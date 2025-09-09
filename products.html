@@ -37,37 +37,56 @@
       <div class="card">
         <img src="images/medicine1.jpg" alt="Medicine A">
         <h3>Medicine A</h3>
+        <p>Effective for cold & flu symptoms.</p>
         <p class="price">Rs 500</p>
-        <button class="disabled-btn" disabled>Coming Soon</button>
-        <button onclick="openModal('Medicine A', 'Effective for cold & flu symptoms. Dosage: 2 drops twice daily.')">Description</button>
+        <button class="coming-soon">Coming Soon</button>
+        <button class="description-btn" onclick="openModal('desc1')">Description</button>
       </div>
 
       <!-- Medicine Card 2 -->
       <div class="card">
         <img src="images/medicine2.jpg" alt="Medicine B">
         <h3>Medicine B</h3>
+        <p>Relief for digestive problems.</p>
         <p class="price">Rs 300</p>
-        <button class="disabled-btn" disabled>Coming Soon</button>
-        <button onclick="openModal('Medicine B', 'Relief for digestive problems. Dosage: 3 drops three times daily.')">Description</button>
+        <button class="coming-soon">Coming Soon</button>
+        <button class="description-btn" onclick="openModal('desc2')">Description</button>
       </div>
 
       <!-- Medicine Card 3 -->
       <div class="card">
         <img src="images/medicine3.jpg" alt="Medicine C">
         <h3>Medicine C</h3>
+        <p>Boosts immunity and energy.</p>
         <p class="price">Rs 400</p>
-        <button class="disabled-btn" disabled>Coming Soon</button>
-        <button onclick="openModal('Medicine C', 'Boosts immunity and energy. Dosage: 5 drops twice daily with water.')">Description</button>
+        <button class="coming-soon">Coming Soon</button>
+        <button class="description-btn" onclick="openModal('desc3')">Description</button>
       </div>
     </div>
   </section>
 
-  <!-- Popup Modal -->
-  <div id="modal" class="modal">
+  <!-- Description Modals -->
+  <div id="desc1" class="modal">
     <div class="modal-content">
-      <span class="close" onclick="closeModal()">&times;</span>
-      <h2 id="modal-title"></h2>
-      <p id="modal-desc"></p>
+      <span class="close-btn" onclick="closeModal('desc1')">&times;</span>
+      <h3>Medicine A - Details</h3>
+      <p>This homeopathic medicine helps relieve symptoms of cold and flu naturally, supporting faster recovery.</p>
+    </div>
+  </div>
+
+  <div id="desc2" class="modal">
+    <div class="modal-content">
+      <span class="close-btn" onclick="closeModal('desc2')">&times;</span>
+      <h3>Medicine B - Details</h3>
+      <p>Specially formulated for digestive health. Helps with indigestion, bloating, and maintaining gut balance.</p>
+    </div>
+  </div>
+
+  <div id="desc3" class="modal">
+    <div class="modal-content">
+      <span class="close-btn" onclick="closeModal('desc3')">&times;</span>
+      <h3>Medicine C - Details</h3>
+      <p>Boosts natural immunity and energy levels. Provides holistic support for overall well-being.</p>
     </div>
   </div>
 
@@ -76,20 +95,20 @@
     <p>&copy; 2025 Bilawal Homoeopathic Clinic. All Rights Reserved.</p>
   </footer>
 
-  <!-- JS for Modal -->
+  <!-- Script for Modals -->
   <script>
-    function openModal(title, desc) {
-      document.getElementById('modal-title').innerText = title;
-      document.getElementById('modal-desc').innerText = desc;
-      document.getElementById('modal').style.display = 'block';
+    function openModal(id) {
+      document.getElementById(id).style.display = 'flex';
     }
-    function closeModal() {
-      document.getElementById('modal').style.display = 'none';
+    function closeModal(id) {
+      document.getElementById(id).style.display = 'none';
     }
     window.onclick = function(event) {
-      if (event.target == document.getElementById('modal')) {
-        closeModal();
-      }
+      document.querySelectorAll('.modal').forEach(modal => {
+        if (event.target == modal) {
+          modal.style.display = "none";
+        }
+      });
     }
   </script>
 </body>
