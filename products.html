@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+    <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
@@ -27,11 +27,13 @@
 
     <!-- Cart button -->
     <div class="cart-wrap">
-      <button id="openCart" class="cart-btn">Cart 🛒 <span id="cartCount" class="cart-count">0</span></button>
+      <button id="openCart" class="cart-icon">🛒
+        <span id="cartCount" class="cart-count">0</span>
+      </button>
     </div>
   </header>
 
-  <!-- Hero (optional) -->
+  <!-- Hero -->
   <section class="hero">
     <h1>Available Homoeopathic Medicines</h1>
     <p>Trusted homeopathic care — safe, natural, and evidence informed.</p>
@@ -108,11 +110,11 @@
     </div>
   </div>
 
-  <!-- Cart Modal (Checkout) -->
+  <!-- Cart Modal (styled like appointment form) -->
   <div id="cartModal" class="modal">
-    <div class="modal-content">
+    <div class="modal-content form-container">
       <span class="close-btn" id="closeCart">&times;</span>
-      <h3>Your Cart</h3>
+      <h2>Your Cart</h2>
 
       <div class="cart-items" id="cartItems">Cart is empty.</div>
 
@@ -121,39 +123,39 @@
       </div>
 
       <!-- Checkout form (Web3Forms) -->
-      <form id="checkoutForm" class="order-form" action="https://api.web3forms.com/submit" method="POST">
-        <!-- Web3Forms access key (your key) -->
+      <form id="checkoutForm" class="appointment-form" action="https://api.web3forms.com/submit" method="POST">
         <input type="hidden" name="access_key" value="ae943642-5d7b-48c2-927a-216d05b1360b">
-        <!-- Send readable order details -->
         <input type="hidden" id="orderDetails" name="orderDetails">
 
-        <label for="cust-name">Full Name</label>
-        <input id="cust-name" name="name" type="text" placeholder="Full name" required>
+        <div class="form-group">
+          <label for="cust-name">Full Name</label>
+          <input id="cust-name" name="name" type="text" placeholder="Full name" required>
+        </div>
 
-        <label for="cust-email">Email</label>
-        <input id="cust-email" name="email" type="email" placeholder="Email address" required>
+        <div class="form-group">
+          <label for="cust-email">Email</label>
+          <input id="cust-email" name="email" type="email" placeholder="Email address" required>
+        </div>
 
-        <label for="cust-phone">Phone</label>
-        <input id="cust-phone" name="phone" type="tel" placeholder="Phone number" required>
+        <div class="form-group">
+          <label for="cust-phone">Phone</label>
+          <input id="cust-phone" name="phone" type="tel" placeholder="Phone number" required>
+        </div>
 
-        <label for="cust-address">Full Address</label>
-        <textarea id="cust-address" name="address" rows="3" placeholder="House, Street, City, Postal" required></textarea>
+        <div class="form-group">
+          <label for="cust-address">Full Address</label>
+          <textarea id="cust-address" name="address" rows="3" placeholder="House, Street, City, Postal" required></textarea>
+        </div>
 
-        <!-- Delivery method (optional) -->
-        <label for="cust-delivery">Delivery Method</label>
-        <select id="cust-delivery" name="delivery" required>
-          <option value="Home Delivery">Home Delivery</option>
-          <option value="Pick Up at Clinic">Pick Up at Clinic</option>
-        </select>
-
-        <!-- Payment fixed to Cash on Delivery -->
         <input type="hidden" name="payment" value="Cash on Delivery">
         <p class="fixed-note">Payment: <strong>Cash on Delivery</strong></p>
 
-        <label for="cust-note">Special instructions (optional)</label>
-        <textarea id="cust-note" name="note" rows="2" placeholder="E.g., preferred delivery time"></textarea>
+        <div class="form-group">
+          <label for="cust-note">Special instructions (optional)</label>
+          <textarea id="cust-note" name="note" rows="2" placeholder="E.g., preferred delivery time"></textarea>
+        </div>
 
-        <button type="submit" class="submit-btn">Place Order</button>
+        <button type="submit">Place Order</button>
       </form>
     </div>
   </div>
@@ -163,36 +165,28 @@
     <p>&copy; 2025 Bilawal Homoeopathic Clinic. All Rights Reserved.</p>
   </footer>
 
-  <!-- JavaScript: cart + modal + checkout -->
+  <!-- JavaScript -->
   <script>
-    // Load cart from localStorage or start empty
     let cart = JSON.parse(localStorage.getItem('bhc_cart') || '[]');
 
-    // Utility: save cart to localStorage and update UI
     function saveCart() {
       localStorage.setItem('bhc_cart', JSON.stringify(cart));
       updateCartCount();
     }
 
-    // Update cart counter in header
     function updateCartCount() {
       const count = cart.reduce((sum, item) => sum + item.quantity, 0);
       document.getElementById('cartCount').textContent = count;
     }
 
-    // Add item (or increase qty)
     function addToCart(name, price) {
-      const idx = cart.findIndex(i => i.name === name && i.price === price);
-      if (idx > -1) {
-        cart[idx].quantity += 1;
-      } else {
-        cart.push({ name, price, quantity: 1 });
-      }
+      const idx = cart.findIndex(i => i.name === name);
+      if (idx > -1) cart[idx].quantity += 1;
+      else cart.push({ name, price, quantity: 1 });
       saveCart();
       alert(name + " added to cart");
     }
 
-    // Update cart UI inside modal
     function updateCartUI() {
       const container = document.getElementById('cartItems');
       const totalEl = document.getElementById('cartTotal');
@@ -203,14 +197,13 @@
         document.getElementById('orderDetails').value = '';
         return;
       }
-
       let html = '<table class="cart-table"><thead><tr><th>Product</th><th>Price</th><th>Qty</th><th>Subtotal</th><th></th></tr></thead><tbody>';
       let total = 0;
       cart.forEach((item, i) => {
         const subtotal = item.price * item.quantity;
         total += subtotal;
         html += `<tr>
-          <td>${escapeHtml(item.name)}</td>
+          <td>${item.name}</td>
           <td>Rs ${item.price}</td>
           <td>${item.quantity}</td>
           <td>Rs ${subtotal}</td>
@@ -224,14 +217,11 @@
       html += '</tbody></table>';
       container.innerHTML = html;
       totalEl.textContent = total;
-
-      // prepare orderDetails for Web3Forms (multiline text)
-      const orderText = cart.map(it => `${it.name} — Rs ${it.price} × ${it.quantity} = Rs ${it.price * it.quantity}`)
-        .join("\\n");
-      document.getElementById('orderDetails').value = orderText + "\\nTotal: Rs " + total;
+      document.getElementById('orderDetails').value =
+        cart.map(it => `${it.name} — Rs ${it.price} × ${it.quantity} = Rs ${it.price * it.quantity}`).join("\n") +
+        "\nTotal: Rs " + total;
     }
 
-    // Quantity change and remove
     function changeQty(index, delta) {
       cart[index].quantity += delta;
       if (cart[index].quantity <= 0) cart.splice(index,1);
@@ -245,7 +235,6 @@
       updateCartUI();
     }
 
-    // Modal open/close helpers
     const cartModal = document.getElementById('cartModal');
     document.getElementById('openCart').addEventListener('click', () => {
       updateCartUI();
@@ -256,36 +245,19 @@
       if (e.target === cartModal) cartModal.style.display = 'none';
     });
 
-    // Description modals
     function openModal(id) {
-      const m = document.getElementById(id);
-      if (m) m.style.display = 'flex';
+      document.getElementById(id).style.display = 'flex';
     }
     function closeModal(id) {
-      const m = document.getElementById(id);
-      if (m) m.style.display = 'none';
+      document.getElementById(id).style.display = 'none';
     }
     window.addEventListener('click', (e) => {
-      // close any description modal if clicked outside content
       ['modal1','modal2','modal3'].forEach(id => {
-        const m = document.getElementById(id);
-        if (m && e.target === m) m.style.display = 'none';
+        if (e.target === document.getElementById(id)) closeModal(id);
       });
     });
 
-    // Escape HTML (small helper)
-    function escapeHtml(text) {
-      const map = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' };
-      return String(text).replace(/[&<>"']/g, function(m) { return map[m]; });
-    }
-
-    // On load set counts
-    document.addEventListener('DOMContentLoaded', () => {
-      updateCartCount();
-    });
-
-    // Optional: you can clear cart on successful submit by using Web3Forms redirect to a "thank you" page
-    // or by hooking the form submit event to clear localStorage after a short delay.
+    document.addEventListener('DOMContentLoaded', updateCartCount);
   </script>
 </body>
 </html>
