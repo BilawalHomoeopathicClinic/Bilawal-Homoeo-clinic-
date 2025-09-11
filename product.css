@@ -1,6 +1,5 @@
 /* ===== Products Page Styles ===== */
 
-/* General */
 body {
   font-family: 'Poppins', sans-serif;
   margin: 0;
@@ -9,12 +8,12 @@ body {
   color: #333;
 }
 
-/* Navbar */
+/* Navbar (Updated to match appointment/contact) */
 .navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 16px 20px; /* same as contact & appointment */
+  padding: 16px 20px; /* same as appointment/contact */
   background: #1b6ca8;
   color: white;
   flex-wrap: wrap;
@@ -22,13 +21,13 @@ body {
 
 .navbar .logo {
   font-weight: 700;
-  font-size: 20px; /* same as contact & appointment */
+  font-size: 20px; /* same as appointment/contact */
 }
 
 .navbar ul {
   list-style: none;
   display: flex;
-  gap: 14px; /* same as home page */
+  gap: 14px; /* same as appointment/contact */
   margin: 0;
   padding: 0;
 }
@@ -36,8 +35,9 @@ body {
 .navbar ul li a {
   color: white;
   text-decoration: none;
-  padding: 6px 10px; /* same as contact & appointment */
+  padding: 6px 10px; /* same as appointment/contact */
   border-radius: 6px;
+  font-size: 14px;
   transition: 0.3s;
 }
 
@@ -50,7 +50,7 @@ body {
 .hero {
   text-align: center;
   padding: 70px 20px;
-  background: linear-gradient(rgba(27, 108, 168, 0.9), rgba(27, 108, 168, 0.8)),
+  background: linear-gradient(rgba(27,108,168,0.9), rgba(27,108,168,0.8)),
               url('images/medicine-bg.jpg') center/cover no-repeat;
   color: white;
 }
@@ -147,7 +147,7 @@ footer {
   margin-top: 40px;
 }
 
-/* ===== Mobile Navbar ===== */
+/* Mobile Navbar */
 @media (max-width: 768px) {
   .navbar {
     flex-direction: column;
@@ -164,20 +164,5 @@ footer {
   .navbar ul li a {
     width: 100%;
     text-align: center;
-  }
-}
-
-/* ===== Responsive Text ===== */
-@media (max-width: 768px) {
-  .hero h1 {
-    font-size: 28px;
-  }
-
-  .hero p {
-    font-size: 15px;
-  }
-
-  .products h2 {
-    font-size: 24px;
   }
 }
