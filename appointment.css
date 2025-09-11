@@ -63,7 +63,7 @@ body {
   max-width: 420px;
   width: 100%;
   text-align: center;
-  box-sizing: border-box; /* ensures no overflow */
+  box-sizing: border-box; /* fixes overflow issue */
 }
 
 .appointment-header h2 {
@@ -101,7 +101,7 @@ body {
   font-size: 14px;
   outline: none;
   background: #fafafa;
-  box-sizing: border-box; /* ensures proper width */
+  box-sizing: border-box; /* ensures no overflow */
 }
 
 .appointment-form input:focus,
@@ -170,7 +170,7 @@ footer {
 
   .appointment-container {
     padding: 20px 15px;
-    max-width: 100%; /* ensures container never overflows */
+    max-width: 100%; /* prevents container overflow */
   }
 
   .appointment-header h2 {
@@ -181,6 +181,7 @@ footer {
   .appointment-form textarea {
     padding: 10px 12px;
     font-size: 13px;
+    width: 100%; /* ensures full width inside container */
   }
 
   .appointment-form button {
