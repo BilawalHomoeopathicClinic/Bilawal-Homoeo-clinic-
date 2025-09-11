@@ -1,4 +1,4 @@
-/* Home Page Styles */
+/* ===== Home Page Styles ===== */
 
 body {
   font-family: 'Poppins', sans-serif;
@@ -7,25 +7,25 @@ body {
   color: #333;
 }
 
-/* Header */
+/* Navbar */
 header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 15px 5%;
+  padding: 16px 20px; /* same as contact & appointment */
   background: #1b6ca8;
   color: #fff;
 }
 
 header .logo {
-  font-size: 1.5rem;
+  font-size: 20px; /* same size as contact & appointment */
   font-weight: 600;
 }
 
 nav ul {
   list-style: none;
   display: flex;
-  gap: 20px;
+  gap: 14px; /* adjusted to match others */
   margin: 0;
   padding: 0;
 }
@@ -34,6 +34,8 @@ nav ul li a {
   text-decoration: none;
   color: #fff;
   font-weight: 500;
+  padding: 6px 10px; /* same as contact & appointment */
+  border-radius: 6px;
   transition: color 0.3s;
 }
 
@@ -100,7 +102,7 @@ footer {
   margin-top: 40px;
 }
 
-/* ===== Mobile Navbar Responsiveness ===== */
+/* ===== Mobile Navbar ===== */
 @media (max-width: 768px) {
   header {
     flex-direction: column;
@@ -110,12 +112,27 @@ footer {
   nav ul {
     flex-direction: column;
     width: 100%;
-    gap: 10px;
+    gap: 8px;
     margin-top: 10px;
   }
 
   nav ul li a {
     width: 100%;
     text-align: center;
+  }
+}
+
+/* ===== Responsive Text ===== */
+@media (max-width: 768px) {
+  .hero h1 {
+    font-size: 28px;
+  }
+
+  .hero p {
+    font-size: 15px;
+  }
+
+  .services h2 {
+    font-size: 24px;
   }
 }
