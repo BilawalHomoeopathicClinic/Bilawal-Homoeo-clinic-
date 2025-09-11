@@ -63,6 +63,7 @@ body {
   max-width: 420px;
   width: 100%;
   text-align: center;
+  box-sizing: border-box; /* ensures no overflow */
 }
 
 .appointment-header h2 {
@@ -100,6 +101,7 @@ body {
   font-size: 14px;
   outline: none;
   background: #fafafa;
+  box-sizing: border-box; /* ensures proper width */
 }
 
 .appointment-form input:focus,
@@ -139,4 +141,50 @@ footer {
   color: white;
   font-size: 14px;
   margin-top: 20px;
+}
+
+/* ===== Mobile Responsiveness ===== */
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .navbar ul {
+    flex-direction: column;
+    width: 100%;
+    gap: 8px;
+    margin-top: 10px;
+  }
+
+  .navbar ul li a {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .appointment-section {
+    padding: 20px 10px;
+  }
+
+  .appointment-container {
+    padding: 20px 15px;
+    max-width: 100%; /* ensures container never overflows */
+  }
+
+  .appointment-header h2 {
+    font-size: 20px;
+  }
+
+  .appointment-form input,
+  .appointment-form textarea {
+    padding: 10px 12px;
+    font-size: 13px;
+  }
+
+  .appointment-form button {
+    padding: 12px;
+    font-size: 14px;
+  }
 }
