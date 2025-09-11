@@ -7,25 +7,26 @@ body {
   color: #333;
 }
 
-/* Navbar */
+/* Navbar (Updated to match appointment/contact) */
 header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 16px 20px; /* same as contact & appointment */
+  padding: 16px 20px; /* same as appointment/contact */
   background: #1b6ca8;
   color: #fff;
+  flex-wrap: wrap;
 }
 
 header .logo {
-  font-size: 20px; /* same size as contact & appointment */
-  font-weight: 600;
+  font-size: 20px; /* same as appointment/contact */
+  font-weight: 700;
 }
 
 nav ul {
   list-style: none;
   display: flex;
-  gap: 14px; /* adjusted to match others */
+  gap: 14px; /* same as appointment/contact */
   margin: 0;
   padding: 0;
 }
@@ -33,15 +34,15 @@ nav ul {
 nav ul li a {
   text-decoration: none;
   color: #fff;
-  font-weight: 500;
-  padding: 6px 10px; /* same as contact & appointment */
+  padding: 6px 10px; /* same as appointment/contact */
   border-radius: 6px;
-  transition: color 0.3s;
+  font-weight: 500;
+  transition: 0.3s;
 }
 
-nav ul li a:hover,
-nav ul li a.active {
-  color: #ffd700;
+nav ul li a.active,
+nav ul li a:hover {
+  background: #155a8a;
 }
 
 /* Hero Section */
@@ -102,7 +103,7 @@ footer {
   margin-top: 40px;
 }
 
-/* ===== Mobile Navbar ===== */
+/* Mobile Navbar */
 @media (max-width: 768px) {
   header {
     flex-direction: column;
@@ -119,20 +120,5 @@ footer {
   nav ul li a {
     width: 100%;
     text-align: center;
-  }
-}
-
-/* ===== Responsive Text ===== */
-@media (max-width: 768px) {
-  .hero h1 {
-    font-size: 28px;
-  }
-
-  .hero p {
-    font-size: 15px;
-  }
-
-  .services h2 {
-    font-size: 24px;
   }
 }
