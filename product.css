@@ -1,238 +1,179 @@
-/* products.css - styles for Medicines page only */
+/* Medicines Page Styles */
 
-/* Reset & base */
 body {
   font-family: 'Poppins', sans-serif;
   margin: 0;
-  padding: 0;
-  background: #f9f9f9;
+  background: #fdfdfd;
   color: #333;
-  line-height: 1.6;
 }
 
 /* Header */
 header {
-  background: #0072ff;
-  color: white;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 12px 5%;
+  padding: 15px 5%;
+  background: #1b6ca8;
+  color: #fff;
 }
 
 header .logo {
-  font-weight: 700;
-  font-size: 1.2rem;
+  font-size: 1.5rem;
+  font-weight: 600;
 }
 
-header nav ul {
+nav ul {
   list-style: none;
   display: flex;
+  gap: 20px;
   margin: 0;
   padding: 0;
 }
 
-header nav ul li {
-  margin-left: 18px;
-}
-
-header nav ul li a {
+nav ul li a {
   text-decoration: none;
-  color: white;
+  color: #fff;
   font-weight: 500;
-  transition: opacity 0.2s;
+  transition: color 0.3s;
 }
 
-header nav ul li a.active,
-header nav ul li a:hover {
-  opacity: 0.8;
+nav ul li a:hover,
+nav ul li a.active {
+  color: #ffd700;
 }
 
-.cart-wrap {
-  position: relative;
-}
-
-.cart-icon {
-  background: white;
-  border: none;
-  border-radius: 50%;
-  padding: 10px 14px;
-  font-size: 1.2rem;
-  cursor: pointer;
-  position: relative;
-}
-
-.cart-count {
-  position: absolute;
-  top: -6px;
-  right: -6px;
-  background: red;
-  color: white;
-  border-radius: 50%;
-  font-size: 0.8rem;
-  padding: 2px 6px;
-}
-
-/* Hero */
+/* Hero Section */
 .hero {
-  background: linear-gradient(135deg, #0072ff, #00c6ff);
-  color: white;
   text-align: center;
-  padding: 50px 20px;
+  padding: 60px 20px;
+  background: linear-gradient(to right, #219ebc, #1b6ca8);
+  color: white;
 }
 
 .hero h1 {
-  margin-bottom: 12px;
+  font-size: 2rem;
+  margin-bottom: 10px;
 }
 
 .hero p {
   font-size: 1.1rem;
-  margin-bottom: 0;
 }
 
-/* Products grid */
+/* Product Grid */
 .products {
-  padding: 40px 5%;
+  padding: 60px 5%;
+  text-align: center;
 }
 
-.products .subtitle {
-  text-align: center;
-  margin-bottom: 25px;
-  color: #555;
+.subtitle {
+  font-size: 1.2rem;
+  margin-bottom: 30px;
+  color: #444;
 }
 
 .product-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 25px;
 }
 
-.product-card {
-  background: white;
-  border-radius: 10px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
-  padding: 15px;
-  text-align: center;
-  transition: transform 0.2s;
+.card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  transition: transform 0.3s;
 }
 
-.product-card:hover {
+.card:hover {
   transform: translateY(-5px);
 }
 
-.product-card img {
-  max-width: 100%;
+.card img {
+  width: 100%;
   border-radius: 8px;
-  margin-bottom: 12px;
 }
 
-.product-card h3 {
-  font-size: 1.1rem;
-  margin: 10px 0 5px;
+.card h3 {
+  margin: 15px 0 8px;
+  color: #1b6ca8;
 }
 
-.product-card p {
-  font-size: 0.9rem;
-  color: #555;
+.price {
+  font-weight: bold;
+  margin: 10px 0;
+  color: #e63946;
 }
 
-.product-card .price {
-  color: #0072ff;
-  font-weight: 600;
-  margin: 8px 0;
+.card-actions {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
 }
 
-.product-card button {
-  background: #0072ff;
-  color: white;
+.desc-btn,
+.add-btn {
+  flex: 1;
+  padding: 10px;
   border: none;
-  padding: 8px 14px;
-  border-radius: 5px;
+  border-radius: 8px;
+  font-weight: 500;
   cursor: pointer;
-  margin: 5px 0;
-  transition: background 0.2s;
+  transition: background 0.3s;
 }
 
-.product-card button:hover {
-  background: #005fcc;
+.desc-btn {
+  background: #219ebc;
+  color: white;
+}
+
+.desc-btn:hover {
+  background: #1b6ca8;
+}
+
+.add-btn {
+  background: #ffd700;
+  color: #333;
+}
+
+.add-btn:hover {
+  background: #e6c200;
 }
 
 /* Modals */
 .modal {
   display: none;
   position: fixed;
-  z-index: 1000;
-  left: 0; top: 0;
-  width: 100%; height: 100%;
-  background: rgba(0,0,0,0.5);
-  overflow-y: auto;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  z-index: 999;
+  justify-content: center;
+  align-items: center;
 }
 
 .modal-content {
-  background: white;
-  margin: 50px auto;
-  padding: 20px;
-  border-radius: 10px;
+  background: #fff;
+  border-radius: 12px;
+  padding: 25px;
+  max-width: 500px;
   width: 90%;
-  max-width: 550px;
   position: relative;
 }
 
 .close-btn {
   position: absolute;
-  right: 12px;
-  top: 8px;
+  right: 15px;
+  top: 10px;
   font-size: 1.5rem;
   cursor: pointer;
-}
-
-/* Checkout form */
-.appointment-form {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.form-group {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-}
-
-.form-group label {
-  margin-bottom: 4px;
-  font-weight: 500;
-}
-
-.form-group input,
-.form-group textarea,
-.form-group select {
-  width: 100%;
-  padding: 8px;
-  border: 1px solid #ddd;
-  border-radius: 6px;
-}
-
-button[type="submit"] {
-  background: #0072ff;
-  color: white;
-  border: none;
-  padding: 10px;
-  font-size: 1rem;
-  border-radius: 6px;
-  cursor: pointer;
-  margin-top: 10px;
-}
-
-button[type="submit"]:hover {
-  background: #005fcc;
+  color: #333;
 }
 
 /* Footer */
 footer {
-  background: #0072ff;
-  color: white;
   text-align: center;
+  background: #1b6ca8;
+  color: white;
   padding: 15px;
   margin-top: 40px;
 }
