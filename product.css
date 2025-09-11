@@ -1,28 +1,31 @@
-/* Medicines Page Styles */
+/* ===== Products Page CSS ===== */
 
+/* General */
 body {
   font-family: 'Poppins', sans-serif;
   margin: 0;
-  background: #fdfdfd;
+  padding: 0;
+  background: #f5f7fa;
   color: #333;
 }
 
-/* Header */
-header {
+/* Navbar */
+.navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 15px 5%;
-  background: #1b6ca8;
-  color: #fff;
+  padding: 18px 40px;
+  background: #1b6ca8; /* Same blue */
+  color: white;
+  flex-wrap: wrap;
 }
 
-header .logo {
-  font-size: 1.5rem;
-  font-weight: 600;
+.navbar .logo {
+  font-weight: 700;
+  font-size: 22px;
 }
 
-nav ul {
+.navbar ul {
   list-style: none;
   display: flex;
   gap: 20px;
@@ -30,150 +33,135 @@ nav ul {
   padding: 0;
 }
 
-nav ul li a {
+.navbar ul li a {
+  color: white;
   text-decoration: none;
-  color: #fff;
-  font-weight: 500;
-  transition: color 0.3s;
+  padding: 6px 12px;
+  border-radius: 6px;
+  transition: 0.3s;
 }
 
-nav ul li a:hover,
-nav ul li a.active {
-  color: #ffd700;
+.navbar ul li a.active,
+.navbar ul li a:hover {
+  background: #155a8a;
 }
 
 /* Hero Section */
 .hero {
   text-align: center;
-  padding: 60px 20px;
-  background: linear-gradient(to right, #219ebc, #1b6ca8);
+  padding: 70px 20px;
+  background: linear-gradient(rgba(27, 108, 168, 0.9), rgba(27, 108, 168, 0.8)),
+              url('images/medicine-bg.jpg') center/cover no-repeat;
   color: white;
 }
 
 .hero h1 {
-  font-size: 2rem;
+  font-size: 36px;
   margin-bottom: 10px;
 }
 
 .hero p {
-  font-size: 1.1rem;
+  font-size: 18px;
+  max-width: 650px;
+  margin: 0 auto;
 }
 
-/* Product Grid */
+/* Products Grid */
 .products {
-  padding: 60px 5%;
-  text-align: center;
+  padding: 60px 30px;
 }
 
-.subtitle {
-  font-size: 1.2rem;
-  margin-bottom: 30px;
-  color: #444;
+.products h2 {
+  text-align: center;
+  font-size: 28px;
+  color: #1b6ca8;
+  margin-bottom: 40px;
 }
 
 .product-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   gap: 25px;
 }
 
-.card {
+.product-card {
   background: #fff;
-  border-radius: 12px;
+  border-radius: 14px;
   padding: 20px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-  transition: transform 0.3s;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+  text-align: center;
+  transition: transform 0.3s, box-shadow 0.3s;
 }
 
-.card:hover {
-  transform: translateY(-5px);
+.product-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 8px 22px rgba(0,0,0,0.12);
 }
 
-.card img {
-  width: 100%;
-  border-radius: 8px;
+.product-card img {
+  max-width: 100%;
+  height: 160px;
+  object-fit: contain;
+  margin-bottom: 15px;
 }
 
-.card h3 {
-  margin: 15px 0 8px;
+.product-card h3 {
+  font-size: 18px;
   color: #1b6ca8;
+  margin-bottom: 8px;
 }
 
-.price {
-  font-weight: bold;
-  margin: 10px 0;
-  color: #e63946;
+.product-card p {
+  font-size: 14px;
+  color: #555;
+  margin-bottom: 12px;
 }
 
-.card-actions {
-  display: flex;
-  justify-content: space-between;
-  gap: 10px;
+.product-card .price {
+  font-size: 16px;
+  font-weight: 600;
+  color: #222;
+  margin-bottom: 14px;
 }
 
-.desc-btn,
-.add-btn {
-  flex: 1;
-  padding: 10px;
+.product-card button {
+  background: #1b6ca8;
+  color: white;
   border: none;
+  padding: 10px 18px;
   border-radius: 8px;
-  font-weight: 500;
   cursor: pointer;
   transition: background 0.3s;
 }
 
-.desc-btn {
-  background: #219ebc;
-  color: white;
-}
-
-.desc-btn:hover {
-  background: #1b6ca8;
-}
-
-.add-btn {
-  background: #ffd700;
-  color: #333;
-}
-
-.add-btn:hover {
-  background: #e6c200;
-}
-
-/* Modals */
-.modal {
-  display: none;
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.6);
-  z-index: 999;
-  justify-content: center;
-  align-items: center;
-}
-
-.modal-content {
-  background: #fff;
-  border-radius: 12px;
-  padding: 25px;
-  max-width: 500px;
-  width: 90%;
-  position: relative;
-}
-
-.close-btn {
-  position: absolute;
-  right: 15px;
-  top: 10px;
-  font-size: 1.5rem;
-  cursor: pointer;
-  color: #333;
+.product-card button:hover {
+  background: #155a8a;
 }
 
 /* Footer */
 footer {
   text-align: center;
+  padding: 20px;
   background: #1b6ca8;
   color: white;
-  padding: 15px;
   margin-top: 40px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .navbar {
+    padding: 15px 20px;
+  }
+
+  .hero h1 {
+    font-size: 28px;
+  }
+
+  .hero p {
+    font-size: 15px;
+  }
+
+  .products h2 {
+    font-size: 24px;
+  }
 }
