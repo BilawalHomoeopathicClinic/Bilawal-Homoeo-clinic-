@@ -1,4 +1,4 @@
-/* Global Reset */
+/* ================= GLOBAL RESET ================= */
 * {
   margin: 0;
   padding: 0;
@@ -12,7 +12,7 @@ body {
   line-height: 1.6;
 }
 
-/* Header */
+/* ================= HEADER ================= */
 header {
   background: #0072ff;
   color: #fff;
@@ -52,24 +52,7 @@ nav ul li a.active {
   background: #0056cc;
 }
 
-/* Hero Section */
-.hero {
-  text-align: center;
-  padding: 100px 20px;
-  background: linear-gradient(120deg, #0072ff, #6a11cb);
-  color: white;
-}
-
-.hero h1 {
-  font-size: 38px;
-  margin-bottom: 15px;
-}
-
-.hero p {
-  font-size: 18px;
-  margin-bottom: 25px;
-}
-
+/* ================= BUTTONS ================= */
 .btn, .whatsapp-btn {
   display: inline-block;
   margin: 5px;
@@ -99,159 +82,7 @@ nav ul li a.active {
   background: #1ebc57;
 }
 
-/* About Section */
-.about {
-  padding: 60px 20px;
-  background: #fff;
-  text-align: center;
-}
-
-.about h2 {
-  font-size: 26px;
-  margin-bottom: 20px;
-  color: #0072ff;
-}
-
-.about p {
-  max-width: 750px;
-  margin: auto;
-  font-size: 16px;
-  color: #444;
-}
-
-/* Products Section */
-.products {
-  padding: 60px 20px;
-  text-align: center;
-}
-
-.products h2 {
-  font-size: 26px;
-  margin-bottom: 10px;
-  color: #0072ff;
-}
-
-.products .subtitle {
-  margin-bottom: 40px;
-  color: #555;
-  font-size: 16px;
-}
-
-.product-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 25px;
-}
-
-.card {
-  background: #fff;
-  border-radius: 16px;
-  overflow: hidden;
-  padding: 20px;
-  box-shadow: 0 6px 16px rgba(0,0,0,0.08);
-  transition: 0.3s;
-  text-align: center;
-}
-
-.card:hover {
-  transform: translateY(-8px);
-}
-
-.card img {
-  width: 100%;
-  height: 160px;
-  object-fit: cover;
-  border-radius: 12px;
-  margin-bottom: 15px;
-}
-
-.card h3 {
-  margin-bottom: 10px;
-  color: #333;
-}
-
-.card p {
-  font-size: 14px;
-  color: #666;
-}
-
-.card .price {
-  font-weight: bold;
-  margin: 10px 0;
-  color: #0072ff;
-}
-
-/* Buttons inside product cards */
-.card button {
-  background: #0072ff;
-  color: #fff;
-  border: none;
-  padding: 10px 16px;
-  border-radius: 8px;
-  cursor: pointer;
-  font-size: 14px;
-  transition: 0.3s;
-  margin: 5px;
-}
-
-.card button:hover {
-  background: #0056cc;
-}
-
-/* Coming Soon button */
-.card .coming-soon {
-  background: #888;
-  cursor: not-allowed;
-}
-.card .coming-soon:hover {
-  background: #777;
-}
-
-/* Description Modal */
-.modal {
-  display: none;
-  position: fixed;
-  z-index: 2000;
-  left: 0; top: 0;
-  width: 100%; height: 100%;
-  background: rgba(0,0,0,0.6);
-  overflow: auto;
-}
-
-.modal-content {
-  background: #fff;
-  margin: 8% auto;
-  padding: 25px;
-  border-radius: 12px;
-  max-width: 600px;
-  text-align: left;
-  position: relative;
-}
-
-.modal-content h2 {
-  margin-bottom: 15px;
-  color: #0072ff;
-}
-
-.modal-content p {
-  color: #444;
-  line-height: 1.6;
-}
-
-.close-btn {
-  position: absolute;
-  right: 15px;
-  top: 10px;
-  font-size: 24px;
-  font-weight: bold;
-  color: #333;
-  cursor: pointer;
-}
-.close-btn:hover {
-  color: #0072ff;
-}
-
-/* Cart Icon in Header */
+/* ================= CART ICON ================= */
 .cart-icon {
   position: relative;
   font-size: 18px;
@@ -278,200 +109,7 @@ nav ul li a.active {
   border-radius: 50%;
 }
 
-/* Cart Page */
-.cart-page {
-  padding: 60px 20px;
-  max-width: 900px;
-  margin: auto;
-}
-
-.cart-page h2 {
-  font-size: 26px;
-  margin-bottom: 20px;
-  color: #0072ff;
-  text-align: center;
-}
-
-.cart-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-bottom: 30px;
-}
-
-.cart-table th, .cart-table td {
-  border: 1px solid #ddd;
-  padding: 12px;
-  text-align: center;
-}
-
-.cart-table th {
-  background: #0072ff;
-  color: #fff;
-}
-
-.cart-table td img {
-  width: 60px;
-  height: 60px;
-  object-fit: cover;
-  border-radius: 8px;
-}
-
-/* ✅ FIX: Cart Modal */
-.cart-modal {
-  max-height: 90vh;  /* limit height */
-  overflow-y: auto;  /* scrollable */
-  background: #fff;  /* prevent background bleed */
-  border-radius: 16px;
-}
-
-/* Checkout Form */
-.checkout-form {
-  background: #fff;
-  padding: 30px;
-  border-radius: 12px;
-  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
-}
-
-.checkout-form h3 {
-  margin-bottom: 20px;
-  color: #0072ff;
-}
-
-.checkout-form .form-group {
-  margin-bottom: 15px;
-}
-
-.checkout-form label {
-  display: block;
-  margin-bottom: 6px;
-  font-weight: 500;
-}
-
-.checkout-form input, .checkout-form textarea, .checkout-form select {
-  width: 100%;
-  padding: 12px;
-  border: 1.5px solid #ddd;
-  border-radius: 10px;
-  font-size: 15px;
-}
-
-.checkout-form button {
-  background: #0072ff;
-  color: #fff;
-  border: none;
-  padding: 14px;
-  width: 100%;
-  border-radius: 10px;
-  font-size: 16px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-.checkout-form button:hover {
-  background: #0056cc;
-}
-
-/* Appointment Section */
-.appointment {
-  padding: 60px 20px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: #f5f7fa;
-}
-
-.form-container {
-  background: #fff;
-  padding: 40px 30px;
-  border-radius: 18px;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-  max-width: 500px;
-  width: 100%;
-  text-align: center;
-}
-
-.form-container h2 {
-  font-size: 26px;
-  color: #0072ff;
-  margin-bottom: 10px;
-}
-
-.form-container p {
-  font-size: 15px;
-  color: #555;
-  margin-bottom: 25px;
-}
-
-.appointment-form .form-group {
-  margin-bottom: 18px;
-}
-
-.appointment-form input,
-appoin tment-form textarea {
-  width: 100%;
-  padding: 14px;
-  border: 1.5px solid #ddd;
-  border-radius: 10px;
-  font-size: 15px;
-  outline: none;
-  transition: 0.3s;
-}
-
-.appointment-form input:focus,
-.appointment-form textarea:focus {
-  border-color: #0072ff;
-  box-shadow: 0 0 6px rgba(0,114,255,0.3);
-}
-
-.appointment-form button {
-  width: 100%;
-  padding: 14px;
-  background: #0072ff;
-  color: #fff;
-  font-size: 16px;
-  font-weight: 600;
-  border: none;
-  border-radius: 12px;
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-.appointment-form button:hover {
-  background: #0056cc;
-}
-
-/* Contact Section */
-.contact {
-  padding: 60px 20px;
-  background: #fff;
-  text-align: center;
-}
-
-.contact h2 {
-  font-size: 26px;
-  margin-bottom: 20px;
-  color: #0072ff;
-}
-
-.contact-info {
-  max-width: 600px;
-  margin: auto;
-  text-align: left;
-  font-size: 15px;
-  line-height: 1.8;
-}
-
-.contact-info a {
-  color: #0072ff;
-  text-decoration: none;
-}
-
-.contact-info a:hover {
-  text-decoration: underline;
-}
-
-/* Footer */
+/* ================= FOOTER ================= */
 footer {
   text-align: center;
   padding: 20px;
@@ -480,7 +118,7 @@ footer {
   font-size: 14px;
 }
 
-/* Thank You Section */
+/* ================= THANK YOU ================= */
 .thankyou {
   text-align: center;
   padding: 100px 20px;
@@ -512,7 +150,44 @@ footer {
   background: #0056cc;
 }
 
-/* ====== Mobile Responsiveness (only affects screens <= 768px) ====== */
+/* ================= MODAL (GLOBAL) ================= */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 5000;   /* higher than header */
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.6);
+  overflow-y: auto;
+}
+
+.modal-content {
+  background: #fff;
+  margin: 6% auto;
+  padding: 25px;
+  border-radius: 12px;
+  max-width: 700px;
+  text-align: left;
+  position: relative;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+}
+
+.close-btn {
+  position: absolute;
+  right: 15px;
+  top: 10px;
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+  cursor: pointer;
+}
+.close-btn:hover {
+  color: #0072ff;
+}
+
+/* ================= RESPONSIVE (MOBILE) ================= */
 @media (max-width: 768px) {
   header {
     flex-direction: column;
@@ -532,126 +207,9 @@ footer {
     padding: 10px 0;
   }
 
-  .hero h1 {
-    font-size: 28px;
-  }
+  .thankyou h2 { font-size: 24px; }
+  .thankyou p { font-size: 16px; }
+  footer { font-size: 13px; padding: 15px 10px; }
 
-  .hero p {
-    font-size: 16px;
-  }
-
-  .about h2, .products h2, .contact h2 {
-    font-size: 22px;
-  }
-
-  .about p, .products .subtitle, .contact-info {
-    font-size: 15px;
-  }
-
-  .product-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .card img {
-    height: 200px;
-  }
-
-  .appointment {
-    padding: 40px 15px;
-  }
-
-  .form-container {
-    padding: 30px 20px;
-  }
-
-  .appointment-form input,
-  .appointment-form textarea,
-  .appointment-form button {
-    font-size: 15px;
-    padding: 12px;
-  }
-
-  .thankyou h2 {
-    font-size: 24px;
-  }
-
-  .thankyou p {
-    font-size: 16px;
-  }
-
-  footer {
-    font-size: 13px;
-    padding: 15px 10px;
-  }
-}
-
-/* ====== ADDED OVERRIDES / FIXES (modal & cart safety) ====== */
-
-/* Ensure overlay covers and dims page */
-.modal {
-  display: none;
-  position: fixed;
-  z-index: 5000;   /* higher than header */
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0,0,0,0.6); /* dim page */
-  overflow-y: auto;
-}
-
-/* Make description modal content centered and visible on top */
-.modal-content {
-  background: #fff;
-  margin: 6% auto;
-  padding: 25px;
-  border-radius: 12px;
-  max-width: 700px;
-  text-align: left;
-  position: relative;
-  box-shadow: 0 8px 24px rgba(0,0,0,0.25);
-}
-
-/* Cart modal: solid white, scrollable and limited height */
-.cart-modal {
-  max-height: 90vh;
-  overflow-y: auto;
-  background: #fff;
-  border-radius: 16px;
-  padding: 18px;
-  margin: 40px auto;
-  max-width: 720px;
-  box-shadow: 0 12px 28px rgba(0,0,0,0.25);
-  position: relative;
-  z-index: 6000;
-}
-
-/* Ensure form labels are clear and bold (checkout/appointment/cart) */
-.checkout-form label,
-.appointment-form label,
-.cart-form label,
-.checkout-form h3,
-.form-container h2 {
-  display: block;
-  font-weight: 700;
-  margin-bottom: 8px;
-  color: #222;
-  font-size: 16px;
-}
-
-/* Make inputs inside modals on top of background */
-.modal input,
-.modal textarea,
-.modal select,
-.modal button {
-  position: relative;
-  z-index: 6100;
-}
-
-/* Mobile tweaks for modals */
-@media (max-width: 768px) {
   .modal-content { margin: 8% 12px; max-width: calc(100% - 24px); }
-  .cart-modal { margin: 8% 12px; max-width: calc(100% - 24px); }
-  .cart-table th, .cart-table td { padding: 8px; font-size: 14px; }
-  .modal input, .modal textarea { font-size: 15px; }
 }
