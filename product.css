@@ -8,12 +8,12 @@ body {
   color: #333;
 }
 
-/* Navbar (Updated to match appointment/contact) */
+/* Navbar (Copied from Appointment Page for exact size) */
 .navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 16px 20px; /* same as appointment/contact */
+  padding: 16px 20px;
   background: #1b6ca8;
   color: white;
   flex-wrap: wrap;
@@ -21,13 +21,13 @@ body {
 
 .navbar .logo {
   font-weight: 700;
-  font-size: 20px; /* same as appointment/contact */
+  font-size: 20px;
 }
 
 .navbar ul {
   list-style: none;
   display: flex;
-  gap: 14px; /* same as appointment/contact */
+  gap: 14px;
   margin: 0;
   padding: 0;
 }
@@ -35,9 +35,10 @@ body {
 .navbar ul li a {
   color: white;
   text-decoration: none;
-  padding: 6px 10px; /* same as appointment/contact */
+  padding: 6px 10px;
   border-radius: 6px;
   font-size: 14px;
+  font-weight: 500;
   transition: 0.3s;
 }
 
