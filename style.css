@@ -408,7 +408,7 @@ nav ul li a.active {
 }
 
 .appointment-form input,
-.appointment-form textarea {
+appoin tment-form textarea {
   width: 100%;
   padding: 14px;
   border: 1.5px solid #ddd;
@@ -583,4 +583,75 @@ footer {
     font-size: 13px;
     padding: 15px 10px;
   }
-                              }
+}
+
+/* ====== ADDED OVERRIDES / FIXES (modal & cart safety) ====== */
+
+/* Ensure overlay covers and dims page */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 5000;   /* higher than header */
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.6); /* dim page */
+  overflow-y: auto;
+}
+
+/* Make description modal content centered and visible on top */
+.modal-content {
+  background: #fff;
+  margin: 6% auto;
+  padding: 25px;
+  border-radius: 12px;
+  max-width: 700px;
+  text-align: left;
+  position: relative;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+}
+
+/* Cart modal: solid white, scrollable and limited height */
+.cart-modal {
+  max-height: 90vh;
+  overflow-y: auto;
+  background: #fff;
+  border-radius: 16px;
+  padding: 18px;
+  margin: 40px auto;
+  max-width: 720px;
+  box-shadow: 0 12px 28px rgba(0,0,0,0.25);
+  position: relative;
+  z-index: 6000;
+}
+
+/* Ensure form labels are clear and bold (checkout/appointment/cart) */
+.checkout-form label,
+.appointment-form label,
+.cart-form label,
+.checkout-form h3,
+.form-container h2 {
+  display: block;
+  font-weight: 700;
+  margin-bottom: 8px;
+  color: #222;
+  font-size: 16px;
+}
+
+/* Make inputs inside modals on top of background */
+.modal input,
+.modal textarea,
+.modal select,
+.modal button {
+  position: relative;
+  z-index: 6100;
+}
+
+/* Mobile tweaks for modals */
+@media (max-width: 768px) {
+  .modal-content { margin: 8% 12px; max-width: calc(100% - 24px); }
+  .cart-modal { margin: 8% 12px; max-width: calc(100% - 24px); }
+  .cart-table th, .cart-table td { padding: 8px; font-size: 14px; }
+  .modal input, .modal textarea { font-size: 15px; }
+}
