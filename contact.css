@@ -14,7 +14,7 @@ header {
   color: white;
   padding: 16px 20px;
   display: flex;
-  flex-direction: column;
+  flex-direction: column; /* already stacked */
   align-items: flex-start;
 }
 
@@ -99,4 +99,24 @@ footer {
   color: white;
   font-size: 14px;
   margin-top: 20px;
+}
+
+/* ===== Mobile Navbar Responsiveness ===== */
+@media (max-width: 768px) {
+  header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  header nav ul {
+    flex-direction: column;
+    width: 100%;
+    gap: 8px;
+    margin-top: 10px;
+  }
+
+  header nav ul li a {
+    width: 100%;
+    text-align: center;
+  }
 }
