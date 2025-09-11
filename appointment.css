@@ -63,9 +63,11 @@ body {
   max-width: 420px;
   width: 100%;
   text-align: center;
-  box-sizing: border-box; /* fixes overflow issue */
+  box-sizing: border-box; /* ensures padding included in width */
+  overflow: hidden; /* prevents horizontal scroll */
 }
 
+/* Appointment Header */
 .appointment-header h2 {
   font-size: 22px;
   color: #1b6ca8;
@@ -82,6 +84,7 @@ body {
 .appointment-form .form-group {
   margin-bottom: 16px;
   text-align: left;
+  width: 100%; /* ensures form row stays inside container */
 }
 
 .appointment-form label {
@@ -93,7 +96,8 @@ body {
 }
 
 .appointment-form input,
-.appointment-form textarea {
+.appointment-form textarea,
+.appointment-form button {
   width: 100%;
   padding: 12px 14px;
   border: 1.5px solid #ddd;
@@ -101,7 +105,8 @@ body {
   font-size: 14px;
   outline: none;
   background: #fafafa;
-  box-sizing: border-box; /* ensures no overflow */
+  box-sizing: border-box; /* fixes overflow */
+  margin: 0; /* removes default spacing that causes overflow */
 }
 
 .appointment-form input:focus,
@@ -116,8 +121,6 @@ body {
 }
 
 .appointment-form button {
-  width: 100%;
-  padding: 14px;
   background: #1b6ca8;
   color: white;
   font-size: 15px;
@@ -170,7 +173,7 @@ footer {
 
   .appointment-container {
     padding: 20px 15px;
-    max-width: 100%; /* prevents container overflow */
+    max-width: 100%; /* ensures container fits mobile screen */
   }
 
   .appointment-header h2 {
@@ -181,11 +184,12 @@ footer {
   .appointment-form textarea {
     padding: 10px 12px;
     font-size: 13px;
-    width: 100%; /* ensures full width inside container */
+    width: 100%; /* ensures inputs fit container */
   }
 
   .appointment-form button {
     padding: 12px;
     font-size: 14px;
+    width: 100%;
   }
 }
