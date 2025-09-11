@@ -1,12 +1,12 @@
-/* ==============================
-   Appointment Page Styles
-   ============================== */
+/* ===== Appointment Page CSS ===== */
 
-/* General Body */
+/* General */
 body {
   font-family: 'Poppins', sans-serif;
-  background: #f5f7fa;
   margin: 0;
+  padding: 0;
+  background: #f5f7fa;
+  color: #333;
 }
 
 /* Navbar */
@@ -15,7 +15,7 @@ body {
   justify-content: space-between;
   align-items: center;
   padding: 18px 40px;
-  background: #0072ff;
+  background: #1b6ca8;
   color: white;
   flex-wrap: wrap;
 }
@@ -43,7 +43,7 @@ body {
 
 .navbar ul li a.active,
 .navbar ul li a:hover {
-  background: #0056cc;
+  background: #155a8a;
 }
 
 /* Appointment Section */
@@ -72,7 +72,7 @@ body {
 
 .appointment-header h2 {
   font-size: 28px;
-  color: #0072ff;
+  color: #1b6ca8;
   margin-bottom: 10px;
 }
 
@@ -109,8 +109,8 @@ body {
 
 .appointment-form input:focus,
 .appointment-form textarea:focus {
-  border-color: #0072ff;
-  box-shadow: 0 0 8px rgba(0,114,255,0.2);
+  border-color: #1b6ca8;
+  box-shadow: 0 0 8px rgba(27,108,168,0.2);
   background-color: #fff;
 }
 
@@ -121,7 +121,7 @@ body {
 .appointment-form button {
   width: 100%;
   padding: 16px;
-  background: #0072ff;
+  background: #1b6ca8;
   color: white;
   font-size: 16px;
   font-weight: 600;
@@ -133,7 +133,16 @@ body {
 }
 
 .appointment-form button:hover {
-  background: #0056cc;
+  background: #155a8a;
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 20px;
+  background: #1b6ca8;
+  color: white;
+  margin-top: 40px;
 }
 
 /* Responsive */
