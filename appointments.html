@@ -4,90 +4,66 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Book Appointment - Bilawal Homoeopathic Clinic</title>
-  
-  <!-- SEO Meta Tags -->
-  <meta name="description" content="Book your homeopathic consultation online at Bilawal Homoeopathic Clinic. Fast and easy appointment booking.">
-  <meta name="keywords" content="homeopathic clinic, book appointment, Bilawal Clinic, homeopathy consultation">
-  <meta name="robots" content="index, follow">
 
-  <!-- External CSS -->
+  <link rel="stylesheet" href="global.css">
   <link rel="stylesheet" href="appointment.css">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-
-  <!-- Structured Data for Google -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "MedicalBusiness",
-    "name": "Bilawal Homoeopathic Clinic",
-    "address": {
-      "@type": "PostalAddress",
-      "streetAddress": "122k Block, Street No. 1, Near Children Park",
-      "addressLocality": "City",
-      "addressRegion": "Province",
-      "postalCode": "00000",
-      "addressCountry": "PK"
-    },
-    "telephone": "+923007592091",
-    "url": "https://bilawalhomoeopathicclinic.github.io"
-  }
-  </script>
 </head>
 <body>
   <!-- Navbar -->
-  <header>
-    <nav class="navbar">
-      <div class="logo">Bilawal Clinic</div>
-      <ul class="nav-links">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="products.html">Medicines</a></li>
-        <li><a href="appointments.html" class="active">Appointments</a></li>
-        <li><a href="contact.html">Contact</a></li>
-      </ul>
-    </nav>
-  </header>
+  <nav class="navbar">
+    <div class="logo">Bilawal Clinic</div>
+    <button class="menu-toggle">☰</button>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="products.html">Medicines</a></li>
+      <li><a href="appointments.html" class="active">Appointments</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
 
-  <!-- Appointment Form Section -->
+  <!-- Appointment Section -->
   <section class="appointment-section">
     <div class="appointment-container">
-      <div class="appointment-header">
-        <h2>Book an Appointment</h2>
-        <p>Please fill out the form below to confirm your appointment at our clinic and schedule your visit.</p>
-      </div>
+      <h2>Book an Appointment</h2>
+      <p>Please fill out the form below to confirm your appointment.</p>
 
-      <!-- Web3Forms Appointment Form -->
-      <form class="appointment-form" action="https://api.web3forms.com/submit" method="POST">
+      <form action="https://api.web3forms.com/submit" method="POST" class="appointment-form">
         <input type="hidden" name="access_key" value="ae943642-5d7b-48c2-927a-216d05b1360b">
         <input type="hidden" name="redirect" value="thankyou.html">
 
-        <div class="form-group">
-          <label for="name">Full Name</label>
-          <input type="text" id="name" name="name" placeholder="Full Name" required>
-        </div>
+        <label>Full Name</label>
+        <input type="text" name="name" required>
 
-        <div class="form-group">
-          <label for="email">Email Address</label>
-          <input type="email" id="email" name="email" placeholder="Email Address" required>
-        </div>
+        <label>Email</label>
+        <input type="email" name="email" required>
 
-        <div class="form-group">
-          <label for="phone">Phone Number</label>
-          <input type="tel" id="phone" name="phone" placeholder="Phone Number" required>
-        </div>
+        <label>Phone</label>
+        <input type="tel" name="phone" required>
 
-        <div class="form-group">
-          <label for="date">Preferred Date</label>
-          <input type="date" id="date" name="date" required>
-        </div>
+        <label>Date</label>
+        <input type="date" name="date" required>
 
-        <div class="form-group">
-          <label for="notes">Health Concern (Optional)</label>
-          <textarea id="notes" name="notes" rows="4" placeholder="Health Concern (Optional)"></textarea>
-        </div>
+        <label>Health Concern (Optional)</label>
+        <textarea name="notes"></textarea>
 
         <button type="submit">Submit Appointment</button>
       </form>
     </div>
   </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 Bilawal Homoeopathic Clinic. All Rights Reserved.</p>
+  </footer>
+
+  <!-- Navbar JS -->
+  <script>
+    const menuToggle = document.querySelector('.menu-toggle');
+    const navLinks = document.querySelector('.nav-links');
+    menuToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('show');
+    });
+  </script>
 </body>
 </html>
