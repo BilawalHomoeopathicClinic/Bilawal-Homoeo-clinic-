@@ -1,146 +1,146 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Our Medicines - Bilawal Homoeopathic Clinic</title>
-
-  <!-- SEO Meta -->
-  <meta name="description" content="Bilawal Homoeopathic Clinic: safe natural remedies. Order by Cash on Delivery." />
-  <meta name="robots" content="index, follow" />
-
-  <!-- Global + Page Styles -->
-  <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="product.css">
-
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Our Products - Bilawal Homoeopathic Clinic</title>
+  <link rel="stylesheet" href="global.css">
+  <link rel="stylesheet" href="products.css">
 </head>
 <body>
-  <!-- Header -->
+
+  <!-- ===== NAVBAR ===== -->
   <header>
     <div class="logo">Bilawal Clinic</div>
     <nav>
       <ul>
         <li><a href="index.html">Home</a></li>
-        <li><a href="products.html" class="active">Medicines</a></li>
-        <li><a href="appointments.html">Appointments</a></li>
+        <li><a href="products.html" class="active">Products</a></li>
+        <li><a href="appointment.html">Appointment</a></li>
         <li><a href="contact.html">Contact</a></li>
       </ul>
     </nav>
-    <div class="cart-wrap">
-      <button id="openCartBtn" class="cart-icon" aria-label="Open cart">
-        🛒 <span id="cartCount" class="cart-count">0</span>
-      </button>
+
+    <!-- Cart Button -->
+    <div class="cart-icon" id="cartBtn">
+      🛒 Cart <span class="cart-count" id="cartCount">0</span>
     </div>
   </header>
 
-  <!-- Hero -->
+  <!-- ===== HERO ===== -->
   <section class="hero">
-    <h1>Available Homoeopathic Medicines</h1>
-    <p>Trusted homeopathic care — safe, natural, and evidence informed.</p>
+    <h1>Our Medicines</h1>
+    <p>High-quality homeopathic remedies available for you.</p>
   </section>
 
-  <!-- Products -->
-  <main class="products">
-    <p class="subtitle">High-quality and authentic remedies for natural healing.</p>
-
+  <!-- ===== PRODUCTS ===== -->
+  <section class="products">
+    <h2>Available Medicines</h2>
     <div class="product-grid">
-      <!-- Product 1 -->
-      <div class="card">
-        <img src="images/medicine1.jpg" alt="Arsenicum Album 30">
-        <h3>Arsenicum Album 30</h3>
-        <p class="short">Used for anxiety, cold/flu and digestive upset.</p>
-        <p class="price">Rs 500</p>
-        <div class="card-actions">
-          <button class="desc-btn" onclick="openDescription('Arsenicum Album 30','Commonly used for anxiety, restlessness, chilly patients, burning pains, cold/flu symptoms and digestive disturbances. Use under practitioner guidance.','Rs 500')">Description</button>
-          <button class="add-btn" onclick="addToCart('Arsenicum Album 30',500,'images/medicine1.jpg')">Add to Cart</button>
-        </div>
+
+      <!-- Product Card -->
+      <div class="product-card">
+        <img src="images/medicine1.jpg" alt="Medicine 1">
+        <h3>Medicine A</h3>
+        <p class="description">Effective for headaches and stress relief.</p>
+        <p class="price">Rs. 500</p>
+        <button class="add-to-cart" data-name="Medicine A" data-price="500">Add to Cart</button>
       </div>
 
-      <!-- Product 2 -->
-      <div class="card">
-        <img src="images/medicine2.jpg" alt="Belladonna 30">
-        <h3>Belladonna 30</h3>
-        <p class="short">Helpful for sudden fever, sore throat and heat symptoms.</p>
-        <p class="price">Rs 300</p>
-        <div class="card-actions">
-          <button class="desc-btn" onclick="openDescription('Belladonna 30','Useful in sudden high fever, flushed face, throbbing pains and sensitivity to light/noise. Use under practitioner guidance.','Rs 300')">Description</button>
-          <button class="add-btn" onclick="addToCart('Belladonna 30',300,'images/medicine2.jpg')">Add to Cart</button>
-        </div>
+      <div class="product-card">
+        <img src="images/medicine2.jpg" alt="Medicine 2">
+        <h3>Medicine B</h3>
+        <p class="description">Supports immunity and overall health.</p>
+        <p class="price">Rs. 750</p>
+        <button class="add-to-cart" data-name="Medicine B" data-price="750">Add to Cart</button>
       </div>
 
-      <!-- Product 3 -->
-      <div class="card">
-        <img src="images/medicine3.jpg" alt="Nux Vomica 30">
-        <h3>Nux Vomica 30</h3>
-        <p class="short">Used for digestive complaints, nausea and irritability.</p>
-        <p class="price">Rs 400</p>
-        <div class="card-actions">
-          <button class="desc-btn" onclick="openDescription('Nux Vomica 30','Often indicated for indigestion, nausea, overwork-related symptoms, irritability and constipation. Follow dosage advice from your homeopath.','Rs 400')">Description</button>
-          <button class="add-btn" onclick="addToCart('Nux Vomica 30',400,'images/medicine3.jpg')">Add to Cart</button>
-        </div>
+      <div class="product-card">
+        <img src="images/medicine3.jpg" alt="Medicine 3">
+        <h3>Medicine C</h3>
+        <p class="description">For better digestion and energy boost.</p>
+        <p class="price">Rs. 600</p>
+        <button class="add-to-cart" data-name="Medicine C" data-price="600">Add to Cart</button>
       </div>
+
     </div>
-  </main>
+  </section>
 
-  <!-- Description Modal -->
-  <div id="descModal" class="modal" aria-hidden="true">
+  <!-- ===== CART MODAL ===== -->
+  <div id="cartModal" class="modal">
     <div class="modal-content">
-      <span class="close-btn" onclick="closeDescription()" aria-label="Close description">&times;</span>
-      <h3 id="descTitle"></h3>
-      <p id="descText"></p>
-      <p id="descPrice" class="price"></p>
-    </div>
-  </div>
-
-  <!-- Cart Modal -->
-  <div id="cartModal" class="modal" aria-hidden="true">
-    <div class="modal-content form-container">
-      <span class="close-btn" onclick="closeCart()" aria-label="Close cart">&times;</span>
+      <span class="close-btn" id="closeModal">&times;</span>
       <h2>Your Cart</h2>
-      <div id="cartItemsWrapper"></div>
-      <div class="cart-summary" id="cartSummary">Total: Rs <span id="cartTotal">0</span></div>
-      <hr>
-      <h3>Checkout</h3>
-      <form id="checkoutForm" class="appointment-form" action="https://api.web3forms.com/submit" method="POST">
-        <input type="hidden" name="access_key" value="ae943642-5d7b-48c2-927a-216d05b1360b">
-        <input type="hidden" id="orderDetails" name="orderDetails">
-        <div class="form-group">
-          <label for="cust-name">Full Name</label>
-          <input id="cust-name" name="name" type="text" required>
-        </div>
-        <div class="form-group">
-          <label for="cust-email">Email</label>
-          <input id="cust-email" name="email" type="email" required>
-        </div>
-        <div class="form-group">
-          <label for="cust-phone">Phone</label>
-          <input id="cust-phone" name="phone" type="tel" required>
-        </div>
-        <div class="form-group">
-          <label for="cust-address">Full Address</label>
-          <textarea id="cust-address" name="address" rows="3" required></textarea>
-        </div>
-        <div class="form-group">
-          <label for="cust-delivery">Delivery Method</label>
-          <select id="cust-delivery" name="delivery" required>
-            <option value="Receive from Clinic">Receive from Clinic</option>
-            <option value="Home Delivery (Cash on Delivery)">Home Delivery (Cash on Delivery)</option>
-          </select>
-        </div>
-        <p class="fixed-note">Payment: <strong>Cash on Delivery</strong></p>
-        <button type="submit">Place Order</button>
-      </form>
+      <ul id="cartItems"></ul>
+      <p><strong>Total: Rs. <span id="cartTotal">0</span></strong></p>
+      <button id="checkoutBtn">Checkout</button>
     </div>
   </div>
 
-  <!-- Footer -->
+  <!-- ===== FOOTER ===== -->
   <footer>
     <p>&copy; 2025 Bilawal Homoeopathic Clinic. All Rights Reserved.</p>
   </footer>
 
-  <!-- JavaScript -->
-  <script src="product.js"></script>
+  <!-- ===== JAVASCRIPT ===== -->
+  <script>
+    const cartBtn = document.getElementById('cartBtn');
+    const cartModal = document.getElementById('cartModal');
+    const closeModal = document.getElementById('closeModal');
+    const cartItemsList = document.getElementById('cartItems');
+    const cartTotal = document.getElementById('cartTotal');
+    const cartCount = document.getElementById('cartCount');
+
+    let cart = [];
+
+    // Open modal
+    cartBtn.onclick = () => {
+      cartModal.style.display = 'block';
+      renderCart();
+    };
+
+    // Close modal
+    closeModal.onclick = () => {
+      cartModal.style.display = 'none';
+    };
+
+    window.onclick = (e) => {
+      if (e.target == cartModal) cartModal.style.display = 'none';
+    };
+
+    // Add to cart
+    document.querySelectorAll('.add-to-cart').forEach(button => {
+      button.addEventListener('click', () => {
+        const name = button.getAttribute('data-name');
+        const price = parseInt(button.getAttribute('data-price'));
+        cart.push({ name, price });
+        cartCount.textContent = cart.length;
+        renderCart();
+      });
+    });
+
+    // Render cart
+    function renderCart() {
+      cartItemsList.innerHTML = '';
+      let total = 0;
+      cart.forEach(item => {
+        total += item.price;
+        const li = document.createElement('li');
+        li.textContent = `${item.name} - Rs. ${item.price}`;
+        cartItemsList.appendChild(li);
+      });
+      cartTotal.textContent = total;
+    }
+
+    // Checkout button
+    document.getElementById('checkoutBtn').onclick = () => {
+      alert("Thank you for your order!");
+      cart = [];
+      cartCount.textContent = "0";
+      renderCart();
+      cartModal.style.display = 'none';
+    };
+  </script>
+
 </body>
 </html>
