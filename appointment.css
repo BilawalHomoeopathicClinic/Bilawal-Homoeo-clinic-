@@ -1,53 +1,5 @@
 /* ===== Appointment Page CSS ===== */
 
-body {
-  font-family: 'Poppins', sans-serif;
-  margin: 0;
-  padding: 0;
-  background: #f5f7fa;
-  color: #333;
-}
-
-/* Navbar */
-.navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 16px 20px;
-  background: #1b6ca8;
-  color: white;
-  flex-wrap: wrap;
-}
-
-.navbar .logo {
-  font-weight: 700;
-  font-size: 20px;
-}
-
-.navbar ul {
-  list-style: none;
-  display: flex;
-  gap: 14px;
-  margin: 8px 0 0;
-  padding: 0;
-  flex-wrap: wrap;
-}
-
-.navbar ul li a {
-  color: white;
-  text-decoration: none;
-  padding: 6px 10px;
-  border-radius: 6px;
-  transition: 0.3s;
-  font-size: 14px;
-}
-
-.navbar ul li a.active,
-.navbar ul li a:hover {
-  background: #155a8a;
-}
-
-/* Appointment Section */
 .appointment-section {
   padding: 40px 15px;
   display: flex;
@@ -63,11 +15,9 @@ body {
   max-width: 420px;
   width: 100%;
   text-align: center;
-  box-sizing: border-box; /* ensures padding included in width */
-  overflow: hidden; /* prevents horizontal scroll */
+  box-sizing: border-box;
 }
 
-/* Appointment Header */
 .appointment-header h2 {
   font-size: 22px;
   color: #1b6ca8;
@@ -80,11 +30,9 @@ body {
   margin-bottom: 20px;
 }
 
-/* Form Styling */
 .appointment-form .form-group {
   margin-bottom: 16px;
   text-align: left;
-  width: 100%; /* ensures form row stays inside container */
 }
 
 .appointment-form label {
@@ -105,8 +53,7 @@ body {
   font-size: 14px;
   outline: none;
   background: #fafafa;
-  box-sizing: border-box; /* fixes overflow */
-  margin: 0; /* removes default spacing that causes overflow */
+  box-sizing: border-box;
 }
 
 .appointment-form input:focus,
@@ -134,62 +81,4 @@ body {
 
 .appointment-form button:hover {
   background: #155a8a;
-}
-
-/* Footer */
-footer {
-  text-align: center;
-  padding: 16px;
-  background: #1b6ca8;
-  color: white;
-  font-size: 14px;
-  margin-top: 20px;
-}
-
-/* ===== Mobile Responsiveness ===== */
-@media (max-width: 768px) {
-  .navbar {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .navbar ul {
-    flex-direction: column;
-    width: 100%;
-    gap: 8px;
-    margin-top: 10px;
-  }
-
-  .navbar ul li a {
-    width: 100%;
-    text-align: center;
-  }
-}
-
-@media (max-width: 480px) {
-  .appointment-section {
-    padding: 20px 10px;
-  }
-
-  .appointment-container {
-    padding: 20px 15px;
-    max-width: 100%; /* ensures container fits mobile screen */
-  }
-
-  .appointment-header h2 {
-    font-size: 20px;
-  }
-
-  .appointment-form input,
-  .appointment-form textarea {
-    padding: 10px 12px;
-    font-size: 13px;
-    width: 100%; /* ensures inputs fit container */
-  }
-
-  .appointment-form button {
-    padding: 12px;
-    font-size: 14px;
-    width: 100%;
-  }
 }
