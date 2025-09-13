@@ -1,215 +1,88 @@
-/* ================= GLOBAL RESET ================= */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
+/* ===== Global Styles ===== */
 body {
   font-family: 'Poppins', sans-serif;
+  margin: 0;
   background: #f5f7fa;
   color: #333;
-  line-height: 1.6;
 }
 
-/* ================= HEADER ================= */
-header {
-  background: #0072ff;
-  color: #fff;
+/* ===== Navbar ===== */
+.navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 18px 40px;
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  background: #0072ff;
+  color: white;
+  flex-wrap: wrap;
+  position: relative;
 }
 
-header .logo {
-  font-size: 22px;
+.logo {
   font-weight: 700;
-  letter-spacing: 1px;
+  font-size: 22px;
 }
 
-nav ul {
+.nav-links {
   list-style: none;
   display: flex;
-  gap: 25px;
+  gap: 20px;
+  margin: 0;
+  padding: 0;
 }
 
-nav ul li a {
-  color: #fff;
+.nav-links li a {
+  color: white;
   text-decoration: none;
-  font-weight: 500;
-  transition: 0.3s;
   padding: 6px 12px;
   border-radius: 6px;
+  transition: 0.3s;
 }
 
-nav ul li a:hover,
-nav ul li a.active {
+.nav-links li a.active,
+.nav-links li a:hover {
   background: #0056cc;
 }
 
-/* ================= BUTTONS ================= */
-.btn, .whatsapp-btn {
-  display: inline-block;
-  margin: 5px;
-  padding: 12px 20px;
-  border-radius: 30px;
-  font-size: 16px;
-  font-weight: 500;
-  text-decoration: none;
-  transition: 0.3s;
-}
-
-.btn {
-  background: #fff;
-  color: #0072ff;
-}
-
-.btn:hover {
-  background: #f0f0f0;
-}
-
-.whatsapp-btn {
-  background: #25d366;
-  color: white;
-}
-
-.whatsapp-btn:hover {
-  background: #1ebc57;
-}
-
-/* ================= CART ICON ================= */
-.cart-icon {
-  position: relative;
-  font-size: 18px;
-  background: #fff;
-  color: #0072ff;
-  padding: 6px 12px;
-  border-radius: 20px;
+/* ===== Mobile Menu Button ===== */
+.menu-toggle {
+  display: none;
+  font-size: 26px;
   cursor: pointer;
-  transition: 0.3s;
-}
-
-.cart-icon:hover {
-  background: #f0f0f0;
-}
-
-.cart-count {
-  position: absolute;
-  top: -6px;
-  right: -6px;
-  background: red;
+  background: none;
+  border: none;
   color: white;
-  font-size: 12px;
-  padding: 2px 6px;
-  border-radius: 50%;
 }
 
-/* ================= FOOTER ================= */
+/* ===== Footer ===== */
 footer {
   text-align: center;
   padding: 20px;
   background: #0072ff;
   color: white;
+  margin-top: 40px;
   font-size: 14px;
 }
 
-/* ================= THANK YOU ================= */
-.thankyou {
-  text-align: center;
-  padding: 100px 20px;
-}
-
-.thankyou h2 {
-  font-size: 28px;
-  color: #0072ff;
-  margin-bottom: 20px;
-}
-
-.thankyou p {
-  font-size: 18px;
-  margin-bottom: 30px;
-  color: #444;
-}
-
-.thankyou a {
-  display: inline-block;
-  padding: 12px 20px;
-  background: #0072ff;
-  color: white;
-  text-decoration: none;
-  border-radius: 30px;
-  transition: 0.3s;
-}
-
-.thankyou a:hover {
-  background: #0056cc;
-}
-
-/* ================= MODAL (GLOBAL) ================= */
-.modal {
-  display: none;
-  position: fixed;
-  z-index: 5000;   /* higher than header */
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0,0,0,0.6);
-  overflow-y: auto;
-}
-
-.modal-content {
-  background: #fff;
-  margin: 6% auto;
-  padding: 25px;
-  border-radius: 12px;
-  max-width: 700px;
-  text-align: left;
-  position: relative;
-  box-shadow: 0 8px 24px rgba(0,0,0,0.25);
-}
-
-.close-btn {
-  position: absolute;
-  right: 15px;
-  top: 10px;
-  font-size: 24px;
-  font-weight: bold;
-  color: #333;
-  cursor: pointer;
-}
-.close-btn:hover {
-  color: #0072ff;
-}
-
-/* ================= RESPONSIVE (MOBILE) ================= */
+/* ===== Responsive Navbar ===== */
 @media (max-width: 768px) {
-  header {
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 15px 20px;
-  }
-
-  nav ul {
-    flex-direction: column;
-    gap: 10px;
-    width: 100%;
-  }
-
-  nav ul li a {
+  .menu-toggle {
     display: block;
-    width: 100%;
-    padding: 10px 0;
   }
 
-  .thankyou h2 { font-size: 24px; }
-  .thankyou p { font-size: 16px; }
-  footer { font-size: 13px; padding: 15px 10px; }
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    gap: 15px;
+    width: 100%;
+    background: #0072ff;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    padding: 20px;
+  }
 
-  .modal-content { margin: 8% 12px; max-width: calc(100% - 24px); }
+  .nav-links.show {
+    display: flex;
+  }
 }
