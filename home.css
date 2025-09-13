@@ -1,38 +1,33 @@
-/* ===== Home Page CSS ===== */
-
-/* Hero Section */
 .hero {
   text-align: center;
   padding: 80px 20px;
-  background: linear-gradient(to right, #1b6ca8, #219ebc);
-  color: white;
 }
-
 .hero h1 {
-  font-size: 2.5rem;
+  font-size: 2rem;
   margin-bottom: 15px;
 }
-
 .hero p {
   font-size: 1.2rem;
-  max-width: 700px;
-  margin: 0 auto 20px;
-}
-
-/* About Section */
-.about {
-  padding: 60px 8%;
-  text-align: center;
-}
-
-.about h2 {
-  font-size: 2rem;
   margin-bottom: 20px;
-  color: #1b6ca8;
 }
-
-.about p {
-  font-size: 1rem;
-  color: #444;
-  line-height: 1.7;
+.hero .buttons {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+}
+.hero .btn {
+  background: #0077cc;
+  color: #fff;
+  padding: 12px 24px;
+  border-radius: 6px;
+  text-decoration: none;
+}
+.hero .btn:hover {
+  background: #005fa3;
+}
+.hero .btn.whatsapp {
+  background: #25D366;
+}
+.hero .btn.whatsapp:hover {
+  background: #1da851;
 }
