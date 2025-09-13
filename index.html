@@ -4,42 +4,29 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Bilawal Homoeopathic Clinic - Home</title>
-
   <link rel="stylesheet" href="global.css">
   <link rel="stylesheet" href="home.css">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 </head>
 <body>
-  <!-- Navbar -->
-  <nav class="navbar">
-    <div class="logo">Bilawal Clinic</div>
-    <button class="menu-toggle">☰</button>
-    <ul class="nav-links">
-      <li><a href="index.html" class="active">Home</a></li>
-      <li><a href="products.html">Medicines</a></li>
-      <li><a href="appointments.html">Appointments</a></li>
-      <li><a href="contact.html">Contact</a></li>
-    </ul>
-  </nav>
+  <header>
+    <nav class="navbar">
+      <div class="logo">Bilawal Homoeo Clinic</div>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="products.html">Medicines</a></li>
+        <li><a href="appointments.html">Appointment</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
 
-  <!-- Hero Section -->
   <section class="hero">
     <h1>Welcome to Bilawal Homoeopathic Clinic</h1>
-    <p>Your trusted care in natural treatments and remedies.</p>
+    <p>Your trusted health partner with safe and natural remedies.</p>
+    <div class="buttons">
+      <a href="appointments.html" class="btn">Book Appointment</a>
+      <a href="https://wa.me/923000000000" target="_blank" class="btn whatsapp">WhatsApp</a>
+    </div>
   </section>
-
-  <!-- Footer -->
-  <footer>
-    <p>&copy; 2025 Bilawal Homoeopathic Clinic. All Rights Reserved.</p>
-  </footer>
-
-  <!-- Navbar JS -->
-  <script>
-    const menuToggle = document.querySelector('.menu-toggle');
-    const navLinks = document.querySelector('.nav-links');
-    menuToggle.addEventListener('click', () => {
-      navLinks.classList.toggle('show');
-    });
-  </script>
 </body>
 </html>
