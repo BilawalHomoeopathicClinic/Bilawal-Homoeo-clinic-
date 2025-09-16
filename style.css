@@ -41,6 +41,7 @@ body {
   list-style: none;
   display: flex;
   gap: 20px;
+  flex-wrap: wrap; /* allow wrapping on smaller screens */
 }
 
 .nav-links a {
@@ -224,4 +225,39 @@ footer {
   background: #1e3a8a;
   color: #fff;
   margin-top: 40px;
+}
+
+/* ===== Responsive Adjustments (Mobile Friendly) ===== */
+@media screen and (max-width: 768px) {
+  .navbar .container {
+    flex-wrap: wrap; /* allow wrapping */
+    justify-content: space-between;
+  }
+
+  .nav-links {
+    gap: 10px;
+    justify-content: center;
+  }
+
+  .nav-links a {
+    padding: 6px 10px;
+    font-size: 0.9rem;
+  }
+
+  .cart-btn {
+    padding: 6px 10px;
+    font-size: 0.9rem;
+  }
+
+  .hero {
+    padding: 70px 15px;
+  }
+
+  .hero h1 {
+    font-size: 2rem;
+  }
+
+  .hero p {
+    font-size: 1rem;
+  }
 }
