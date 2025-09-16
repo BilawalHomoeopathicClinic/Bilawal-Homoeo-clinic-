@@ -3,144 +3,108 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Our Products - Bilawal Homoeopathic Clinic</title>
-  <link rel="stylesheet" href="global.css">
-  <link rel="stylesheet" href="products.css">
+  <title>Medicines - Bilawal Homoeopathic Clinic</title>
+  <meta name="description" content="Explore trusted homeopathic medicines at Bilawal Homoeopathic Clinic. Safe and natural remedies for your health.">
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 </head>
 <body>
-
-  <!-- ===== NAVBAR ===== -->
+  <!-- Header -->
   <header>
     <div class="logo">Bilawal Clinic</div>
     <nav>
       <ul>
         <li><a href="index.html">Home</a></li>
-        <li><a href="products.html" class="active">Products</a></li>
-        <li><a href="appointment.html">Appointment</a></li>
+        <li><a href="medicines.html" class="active">Medicines</a></li>
+        <li><a href="appointment.html">Appointments</a></li>
         <li><a href="contact.html">Contact</a></li>
       </ul>
     </nav>
-
-    <!-- Cart Button -->
-    <div class="cart-icon" id="cartBtn">
-      🛒 Cart <span class="cart-count" id="cartCount">0</span>
+    <div class="cart-btn">
+      🛒 Cart (<span id="cart-count">0</span>)
     </div>
   </header>
 
-  <!-- ===== HERO ===== -->
-  <section class="hero">
-    <h1>Our Medicines</h1>
-    <p>High-quality homeopathic remedies available for you.</p>
-  </section>
-
-  <!-- ===== PRODUCTS ===== -->
-  <section class="products">
-    <h2>Available Medicines</h2>
-    <div class="product-grid">
-
-      <!-- Product Card -->
-      <div class="product-card">
-        <img src="images/medicine1.jpg" alt="Medicine 1">
+  <!-- Medicines Section -->
+  <section class="medicines">
+    <h2>Our Medicines</h2>
+    <div class="medicine-grid">
+      <!-- Medicine 1 -->
+      <div class="medicine-card">
         <h3>Medicine A</h3>
-        <p class="description">Effective for headaches and stress relief.</p>
-        <p class="price">Rs. 500</p>
-        <button class="add-to-cart" data-name="Medicine A" data-price="500">Add to Cart</button>
+        <p>Effective for general health improvement and immunity boost.</p>
+        <button class="btn" onclick="addToCart('Medicine A')">Add to Cart</button>
       </div>
-
-      <div class="product-card">
-        <img src="images/medicine2.jpg" alt="Medicine 2">
+      <!-- Medicine 2 -->
+      <div class="medicine-card">
         <h3>Medicine B</h3>
-        <p class="description">Supports immunity and overall health.</p>
-        <p class="price">Rs. 750</p>
-        <button class="add-to-cart" data-name="Medicine B" data-price="750">Add to Cart</button>
+        <p>Trusted for pain relief and natural healing support.</p>
+        <button class="btn" onclick="addToCart('Medicine B')">Add to Cart</button>
       </div>
-
-      <div class="product-card">
-        <img src="images/medicine3.jpg" alt="Medicine 3">
+      <!-- Medicine 3 -->
+      <div class="medicine-card">
         <h3>Medicine C</h3>
-        <p class="description">For better digestion and energy boost.</p>
-        <p class="price">Rs. 600</p>
-        <button class="add-to-cart" data-name="Medicine C" data-price="600">Add to Cart</button>
+        <p>Helps in stress relief and maintaining body balance.</p>
+        <button class="btn" onclick="addToCart('Medicine C')">Add to Cart</button>
       </div>
-
     </div>
   </section>
 
-  <!-- ===== CART MODAL ===== -->
-  <div id="cartModal" class="modal">
+  <!-- Cart Modal -->
+  <div id="cart-modal" class="modal">
     <div class="modal-content">
-      <span class="close-btn" id="closeModal">&times;</span>
+      <span class="close-btn" onclick="closeCart()">&times;</span>
       <h2>Your Cart</h2>
-      <ul id="cartItems"></ul>
-      <p><strong>Total: Rs. <span id="cartTotal">0</span></strong></p>
-      <button id="checkoutBtn">Checkout</button>
+      <ul id="cart-items"></ul>
+
+      <form id="checkout-form">
+        <input type="text" placeholder="Your Name" required>
+        <input type="email" placeholder="Your Email" required>
+        <input type="tel" placeholder="Phone Number" required>
+        <input type="text" placeholder="Address" required>
+        <select required>
+          <option value="">Select Delivery Option</option>
+          <option value="pickup">Clinic Pickup</option>
+          <option value="delivery">Home Delivery</option>
+        </select>
+        <textarea placeholder="Additional Notes"></textarea>
+        <button type="submit" class="btn">Place Order</button>
+      </form>
     </div>
   </div>
 
-  <!-- ===== FOOTER ===== -->
+  <!-- Footer -->
   <footer>
     <p>&copy; 2025 Bilawal Homoeopathic Clinic. All Rights Reserved.</p>
   </footer>
 
-  <!-- ===== JAVASCRIPT ===== -->
   <script>
-    const cartBtn = document.getElementById('cartBtn');
-    const cartModal = document.getElementById('cartModal');
-    const closeModal = document.getElementById('closeModal');
-    const cartItemsList = document.getElementById('cartItems');
-    const cartTotal = document.getElementById('cartTotal');
-    const cartCount = document.getElementById('cartCount');
-
     let cart = [];
 
-    // Open modal
-    cartBtn.onclick = () => {
-      cartModal.style.display = 'block';
+    function addToCart(item) {
+      cart.push(item);
+      document.getElementById("cart-count").innerText = cart.length;
+      openCart();
       renderCart();
-    };
-
-    // Close modal
-    closeModal.onclick = () => {
-      cartModal.style.display = 'none';
-    };
-
-    window.onclick = (e) => {
-      if (e.target == cartModal) cartModal.style.display = 'none';
-    };
-
-    // Add to cart
-    document.querySelectorAll('.add-to-cart').forEach(button => {
-      button.addEventListener('click', () => {
-        const name = button.getAttribute('data-name');
-        const price = parseInt(button.getAttribute('data-price'));
-        cart.push({ name, price });
-        cartCount.textContent = cart.length;
-        renderCart();
-      });
-    });
-
-    // Render cart
-    function renderCart() {
-      cartItemsList.innerHTML = '';
-      let total = 0;
-      cart.forEach(item => {
-        total += item.price;
-        const li = document.createElement('li');
-        li.textContent = `${item.name} - Rs. ${item.price}`;
-        cartItemsList.appendChild(li);
-      });
-      cartTotal.textContent = total;
     }
 
-    // Checkout button
-    document.getElementById('checkoutBtn').onclick = () => {
-      alert("Thank you for your order!");
-      cart = [];
-      cartCount.textContent = "0";
-      renderCart();
-      cartModal.style.display = 'none';
-    };
-  </script>
+    function renderCart() {
+      const cartItems = document.getElementById("cart-items");
+      cartItems.innerHTML = "";
+      cart.forEach((item, index) => {
+        const li = document.createElement("li");
+        li.textContent = item;
+        cartItems.appendChild(li);
+      });
+    }
 
+    function openCart() {
+      document.getElementById("cart-modal").style.display = "block";
+    }
+
+    function closeCart() {
+      document.getElementById("cart-modal").style.display = "none";
+    }
+  </script>
 </body>
 </html>
