@@ -3,48 +3,55 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Products - Bilawal Homoeopathic Clinic</title>
+  <title>Medicines - Bilawal Homoeopathic Clinic</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <!-- Navbar -->
   <nav class="navbar">
-    <div class="logo">Bilawal Homoeopathic Clinic</div>
-    <ul class="nav-links">
-      <li><a href="index.html">Home</a></li>
-      <li><a href="Products.html" class="active">Products</a></li>
-      <li><a href="Appointments.html">Appointments</a></li>
-      <li><a href="Contact.html">Contact</a></li>
-    </ul>
-    <a href="#" class="cart-btn">🛒 Cart</a>
+    <div class="container">
+      <a href="index.html" class="logo">Bilawal Clinic</a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="medicine.html" class="active">Medicine</a></li>
+        <li><a href="appointment.html">Appointment</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+      <a href="cart.html" class="cart-btn">🛒 Cart</a>
+    </div>
   </nav>
 
-  <header class="hero small-hero">
-    <h1>Our Medicines</h1>
-  </header>
-
-  <section class="products">
-    <div class="product">
-      <h3>Medicine 1</h3>
-      <p>Effective for common health issues.</p>
-      <button class="btn">Description</button>
-      <button class="btn">Add to Cart</button>
-    </div>
-    <div class="product">
-      <h3>Medicine 2</h3>
-      <p>Safe and natural homoeopathic remedy.</p>
-      <button class="btn">Description</button>
-      <button class="btn">Add to Cart</button>
-    </div>
-    <div class="product">
-      <h3>Medicine 3</h3>
-      <p>Trusted by many patients.</p>
-      <button class="btn">Description</button>
-      <button class="btn">Add to Cart</button>
+  <!-- Medicines Section -->
+  <section class="medicines">
+    <div class="container">
+      <h2>Our Medicines</h2>
+      <div class="medicine-list">
+        <!-- Example Medicine Item -->
+        <div class="medicine-item">
+          <h3>Medicine 1</h3>
+          <p>Effective for general health improvement.</p>
+          <button class="btn">Description</button>
+          <button class="btn">Add to Cart</button>
+        </div>
+        <div class="medicine-item">
+          <h3>Medicine 2</h3>
+          <p>Supports immunity and natural healing.</p>
+          <button class="btn">Description</button>
+          <button class="btn">Add to Cart</button>
+        </div>
+        <div class="medicine-item">
+          <h3>Medicine 3</h3>
+          <p>Safe and natural care for all ages.</p>
+          <button class="btn">Description</button>
+          <button class="btn">Add to Cart</button>
+        </div>
+      </div>
     </div>
   </section>
 
+  <!-- Footer -->
   <footer>
-    <p>&copy; 2025 Bilawal Homoeopathic Clinic. All rights reserved.</p>
+    <p>© 2025 Bilawal Homoeopathic Clinic. All Rights Reserved.</p>
   </footer>
 </body>
 </html>
