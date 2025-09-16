@@ -4,74 +4,50 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Book Appointment - Bilawal Homoeopathic Clinic</title>
-
-  <!-- SEO Meta Tags -->
-  <meta name="description" content="Book your homeopathic consultation online at Bilawal Homoeopathic Clinic. Easy and fast appointment booking.">
-  <meta name="keywords" content="homeopathic clinic, book appointment, Bilawal Clinic, consultation, homeopathy">
-  <meta name="robots" content="index, follow">
-
-  <!-- Global CSS -->
   <link rel="stylesheet" href="style.css">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 </head>
 <body>
-  <!-- Header -->
+  <!-- Navbar -->
   <header>
-    <div class="logo">Bilawal Clinic</div>
-    <nav>
-      <ul>
+    <nav class="navbar">
+      <div class="logo">Bilawal Clinic</div>
+      <ul class="nav-links">
         <li><a href="index.html">Home</a></li>
-        <li><a href="products.html">Medicines</a></li>
-        <li><a href="appointments.html" class="active">Appointments</a></li>
+        <li><a href="medicine.html">Medicines</a></li>
+        <li><a href="appointment.html" class="active">Appointments</a></li>
         <li><a href="contact.html">Contact</a></li>
       </ul>
     </nav>
   </header>
 
-  <!-- Appointment Section -->
-  <section class="appointment">
-    <div class="appointment-container">
-      <h2>Book an Appointment</h2>
-      <p>Please fill out the form below to schedule your visit at our clinic.</p>
+  <!-- Appointment Form -->
+  <main class="container">
+    <h1>Book an Appointment</h1>
+    <p>Please fill in your details below. We will confirm your appointment as soon as possible.</p>
 
-      <!-- Appointment Form -->
-      <form action="https://api.web3forms.com/submit" method="POST" class="appointment-form">
-        <input type="hidden" name="access_key" value="ae943642-5d7b-48c2-927a-216d05b1360b">
-        <input type="hidden" name="redirect" value="thankyou.html">
+    <form action="https://formspree.io/f/ae943642-5d7b-48c2-927a-216d05b1360b" method="POST" class="appointment-form">
+      <label for="name">Full Name:</label>
+      <input type="text" id="name" name="name" required>
 
-        <div class="form-group">
-          <label for="name">Full Name</label>
-          <input type="text" id="name" name="name" placeholder="Enter your full name" required>
-        </div>
+      <label for="phone">Phone Number:</label>
+      <input type="tel" id="phone" name="phone" required>
 
-        <div class="form-group">
-          <label for="phone">Phone Number</label>
-          <input type="tel" id="phone" name="phone" placeholder="0300-1234567" required>
-        </div>
+      <label for="email">Email Address:</label>
+      <input type="email" id="email" name="email" required>
 
-        <div class="form-group">
-          <label for="email">Email Address</label>
-          <input type="email" id="email" name="email" placeholder="Enter your email" required>
-        </div>
+      <label for="date">Preferred Date:</label>
+      <input type="date" id="date" name="date" required>
 
-        <div class="form-group">
-          <label for="date">Preferred Date</label>
-          <input type="date" id="date" name="date" required>
-        </div>
+      <label for="note">Additional Notes:</label>
+      <textarea id="note" name="note" rows="4" placeholder="Describe your health concern..."></textarea>
 
-        <div class="form-group">
-          <label for="notes">Health Concern (Optional)</label>
-          <textarea id="notes" name="notes" rows="4" placeholder="Write your health concern..."></textarea>
-        </div>
-
-        <button type="submit" class="btn">Confirm Appointment</button>
-      </form>
-    </div>
-  </section>
+      <button type="submit" class="btn">Submit Appointment</button>
+    </form>
+  </main>
 
   <!-- Footer -->
   <footer>
-    <p>&copy; 2025 Bilawal Homoeopathic Clinic. All Rights Reserved.</p>
+    <p>© 2025 Bilawal Homoeopathic Clinic. All Rights Reserved.</p>
   </footer>
 </body>
 </html>
