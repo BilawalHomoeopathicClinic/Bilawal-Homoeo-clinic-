@@ -1,25 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Bilawal Homoeopathic Clinic - Home</title>
 
-  <!-- SEO Meta Tags -->
   <meta name="description" content="Bilawal Homoeopathic Clinic - Trusted homeopathic care for safe, natural, and effective healing. Book appointments online or visit us for consultation.">
-  <meta name="keywords" content="homeopathic clinic, online appointment, Bilawal Clinic, homeopathic treatment, natural remedies">
   <meta name="robots" content="index, follow">
 
-  <!-- Global CSS -->
+  <!-- Only link one global CSS -->
   <link rel="stylesheet" href="style.css">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
   <!-- Header -->
   <header>
-    <nav class="navbar">
-      <div class="logo">Bilawal Clinic</div>
-      <ul class="nav-links">
+    <div class="logo">Bilawal Clinic</div>
+    <nav>
+      <ul>
         <li><a href="index.html" class="active">Home</a></li>
         <li><a href="products.html">Medicines</a></li>
         <li><a href="appointments.html">Appointments</a></li>
@@ -28,22 +26,40 @@
     </nav>
   </header>
 
-  <!-- Hero Section -->
-  <section class="hero">
-    <div class="hero-content">
-      <h1>Welcome to Bilawal Homoeopathic Clinic</h1>
-      <p>Trusted homeopathic care for safe, natural, and effective healing.</p>
-      <a href="appointments.html" class="btn">Book Appointment</a>
+  <!-- Hero -->
+  <section class="hero" aria-labelledby="hero-heading">
+    <div class="hero-inner">
+      <h1 id="hero-heading">Welcome to Bilawal Homoeopathic Clinic</h1>
+      <p>Trusted homeopathic care for safe, natural, and effective healing. We focus on individualized remedies and careful clinical assessment to support long-term balance and wellbeing.</p>
+
+      <div class="actions">
+        <a class="btn-primary" href="appointments.html">Book Appointment</a>
+        <a class="btn-ghost" href="https://wa.me/923007592091" target="_blank" rel="noopener">💬 WhatsApp</a>
+      </div>
     </div>
   </section>
 
   <!-- About Section -->
-  <section class="about">
-    <h2>About Our Clinic</h2>
-    <p>
-      At <b>Bilawal Homoeopathic Clinic</b>, we are dedicated to providing safe, natural, and effective care for all ages.  
-      Our focus is on understanding each patient’s unique needs and offering remedies that restore balance and long-term wellness.  
-    </p>
+  <section class="about" aria-labelledby="about-heading">
+    <div class="container">
+      <h2 id="about-heading">About Our Clinic</h2>
+
+      <p class="lead"><strong>At Bilawal Homoeopathic Clinic</strong>, our approach centres on each person's complete picture — symptoms, constitution, and life context. Homeopathy uses gentle, individualized remedies that aim to support the body’s own healing processes rather than simply treating isolated symptoms.</p>
+
+      <p class="details">
+        Our clinic has served the local community for decades. We combine careful case-taking, time-honoured homeopathic methods, and responsible clinical judgement to support patients across a wide range of common health concerns. While remedies are selected individually and tailored to each person, we always recommend in-person consultation at the clinic for accurate assessment and safe treatment planning.
+      </p>
+
+      <p class="details">
+        We are committed to clear communication, patient safety, and ethical practice. If you're unsure whether homeopathy is appropriate for your situation, please contact us — we will advise you and, when necessary, recommend other medical care or investigations.
+      </p>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta">
+    <a href="appointments.html" class="btn-primary">Book Appointment</a>
+    <p>Or message us on WhatsApp: <a href="https://wa.me/923007592091" target="_blank" rel="noopener">0300-7592091</a></p>
   </section>
 
   <!-- Footer -->
