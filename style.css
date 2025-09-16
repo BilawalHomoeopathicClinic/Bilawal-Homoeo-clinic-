@@ -1,4 +1,6 @@
-/* ========== GLOBAL RESET ========== */
+/* =========================
+   Global Styles (Applies to all pages)
+========================= */
 * {
   margin: 0;
   padding: 0;
@@ -12,169 +14,323 @@ body {
   line-height: 1.6;
 }
 
-/* ========== NAVBAR (Horizontal, Same on All Pages) ========== */
+/* =========================
+   Navbar
+========================= */
 header {
-  background: #1b6ca8; /* same color everywhere */
+  background: #0072ff;
   color: #fff;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 16px 20px;
-  flex-wrap: wrap; /* wrap if space less */
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  padding: 15px 40px;
 }
 
 header .logo {
-  font-size: 20px;
+  font-size: 22px;
   font-weight: 700;
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
 }
 
 nav ul {
   list-style: none;
   display: flex;
-  gap: 14px;
+  gap: 20px;
 }
 
 nav ul li a {
-  color: #fff;
+  color: white;
   text-decoration: none;
-  font-size: 14px;
-  padding: 6px 10px;
-  border-radius: 6px;
+  padding: 8px 14px;
+  border-radius: 8px;
   transition: 0.3s;
 }
 
 nav ul li a:hover,
 nav ul li a.active {
-  background: #155a8a;
+  background: #0056cc;
 }
 
-/* ========== BUTTONS ========== */
-.btn {
+/* =========================
+   Hero Section (Home Page)
+========================= */
+.hero {
+  text-align: center;
+  padding: 80px 20px;
+  background: linear-gradient(135deg, #0072ff, #00c6ff);
+  color: white;
+}
+
+.hero h1 {
+  font-size: 40px;
+  margin-bottom: 15px;
+}
+
+.hero p {
+  font-size: 18px;
+  margin-bottom: 25px;
+}
+
+.btn, .whatsapp-btn {
   display: inline-block;
-  padding: 10px 18px;
-  border-radius: 25px;
-  font-size: 14px;
-  font-weight: 500;
+  margin: 8px;
+  padding: 14px 24px;
+  background: white;
+  color: #0072ff;
+  font-weight: 600;
+  border-radius: 30px;
   text-decoration: none;
   transition: 0.3s;
-  border: none;
-  cursor: pointer;
 }
 
-.btn-primary {
-  background: #1b6ca8;
-  color: #fff;
-}
-
-.btn-primary:hover {
-  background: #155a8a;
-}
-
-.whatsapp-btn {
-  background: #25d366;
-  color: white;
-  border-radius: 25px;
-  padding: 10px 18px;
-}
-
+.btn:hover,
 .whatsapp-btn:hover {
-  background: #1ebc57;
+  background: #0056cc;
+  color: white;
 }
 
-/* ========== CART ICON ========== */
-.cart-icon {
-  position: relative;
+/* =========================
+   About Section (Home)
+========================= */
+.about {
+  padding: 60px 20px;
+  text-align: center;
+  max-width: 900px;
+  margin: auto;
+}
+
+.about h2 {
+  font-size: 28px;
+  color: #0072ff;
+  margin-bottom: 15px;
+}
+
+.about p {
   font-size: 16px;
-  background: #fff;
-  color: #1b6ca8;
-  padding: 6px 12px;
-  border-radius: 20px;
+  color: #444;
+}
+
+/* =========================
+   Medicines Page
+========================= */
+.products {
+  padding: 60px 20px;
+  text-align: center;
+}
+
+.products h2 {
+  font-size: 28px;
+  color: #0072ff;
+  margin-bottom: 30px;
+}
+
+.product-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 25px;
+}
+
+.product-card {
+  background: white;
+  padding: 20px;
+  border-radius: 16px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+  transition: 0.3s;
+}
+
+.product-card:hover {
+  transform: translateY(-5px);
+}
+
+.product-card h3 {
+  color: #0072ff;
+  margin-bottom: 10px;
+}
+
+.product-card p {
+  font-size: 14px;
+  margin-bottom: 12px;
+  color: #555;
+}
+
+.product-card button {
+  background: #0072ff;
+  color: white;
+  padding: 10px 16px;
+  border: none;
+  border-radius: 8px;
   cursor: pointer;
   transition: 0.3s;
 }
 
-.cart-icon:hover {
-  background: #f0f0f0;
+.product-card button:hover {
+  background: #0056cc;
 }
 
-.cart-count {
-  position: absolute;
-  top: -6px;
-  right: -6px;
-  background: red;
-  color: white;
-  font-size: 12px;
-  padding: 2px 6px;
-  border-radius: 50%;
-}
-
-/* ========== FOOTER ========== */
-footer {
-  text-align: center;
-  padding: 16px;
-  background: #1b6ca8;
-  color: white;
-  font-size: 14px;
-  margin-top: 40px;
-}
-
-/* ========== MODAL (Cart / Global Use) ========== */
-.modal {
+/* Cart Popup */
+.cart-modal {
   display: none;
   position: fixed;
-  z-index: 5000;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
   background: rgba(0,0,0,0.6);
-  overflow-y: auto;
+  justify-content: center;
+  align-items: center;
 }
 
-.modal-content {
-  background: #fff;
-  margin: 6% auto;
+.cart-content {
+  background: white;
   padding: 25px;
   border-radius: 12px;
-  max-width: 700px;
-  text-align: left;
-  position: relative;
-  box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+  width: 90%;
+  max-width: 500px;
+  text-align: center;
 }
 
 .close-btn {
-  position: absolute;
-  right: 15px;
-  top: 10px;
-  font-size: 24px;
-  font-weight: bold;
-  color: #333;
+  background: red;
+  color: white;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 6px;
   cursor: pointer;
 }
-.close-btn:hover {
-  color: #1b6ca8;
+
+/* =========================
+   Appointment Page
+========================= */
+.appointment-section {
+  padding: 60px 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-/* ========== RESPONSIVE ========== */
+.appointment-container {
+  background: white;
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+  max-width: 500px;
+  width: 100%;
+}
+
+.appointment-header h2 {
+  font-size: 28px;
+  color: #0072ff;
+  margin-bottom: 15px;
+}
+
+.appointment-form .form-group {
+  margin-bottom: 18px;
+  text-align: left;
+}
+
+.appointment-form label {
+  font-weight: 600;
+  margin-bottom: 6px;
+  display: block;
+}
+
+.appointment-form input,
+.appointment-form textarea {
+  width: 100%;
+  padding: 14px 16px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  font-size: 14px;
+  outline: none;
+  transition: 0.3s;
+}
+
+.appointment-form input:focus,
+.appointment-form textarea:focus {
+  border-color: #0072ff;
+  box-shadow: 0 0 8px rgba(0,114,255,0.2);
+}
+
+.appointment-form button {
+  width: 100%;
+  padding: 14px;
+  background: #0072ff;
+  color: white;
+  font-weight: 600;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.appointment-form button:hover {
+  background: #0056cc;
+}
+
+/* =========================
+   Contact Page
+========================= */
+.contact {
+  padding: 60px 20px;
+  text-align: center;
+}
+
+.contact h2 {
+  font-size: 28px;
+  color: #0072ff;
+  margin-bottom: 20px;
+}
+
+.contact-info {
+  background: white;
+  padding: 30px;
+  border-radius: 16px;
+  max-width: 600px;
+  margin: auto;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+}
+
+.contact-info p {
+  margin: 12px 0;
+  font-size: 15px;
+  color: #444;
+}
+
+/* =========================
+   Footer
+========================= */
+footer {
+  text-align: center;
+  padding: 18px;
+  background: #0072ff;
+  color: white;
+  margin-top: 40px;
+}
+
+/* =========================
+   Responsive
+========================= */
 @media (max-width: 768px) {
-  header {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
   nav ul {
-    flex-direction: row; /* still horizontal on mobile */
     flex-wrap: wrap;
-    gap: 10px;
-    margin-top: 10px;
+    gap: 12px;
+    justify-content: flex-end;
   }
 
-  nav ul li a {
-    padding: 8px 12px;
-    font-size: 13px;
+  .hero h1 {
+    font-size: 28px;
+  }
+
+  .hero p {
+    font-size: 15px;
+  }
+
+  .appointment-container {
+    padding: 25px;
+  }
+
+  .contact-info {
+    padding: 20px;
   }
 }
