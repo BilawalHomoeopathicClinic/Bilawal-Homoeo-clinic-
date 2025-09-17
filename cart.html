@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cart - Bilawal Homoeopathic Clinic</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="container">
+      <a href="index.html" class="logo">Bilawal Clinic</a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="medicine.html">Medicine</a></li>
+        <li><a href="appointment.html">Appointment</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+      <a href="cart.html" class="cart-btn active">🛒 Cart</a>
+    </div>
+  </nav>
+
+  <!-- Cart Section -->
+  <section class="cart">
+    <div class="container">
+      <h2>Your Cart</h2>
+      <div id="cart-items"></div>
+      <h3 id="cart-total">Total: Rs. 0</h3>
+
+      <!-- Checkout Form -->
+      <h2>Checkout</h2>
+      <form action="https://api.web3forms.com/submit" method="POST">
+        <input type="hidden" name="access_key" value="ae943642-5d7b-48c2-927a-216d05b1360b">
+        <input type="hidden" name="cart_data" id="cart-data">
+
+        <label for="name">Full Name:</label>
+        <input type="text" name="name" required>
+
+        <label for="email">Email:</label>
+        <input type="email" name="email" required>
+
+        <label for="phone">Phone:</label>
+        <input type="tel" name="phone" required>
+
+        <label for="address">Address:</label>
+        <textarea name="address" required></textarea>
+
+        <label for="delivery">Delivery Option:</label>
+        <select name="delivery" required>
+          <option value="Clinic Pickup">Receive from Clinic</option>
+          <option value="Home Delivery">Home Delivery</option>
+        </select>
+
+        <button type="submit" class="btn">Place Order</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2025 Bilawal Homoeopathic Clinic. All Rights Reserved.</p>
+  </footer>
+
+  <!-- JavaScript for Cart -->
+  <script>
+    const cartItemsContainer = document.getElementById("cart-items");
+    const cartTotal = document.getElementById("cart-total");
+    const cartDataInput = document.getElementById("cart-data");
+
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+    function renderCart() {
+      cartItemsContainer.innerHTML = "";
+      let total = 0;
+
+      cart.forEach((item, index) => {
+        total += parseInt(item.price);
+        cartItemsContainer.innerHTML += `
+          <p>${item.name} - Rs. ${item.price} 
+            <button onclick="removeItem(${index})">Remove</button>
+          </p>
+        `;
+      });
+
+      cartTotal.textContent = "Total: Rs. " + total;
+      cartDataInput.value = JSON.stringify(cart);
+    }
+
+    function removeItem(index) {
+      cart.splice(index, 1);
+      localStorage.setItem("cart", JSON.stringify(cart));
+      renderCart();
+    }
+
+    renderCart();
+  </script>
+</body>
+</html>
