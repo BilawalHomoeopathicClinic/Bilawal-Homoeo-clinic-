@@ -17,44 +17,51 @@
         <li><a href="appointment.html">Appointment</a></li>
         <li><a href="contact.html">Contact</a></li>
       </ul>
-      <a href="cart.html" class="cart-btn">🛒 Cart</a>
+      <a href="cart.html" class="cart-btn">
+        🛒 Cart <span id="cart-count">0</span>
+      </a>
     </div>
   </nav>
 
-  <!-- Medicine Products -->
+  <!-- Medicines -->
   <section class="products container">
     <div class="product">
-      <h3>Medicine 1</h3>
-      <p>Effective homeopathic medicine for common health issues.</p>
-      <button onclick="addToCart('Medicine 1', '500')">Add to Cart</button>
+      <h3>Medicine A</h3>
+      <p>Price: Rs.500</p>
+      <button onclick="addToCart('Medicine A', 500)">Add to Cart</button>
     </div>
-
     <div class="product">
-      <h3>Medicine 2</h3>
-      <p>Trusted natural remedy with no side effects.</p>
-      <button onclick="addToCart('Medicine 2', '700')">Add to Cart</button>
+      <h3>Medicine B</h3>
+      <p>Price: Rs.750</p>
+      <button onclick="addToCart('Medicine B', 750)">Add to Cart</button>
     </div>
-
     <div class="product">
-      <h3>Medicine 3</h3>
-      <p>Safe and reliable solution for long-term wellness.</p>
-      <button onclick="addToCart('Medicine 3', '900')">Add to Cart</button>
+      <h3>Medicine C</h3>
+      <p>Price: Rs.1000</p>
+      <button onclick="addToCart('Medicine C', 1000)">Add to Cart</button>
     </div>
   </section>
 
-  <!-- Footer -->
   <footer>
     <p>© 2025 Bilawal Homoeopathic Clinic. All Rights Reserved.</p>
   </footer>
 
-  <!-- Cart Script -->
   <script>
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    const cartCount = document.getElementById("cart-count");
+
+    function updateCartCount() {
+      cartCount.innerText = cart.length;
+    }
+
     function addToCart(name, price) {
-      let cart = JSON.parse(localStorage.getItem("cart")) || [];
       cart.push({ name, price });
       localStorage.setItem("cart", JSON.stringify(cart));
+      updateCartCount();
       alert(name + " added to cart!");
     }
+
+    updateCartCount();
   </script>
 </body>
 </html>
