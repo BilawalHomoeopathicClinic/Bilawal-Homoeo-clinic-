@@ -41,7 +41,7 @@ body {
   list-style: none;
   display: flex;
   gap: 20px;
-  flex-wrap: wrap; /* allow wrapping on smaller screens */
+  flex-wrap: wrap;
 }
 
 .nav-links a {
@@ -55,7 +55,7 @@ body {
 
 .nav-links a:hover,
 .nav-links .active {
-  background: #2563eb; /* Lighter Blue */
+  background: #2563eb;
 }
 
 .cart-btn {
@@ -66,10 +66,20 @@ body {
   border-radius: 20px;
   font-weight: 500;
   transition: 0.3s ease;
+  position: relative;
 }
 
 .cart-btn:hover {
   background: #1d4ed8;
+}
+
+#cart-count {
+  background: red;
+  color: #fff;
+  padding: 2px 6px;
+  border-radius: 50%;
+  font-size: 0.8rem;
+  margin-left: 5px;
 }
 
 /* ===== Hero Section (Index) ===== */
@@ -104,7 +114,7 @@ body {
   background: #1d4ed8;
 }
 
-/* ===== Sections ===== */
+/* ===== Sections (About, Contact, etc.) ===== */
 section {
   padding: 60px 20px;
 }
@@ -146,7 +156,7 @@ section h2 {
   text-decoration: underline;
 }
 
-/* ===== Appointment & Checkout Forms ===== */
+/* ===== Appointment Form ===== */
 form {
   background: #fff;
   padding: 25px;
@@ -218,61 +228,32 @@ form button:hover {
   background: #1d4ed8;
 }
 
-/* ===== Cart Section ===== */
-.cart {
-  max-width: 800px;
-  margin: auto;
-  background: #fff;
-  padding: 25px;
-  border-radius: 12px;
-  box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.1);
-}
-
-.cart h2 {
-  margin-bottom: 20px;
-  color: #1e3a8a;
-  text-align: center;
-}
-
-#cart-items {
-  margin-bottom: 20px;
+/* ===== Cart Page ===== */
+.cart-section {
+  padding: 40px 20px;
 }
 
 .cart-item {
+  background: #f8f9fa;
+  padding: 15px;
+  margin: 10px 0;
+  border-radius: 8px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: #f3f4f6;
-  padding: 12px 15px;
-  border-radius: 8px;
-  margin-bottom: 10px;
-}
-
-.cart-item span {
-  font-size: 1rem;
-  color: #333;
 }
 
 .cart-item button {
-  background: #ef4444; /* red remove button */
+  background: #dc2626;
   color: #fff;
   border: none;
-  padding: 6px 10px;
+  padding: 6px 12px;
   border-radius: 6px;
   cursor: pointer;
-  transition: 0.3s;
 }
 
 .cart-item button:hover {
-  background: #dc2626;
-}
-
-#cart-total {
-  font-weight: bold;
-  font-size: 1.2rem;
-  margin-top: 10px;
-  text-align: right;
-  color: #1e3a8a;
+  background: #b91c1c;
 }
 
 /* ===== Footer ===== */
@@ -284,7 +265,7 @@ footer {
   margin-top: 40px;
 }
 
-/* ===== Responsive Adjustments ===== */
+/* ===== Responsive ===== */
 @media screen and (max-width: 768px) {
   .navbar .container {
     flex-wrap: wrap;
@@ -316,15 +297,5 @@ footer {
 
   .hero p {
     font-size: 1rem;
-  }
-
-  .cart-item {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 8px;
-  }
-
-  #cart-total {
-    text-align: center;
   }
 }
