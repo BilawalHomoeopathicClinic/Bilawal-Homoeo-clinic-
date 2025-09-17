@@ -104,7 +104,7 @@ body {
   background: #1d4ed8;
 }
 
-/* ===== Sections (About, Contact, etc.) ===== */
+/* ===== Sections ===== */
 section {
   padding: 60px 20px;
 }
@@ -146,7 +146,7 @@ section h2 {
   text-decoration: underline;
 }
 
-/* ===== Appointment Form ===== */
+/* ===== Appointment & Checkout Forms ===== */
 form {
   background: #fff;
   padding: 25px;
@@ -218,6 +218,63 @@ form button:hover {
   background: #1d4ed8;
 }
 
+/* ===== Cart Section ===== */
+.cart {
+  max-width: 800px;
+  margin: auto;
+  background: #fff;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.1);
+}
+
+.cart h2 {
+  margin-bottom: 20px;
+  color: #1e3a8a;
+  text-align: center;
+}
+
+#cart-items {
+  margin-bottom: 20px;
+}
+
+.cart-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #f3f4f6;
+  padding: 12px 15px;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+.cart-item span {
+  font-size: 1rem;
+  color: #333;
+}
+
+.cart-item button {
+  background: #ef4444; /* red remove button */
+  color: #fff;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.cart-item button:hover {
+  background: #dc2626;
+}
+
+#cart-total {
+  font-weight: bold;
+  font-size: 1.2rem;
+  margin-top: 10px;
+  text-align: right;
+  color: #1e3a8a;
+}
+
 /* ===== Footer ===== */
 footer {
   text-align: center;
@@ -227,10 +284,10 @@ footer {
   margin-top: 40px;
 }
 
-/* ===== Responsive Adjustments (Mobile Friendly) ===== */
+/* ===== Responsive Adjustments ===== */
 @media screen and (max-width: 768px) {
   .navbar .container {
-    flex-wrap: wrap; /* allow wrapping */
+    flex-wrap: wrap;
     justify-content: space-between;
   }
 
@@ -259,5 +316,15 @@ footer {
 
   .hero p {
     font-size: 1rem;
+  }
+
+  .cart-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  #cart-total {
+    text-align: center;
   }
 }
