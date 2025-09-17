@@ -21,31 +21,24 @@
     </div>
   </nav>
 
-  <!-- Medicine Section -->
-  <section class="products">
-    <div class="container">
-      <h2>Our Medicines</h2>
+  <!-- Medicine Products -->
+  <section class="products container">
+    <div class="product">
+      <h3>Medicine 1</h3>
+      <p>Effective homeopathic medicine for common health issues.</p>
+      <button onclick="addToCart('Medicine 1', '500')">Add to Cart</button>
+    </div>
 
-      <div class="product">
-        <h3>Medicine A</h3>
-        <p>For general wellness and recovery support.</p>
-        <p><b>Price:</b> Rs. 500</p>
-        <button class="btn add-to-cart" data-name="Medicine A" data-price="500">Add to Cart</button>
-      </div>
+    <div class="product">
+      <h3>Medicine 2</h3>
+      <p>Trusted natural remedy with no side effects.</p>
+      <button onclick="addToCart('Medicine 2', '700')">Add to Cart</button>
+    </div>
 
-      <div class="product">
-        <h3>Medicine B</h3>
-        <p>Supports immunity and natural healing.</p>
-        <p><b>Price:</b> Rs. 750</p>
-        <button class="btn add-to-cart" data-name="Medicine B" data-price="750">Add to Cart</button>
-      </div>
-
-      <div class="product">
-        <h3>Medicine C</h3>
-        <p>For stress relief and better sleep.</p>
-        <p><b>Price:</b> Rs. 650</p>
-        <button class="btn add-to-cart" data-name="Medicine C" data-price="650">Add to Cart</button>
-      </div>
+    <div class="product">
+      <h3>Medicine 3</h3>
+      <p>Safe and reliable solution for long-term wellness.</p>
+      <button onclick="addToCart('Medicine 3', '900')">Add to Cart</button>
     </div>
   </section>
 
@@ -54,20 +47,14 @@
     <p>© 2025 Bilawal Homoeopathic Clinic. All Rights Reserved.</p>
   </footer>
 
-  <!-- JavaScript for Cart -->
+  <!-- Cart Script -->
   <script>
-    const buttons = document.querySelectorAll(".add-to-cart");
-    buttons.forEach(btn => {
-      btn.addEventListener("click", () => {
-        const name = btn.dataset.name;
-        const price = btn.dataset.price;
-
-        let cart = JSON.parse(localStorage.getItem("cart")) || [];
-        cart.push({ name, price });
-        localStorage.setItem("cart", JSON.stringify(cart));
-        alert(name + " added to cart!");
-      });
-    });
+    function addToCart(name, price) {
+      let cart = JSON.parse(localStorage.getItem("cart")) || [];
+      cart.push({ name, price });
+      localStorage.setItem("cart", JSON.stringify(cart));
+      alert(name + " added to cart!");
+    }
   </script>
 </body>
 </html>
