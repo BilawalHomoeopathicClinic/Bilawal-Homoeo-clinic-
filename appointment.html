@@ -25,7 +25,11 @@
   <section class="appointment">
     <div class="container">
       <h2>Book an Appointment</h2>
-      <form action="https://formspree.io/f/your-form-id" method="POST">
+      <form action="https://api.web3forms.com/submit" method="POST">
+        
+        <!-- Web3Forms Access Key -->
+        <input type="hidden" name="access_key" value="ae943642-5d7b-48c2-927a-216d05b1360b">
+
         <label for="name">Full Name:</label>
         <input type="text" id="name" name="name" required>
 
@@ -52,4 +56,3 @@
   </footer>
 </body>
 </html>
-
