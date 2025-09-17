@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cart - Bilawal Homoeopathic Clinic</title>
+  <title>Your Cart - Bilawal Homoeopathic Clinic</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -23,33 +23,40 @@
 
   <!-- Cart Section -->
   <section class="cart">
-    <div class="container">
-      <h2>Your Cart</h2>
-      <div id="cart-items"></div>
-      <h3 id="cart-total">Total: Rs. 0</h3>
+    <h2>Your Shopping Cart</h2>
+    <div id="cart-items">
+      <!-- Items will be added dynamically by JS -->
+    </div>
+    <p id="cart-total">Total: Rs. 0</p>
+  </section>
 
-      <!-- Checkout Form -->
+  <!-- Checkout Form -->
+  <section class="appointment">
+    <div class="container">
       <h2>Checkout</h2>
       <form action="https://api.web3forms.com/submit" method="POST">
+        <!-- ✅ Web3Forms Access Key -->
         <input type="hidden" name="access_key" value="ae943642-5d7b-48c2-927a-216d05b1360b">
-        <input type="hidden" name="cart_data" id="cart-data">
+
+        <!-- Cart Data (filled via JS before submit) -->
+        <input type="hidden" id="cart-data" name="cart-data">
 
         <label for="name">Full Name:</label>
-        <input type="text" name="name" required>
+        <input type="text" id="name" name="name" required>
 
-        <label for="email">Email:</label>
-        <input type="email" name="email" required>
+        <label for="phone">Phone Number:</label>
+        <input type="tel" id="phone" name="phone" required>
 
-        <label for="phone">Phone:</label>
-        <input type="tel" name="phone" required>
+        <label for="email">Email Address:</label>
+        <input type="email" id="email" name="email" required>
 
-        <label for="address">Address:</label>
-        <textarea name="address" required></textarea>
+        <label for="address">Delivery Address:</label>
+        <textarea id="address" name="address" rows="3" required></textarea>
 
-        <label for="delivery">Delivery Option:</label>
-        <select name="delivery" required>
-          <option value="Clinic Pickup">Receive from Clinic</option>
-          <option value="Home Delivery">Home Delivery</option>
+        <label for="delivery">Delivery Method:</label>
+        <select id="delivery" name="delivery">
+          <option value="pickup">Pickup from Clinic</option>
+          <option value="delivery">Home Delivery</option>
         </select>
 
         <button type="submit" class="btn">Place Order</button>
@@ -62,38 +69,43 @@
     <p>© 2025 Bilawal Homoeopathic Clinic. All Rights Reserved.</p>
   </footer>
 
-  <!-- JavaScript for Cart -->
+  <!-- Cart Script -->
   <script>
-    const cartItemsContainer = document.getElementById("cart-items");
-    const cartTotal = document.getElementById("cart-total");
-    const cartDataInput = document.getElementById("cart-data");
+    // Load cart from localStorage
+    function loadCart() {
+      let cart = JSON.parse(localStorage.getItem("cart")) || [];
+      let cartItemsDiv = document.getElementById("cart-items");
+      let cartTotal = document.getElementById("cart-total");
+      let hiddenCartData = document.getElementById("cart-data");
 
-    let cart = JSON.parse(localStorage.getItem("cart")) || [];
-
-    function renderCart() {
-      cartItemsContainer.innerHTML = "";
+      cartItemsDiv.innerHTML = "";
       let total = 0;
 
       cart.forEach((item, index) => {
-        total += parseInt(item.price);
-        cartItemsContainer.innerHTML += `
-          <p>${item.name} - Rs. ${item.price} 
-            <button onclick="removeItem(${index})">Remove</button>
-          </p>
+        let div = document.createElement("div");
+        div.classList.add("cart-item");
+        div.innerHTML = `
+          <span>${item.name} - Rs.${item.price}</span>
+          <button onclick="removeItem(${index})">Remove</button>
         `;
+        cartItemsDiv.appendChild(div);
+        total += item.price;
       });
 
       cartTotal.textContent = "Total: Rs. " + total;
-      cartDataInput.value = JSON.stringify(cart);
+      hiddenCartData.value = JSON.stringify(cart); // send cart data via form
     }
 
+    // Remove item
     function removeItem(index) {
+      let cart = JSON.parse(localStorage.getItem("cart")) || [];
       cart.splice(index, 1);
       localStorage.setItem("cart", JSON.stringify(cart));
-      renderCart();
+      loadCart();
     }
 
-    renderCart();
+    // Initialize
+    window.onload = loadCart;
   </script>
 </body>
 </html>
