@@ -21,30 +21,30 @@
     </div>
   </nav>
 
-  <!-- Medicines Section -->
-  <section class="medicines">
+  <!-- Medicine Section -->
+  <section class="products">
     <div class="container">
       <h2>Our Medicines</h2>
-      <div class="medicine-list">
-        <!-- Example Medicine Item -->
-        <div class="medicine-item">
-          <h3>Medicine 1</h3>
-          <p>Effective for general health improvement.</p>
-          <button class="btn">Description</button>
-          <button class="btn">Add to Cart</button>
-        </div>
-        <div class="medicine-item">
-          <h3>Medicine 2</h3>
-          <p>Supports immunity and natural healing.</p>
-          <button class="btn">Description</button>
-          <button class="btn">Add to Cart</button>
-        </div>
-        <div class="medicine-item">
-          <h3>Medicine 3</h3>
-          <p>Safe and natural care for all ages.</p>
-          <button class="btn">Description</button>
-          <button class="btn">Add to Cart</button>
-        </div>
+
+      <div class="product">
+        <h3>Medicine A</h3>
+        <p>For general wellness and recovery support.</p>
+        <p><b>Price:</b> Rs. 500</p>
+        <button class="btn add-to-cart" data-name="Medicine A" data-price="500">Add to Cart</button>
+      </div>
+
+      <div class="product">
+        <h3>Medicine B</h3>
+        <p>Supports immunity and natural healing.</p>
+        <p><b>Price:</b> Rs. 750</p>
+        <button class="btn add-to-cart" data-name="Medicine B" data-price="750">Add to Cart</button>
+      </div>
+
+      <div class="product">
+        <h3>Medicine C</h3>
+        <p>For stress relief and better sleep.</p>
+        <p><b>Price:</b> Rs. 650</p>
+        <button class="btn add-to-cart" data-name="Medicine C" data-price="650">Add to Cart</button>
       </div>
     </div>
   </section>
@@ -53,5 +53,21 @@
   <footer>
     <p>© 2025 Bilawal Homoeopathic Clinic. All Rights Reserved.</p>
   </footer>
+
+  <!-- JavaScript for Cart -->
+  <script>
+    const buttons = document.querySelectorAll(".add-to-cart");
+    buttons.forEach(btn => {
+      btn.addEventListener("click", () => {
+        const name = btn.dataset.name;
+        const price = btn.dataset.price;
+
+        let cart = JSON.parse(localStorage.getItem("cart")) || [];
+        cart.push({ name, price });
+        localStorage.setItem("cart", JSON.stringify(cart));
+        alert(name + " added to cart!");
+      });
+    });
+  </script>
 </body>
 </html>
