@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Cart - Bilawal Homoeopathic Clinic</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <!-- Navbar -->
@@ -35,7 +35,7 @@
         </tr>
       </thead>
       <tbody>
-        <!-- Items will be injected here -->
+        <!-- Items will appear here -->
       </tbody>
     </table>
     <div class="cart-summary">
@@ -76,37 +76,51 @@
     </form>
   </section>
 
-  <!-- Footer -->
   <footer>
     <p>© 2025 Bilawal Homoeopathic Clinic. All Rights Reserved.</p>
   </footer>
 
-  <!-- Cart Script -->
   <script>
-    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    // Load cart safely
+    let cart = [];
+    try {
+      const saved = JSON.parse(localStorage.getItem("cart"));
+      if (Array.isArray(saved)) cart = saved;
+    } catch (e) { cart = []; }
+
+    const tableBody = document.querySelector("#cart-table tbody");
+    const totalEl   = document.getElementById("cart-total");
+    const countEl   = document.getElementById("cart-count");
 
     function renderCart() {
-      const tableBody = document.querySelector("#cart-table tbody");
       tableBody.innerHTML = "";
-
       let total = 0;
-      cart.forEach((item, index) => {
+
+      if (cart.length === 0) {
         const row = document.createElement("tr");
-
-        row.innerHTML = `
-          <td>${item.name}</td>
-          <td>Rs ${item.price}</td>
-          <td>${item.quantity}</td>
-          <td>Rs ${item.price * item.quantity}</td>
-          <td><button onclick="removeItem(${index})">❌</button></td>
-        `;
-
+        row.innerHTML = `<td colspan="5">Your cart is empty.</td>`;
         tableBody.appendChild(row);
-        total += item.price * item.quantity;
-      });
+      } else {
+        cart.forEach((item, index) => {
+          const price = Number(item.price) || 0;
+          const qty   = Number(item.quantity) || 1; // default 1
+          const itemTotal = price * qty;
+          total += itemTotal;
 
-      document.getElementById("cart-total").innerText = total;
-      document.getElementById("cart-count").innerText = cart.length;
+          const row = document.createElement("tr");
+          row.innerHTML = `
+            <td>${item.name || "Unknown"}</td>
+            <td>Rs ${price}</td>
+            <td>${qty}</td>
+            <td>Rs ${itemTotal}</td>
+            <td><button type="button" onclick="removeItem(${index})">❌</button></td>
+          `;
+          tableBody.appendChild(row);
+        });
+      }
+
+      totalEl.textContent = total.toLocaleString("en-PK");
+      countEl.textContent = cart.length;
     }
 
     function removeItem(index) {
