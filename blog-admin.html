@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.gstatic.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com data:; img-src 'self' data:; connect-src 'self' https://*.googleapis.com https://www.gstatic.com; object-src 'none'; base-uri 'self'; form-action 'self'">
+  <meta name="referrer" content="no-referrer">
+  <title>Blog Manager | Bilawal Homoeopathic Clinic</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&family=Young+Serif&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    body { background: var(--mist); }
+    .adm { width: min(100% - 2rem, 66rem); margin: 0 auto; padding: 2.5rem 0 5rem; }
+    .adm h1 { font-size: var(--step-3); }
+    .adm__grid { display: grid; grid-template-columns: 1fr 1.1fr; gap: 1.4rem; align-items: start; }
+    @media (max-width: 900px) { .adm__grid { grid-template-columns: minmax(0, 1fr); } }
+    .adm__list { display: grid; gap: .8rem; }
+    .adm__item { display: flex; gap: 1rem; align-items: center; justify-content: space-between; padding: 1rem 1.2rem; background: #fff; border: 1px solid var(--line); border-radius: var(--r-m); }
+    .adm__item b { display: block; overflow-wrap: anywhere; }
+    .adm__item small { display: block; color: var(--muted); }
+    .adm__btns { display: flex; gap: .4rem; flex: none; }
+    .adm .btn--sm { padding: .7rem 1.2rem; }
+    .adm__steps { background: #fff; border: 1px solid var(--line); border-radius: var(--r-m); padding: 1.2rem 1.4rem; margin-bottom: 1.4rem; }
+    .adm__steps ol { margin: .6rem 0 0 1.2rem; padding: 0; }
+    .adm__msg { font-size: var(--step--1); color: var(--pine-3); font-weight: 600; min-height: 1.4em; }
+    .adm .field textarea { min-height: 14rem; }
+    .adm [hidden] { display: none !important; }
+  </style>
+</head>
+<body>
+  <main class="adm">
+    <p><a href="admin.html" style="color:var(--pine-3);font-weight:600">&larr; All manager tools</a></p>
+    <h1>Blog manager</h1>
+    <div class="adm__steps">
+      <b>How this works</b>
+      <ol>
+        <li>Add, edit or delete articles below.</li>
+        <li>Press <b>Download posts.js</b>.</li>
+        <li>Replace the file <code>js/posts.js</code> in the website folder with the downloaded one and upload the website again.</li>
+        <li>For a new article's picture, save the image file in the <code>img/blog</code> folder using the file name shown under "Picture file" (about 1600 px wide, JPG, under 300 KB).</li>
+      </ol>
+    </div>
+
+    <div class="adm__grid">
+      <section>
+        <h2 style="font-size:var(--step-2)">Your articles</h2>
+        <div class="adm__list" id="list"></div>
+        <p style="margin-top:1.2rem;display:flex;gap:.6rem;flex-wrap:wrap">
+          <button class="btn btn--pine btn--sm" id="download" type="button">Download posts.js</button>
+          <button class="btn btn--line btn--sm" id="copy" type="button">Copy file contents</button>
+        </p>
+        <p class="adm__msg" id="msg" role="status"></p>
+      </section>
+
+      <section class="panel">
+        <h2 style="font-size:var(--step-2)" id="form-title">Add an article</h2>
+        <form class="form" id="f" novalidate>
+          <div class="field"><label for="title">Title</label><input id="title" required maxlength="120" placeholder="e.g. Simple habits for seasonal allergies"></div>
+          <div class="form__row">
+            <div class="field"><label for="category">Topic</label><input id="category" required maxlength="40" placeholder="e.g. Allergy, Children's health"></div>
+            <div class="field"><label for="date">Date</label><input id="date" type="date" required></div>
+          </div>
+          <div class="form__row">
+            <div class="field"><label for="minutes">Reading time (minutes)</label><input id="minutes" type="number" min="1" max="30" value="3"></div>
+            <div class="field"><label for="image">Picture file</label><input id="image" placeholder="img/blog/your-article.jpg"></div>
+          </div>
+          <div class="field"><label for="alt">Picture description <span style="font-weight:400;color:var(--muted)">(for screen readers)</span></label><input id="alt" maxlength="160"></div>
+          <div class="field"><label for="excerpt">Short summary <span style="font-weight:400;color:var(--muted)">(shown on the article card)</span></label><textarea id="excerpt" required maxlength="220" style="min-height:5rem"></textarea></div>
+          <div class="field"><label for="body">Article text <span style="font-weight:400;color:var(--muted)">(leave a blank line between paragraphs)</span></label><textarea id="body" required></textarea></div>
+          <div style="display:flex;gap:.6rem;flex-wrap:wrap">
+            <button class="btn btn--pine" type="submit" id="save">Add article</button>
+            <button class="btn btn--line" type="button" id="cancel" hidden>Cancel editing</button>
+          </div>
+        </form>
+      </section>
+    </div>
+  </main>
+
+  <script src="js/posts.js"></script>
+  <script>
+    (function () {
+      var posts = (window.POSTS || []).map(function (p) {
+        var c = {};
+        Object.keys(p).forEach(function (k) { if (!/_ur$/.test(k)) c[k] = p[k]; });
+        return c;
+      });
+      var editing = -1;
+      var $ = function (id) { return document.getElementById(id); };
+      var esc = function (s) { return String(s == null ? "" : s).replace(/[&<>"']/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]; }); };
+      var today = new Date().toISOString().slice(0, 10);
+      $("date").value = today;
+
+      function slugify(s) { return s.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "").slice(0, 60) || "article"; }
+      function uniqueSlug(base, skip) {
+        var s = base, n = 2;
+        while (posts.some(function (p, i) { return i !== skip && p.slug === s; })) s = base + "-" + n++;
+        return s;
+      }
+      function fmt(d) { try { return new Date(d + "T00:00:00").toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" }); } catch (e) { return d; } }
+
+      function render() {
+        var order = posts.map(function (p, i) { return i; }).sort(function (a, b) { return posts[b].date.localeCompare(posts[a].date); });
+        $("list").innerHTML = order.length ? order.map(function (i) {
+          var p = posts[i];
+          return '<div class="adm__item"><div><b>' + esc(p.title) + "</b><small>" + esc(p.category) + ", " + esc(fmt(p.date)) + "</small></div>" +
+            '<div class="adm__btns"><button class="btn btn--line btn--sm" data-edit="' + i + '" type="button">Edit</button><button class="btn btn--line btn--sm" data-del="' + i + '" type="button">Delete</button></div></div>';
+        }).join("") : '<p class="form__note">No articles yet. Add one with the form.</p>';
+      }
+
+      /* the picture file name follows the title until it is edited by hand */
+      var imageTouched = false;
+      $("image").addEventListener("input", function () { imageTouched = true; });
+      $("title").addEventListener("input", function () {
+        if (editing < 0 && !imageTouched) $("image").value = "img/blog/" + slugify($("title").value) + ".jpg";
+      });
+
+      function reset() {
+        editing = -1; imageTouched = false;
+        $("f").reset();
+        $("date").value = today; $("minutes").value = 3;
+        $("form-title").textContent = "Add an article";
+        $("save").textContent = "Add article";
+        $("cancel").hidden = true;
+      }
+      $("cancel").addEventListener("click", reset);
+
+      $("list").addEventListener("click", function (e) {
+        var ed = e.target.getAttribute("data-edit"), del = e.target.getAttribute("data-del");
+        if (ed !== null) {
+          editing = +ed; imageTouched = true;
+          var p = posts[editing];
+          $("title").value = p.title || ""; $("category").value = p.category || ""; $("date").value = p.date || today;
+          $("minutes").value = p.minutes || 3; $("image").value = p.image || ""; $("alt").value = p.alt || "";
+          $("excerpt").value = p.excerpt || ""; $("body").value = (p.body || []).join("\n\n");
+          $("form-title").textContent = "Edit article";
+          $("save").textContent = "Save changes";
+          $("cancel").hidden = false;
+          $("f").scrollIntoView({ behavior: "smooth", block: "start" });
+        } else if (del !== null) {
+          if (confirm('Delete "' + posts[+del].title + '"?')) { posts.splice(+del, 1); reset(); render(); $("msg").textContent = "Deleted here. Press Download posts.js to update the website."; }
+        }
+      });
+
+      $("f").addEventListener("submit", function (e) {
+        e.preventDefault();
+        if (!$("f").reportValidity()) return;
+        var body = $("body").value.split(/\n\s*\n/).map(function (s) { return s.replace(/\s*\n\s*/g, " ").trim(); }).filter(Boolean);
+        if (!body.length) { $("body").focus(); return; }
+        var old = editing >= 0 ? posts[editing] : {};
+        var title = $("title").value.trim();
+        var post = Object.assign({}, old, {
+          slug: old.slug || uniqueSlug(slugify(title), -1),
+          date: $("date").value,
+          minutes: parseInt($("minutes").value, 10) || 3,
+          category: $("category").value.trim(),
+          title: title,
+          excerpt: $("excerpt").value.trim().replace(/\s+/g, " "),
+          body: body
+        });
+        var img = $("image").value.trim();
+        if (img) { post.image = img; post.alt = $("alt").value.trim(); } else { delete post.image; delete post.alt; }
+        if (editing >= 0) posts[editing] = post; else posts.push(post);
+        reset(); render();
+        $("msg").textContent = "Saved here. Press Download posts.js to update the website.";
+      });
+
+      function fileText() {
+        var order = { slug: 1, image: 2, alt: 3, date: 4, minutes: 5, category: 6, title: 7, excerpt: 8, body: 9 };
+        var out = posts.map(function (p) {
+          var o = {};
+          Object.keys(p).sort(function (a, b) { return (order[a] || 99) - (order[b] || 99); }).forEach(function (k) { o[k] = p[k]; });
+          return o;
+        });
+        return "/* Blog articles. Edit with blog-admin.html, or by hand. Newest first on the site. */\nwindow.POSTS = " + JSON.stringify(out, null, 2) + ";\n";
+      }
+      $("download").addEventListener("click", function () {
+        var blob = new Blob([fileText()], { type: "text/javascript" });
+        var a = document.createElement("a");
+        a.href = URL.createObjectURL(blob); a.download = "posts.js";
+        document.body.appendChild(a); a.click(); a.remove();
+        $("msg").textContent = "Downloaded. Replace js/posts.js in the website folder with this file.";
+      });
+      $("copy").addEventListener("click", function () {
+        (navigator.clipboard ? navigator.clipboard.writeText(fileText()) : Promise.reject()).then(
+          function () { $("msg").textContent = "Copied. Paste it over the contents of js/posts.js."; },
+          function () { $("msg").textContent = "Copy was blocked by the browser. Use Download instead."; }
+        );
+      });
+
+      render();
+    })();
+  </script>
+  <script src="js/config.js"></script>
+  <script src="js/firebase.js"></script>
+  <script src="js/admin-gate.js"></script>
+</body>
+</html>

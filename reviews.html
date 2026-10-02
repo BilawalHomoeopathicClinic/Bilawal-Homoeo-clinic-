@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Patient Reviews | Bilawal Homoeopathic Clinic</title>
+  <meta name="description" content="Read what patients and families say about their care at Bilawal Homoeopathic Clinic in Burewala, and share your own experience.">
+  <meta name="theme-color" content="#0E3B36">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.gstatic.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com data:; img-src 'self' data: https:; media-src 'self'; connect-src 'self' https://api.web3forms.com https://*.googleapis.com https://www.gstatic.com; frame-src https://www.google.com; object-src 'none'; base-uri 'self'; form-action 'self'">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Bilawal Homoeopathic Clinic">
+  <meta property="og:title" content="Patient Reviews | Bilawal Homoeopathic Clinic">
+  <meta property="og:description" content="Read what patients and families say about their care at Bilawal Homoeopathic Clinic in Burewala, and share your own experience.">
+  <meta property="og:image" content="https://bilawalhomoeopathicclinic.github.io/Bilawal-Homoeo-clinic-/img/share.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230E3B36'/%3E%3Ccircle cx='12' cy='13' r='4' fill='%23FAFBF7'/%3E%3Ccircle cx='21' cy='13' r='4' fill='%23F0A81F'/%3E%3Ccircle cx='16.5' cy='21' r='4' fill='%238FB8A3'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&family=Young+Serif&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css?v=murd9i28">
+  <script src="js/lang-boot.js"></script>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header class="site-header" data-header>
+    <div class="offer-bar" data-offer-bar hidden></div>
+    <div class="container site-header__bar">
+      <a class="brand" href="index.html" aria-label="Home">
+        <svg viewBox="0 0 40 40" aria-hidden="true"><rect width="40" height="40" rx="11" fill="#F0A81F"/><circle cx="15" cy="16" r="5.5" fill="#0E3B36"/><circle cx="26" cy="16" r="5.5" fill="#FAFBF7"/><circle cx="20.5" cy="26" r="5.5" fill="#8FB8A3"/></svg>
+        <span class="brand__text"><strong data-cfg="clinic">Bilawal Homoeopathic Clinic</strong><span data-cfg="tagline">Homoeopathic care</span></span>
+      </a>
+      <nav class="nav" id="nav" aria-label="Main">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="treatments.html">Treatments</a>
+        <a href="offers.html">Offers</a>
+        <a href="reviews.html" aria-current="page">Reviews</a>
+        <a href="blog.html">Blog</a>
+        <a href="appointment.html">Appointment</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+      <a class="btn btn--accent btn--sm nav-cta" href="appointment.html">Book a visit</a>
+      <button class="menu-btn" aria-expanded="false" aria-controls="nav" aria-label="Menu"><i data-icon="menu"></i></button>
+    </div>
+    <div class="progress" aria-hidden="true"></div>
+  </header>
+
+  <main id="main">
+    <section class="page-hero page-hero--photo">
+      <img class="page-hero__bg" src="img/heroes/reviews.jpg" alt="" data-fallback="remove">
+      <div class="drift" aria-hidden="true">
+        <span style="width:100px;height:100px;right:11%;top:20%;--d:9s"></span>
+        <span style="width:38px;height:38px;right:29%;top:60%;--d:7s"></span>
+        <span style="width:66px;height:66px;right:4%;bottom:10%;--d:12s"></span>
+      </div>
+      <div class="container">
+        <ul class="crumbs"><li><a href="index.html">Home</a></li><li aria-current="page">Reviews</li></ul>
+        <h1>What patients say.</h1>
+        <p>Honest words from the families we care for.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <!-- Reviews come from js/reviews.js -->
+        <div class="rv-bar">
+          <div class="rv-filter" data-review-filter role="group" aria-label="Filter reviews by topic"></div>
+          <a class="btn btn--pine btn--sm" href="#share" data-focus-review><i data-icon="plus"></i>Write a review</a>
+        </div>
+        <div class="rv-grid" data-reviews-grid></div>
+      </div>
+    </section>
+
+    <section class="section section--mist" id="share" style="scroll-margin-top:4rem">
+      <div class="container split split--top">
+        <div data-reveal>
+          <h2 style="font-size:var(--step-3)">Share your experience</h2>
+          <p class="lead">Your words help other families decide. With your permission, the clinic may show your review on this page.</p>
+        </div>
+        <div class="panel" data-reveal>
+          <form class="form" id="review-form" novalidate>
+            <div class="form__row">
+              <div class="field"><label for="rv-name">Your name</label><input id="rv-name" name="name" autocomplete="name" maxlength="60" required></div>
+              <div class="field"><label for="rv-rating">Rating</label>
+                <select id="rv-rating" name="rating"><option value="5">5 out of 5</option><option value="4">4 out of 5</option><option value="3">3 out of 5</option><option value="2">2 out of 5</option><option value="1">1 out of 5</option></select></div>
+            </div>
+            <div class="field"><label for="rv-tag">What was your visit about? <span style="font-weight:400;color:var(--muted)">(optional)</span></label>
+              <select id="rv-tag" name="tag" data-review-tag-select><option value="">Prefer not to say</option></select></div>
+            <div class="field"><label for="rv-text">Your review</label><textarea id="rv-text" name="message" minlength="10" maxlength="600" required></textarea></div>
+            <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" style="display:none" aria-hidden="true">
+            <div style="display:flex;flex-wrap:wrap;gap:.7rem" data-review-actions>
+              <button class="btn btn--pine" type="submit" name="via" value="whatsapp">Send on WhatsApp <i data-icon="whatsapp"></i></button>
+              <button class="btn btn--line" type="submit" name="via" value="email">Send by email <i data-icon="mail"></i></button>
+            </div>
+            <p class="form__note">Nothing is published until the clinic has your permission.</p>
+            <p class="form__err" role="alert" hidden></p>
+          </form>
+          <div class="form__ok" role="status" style="margin-top:1rem"></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer__grid">
+        <div>
+          <a class="brand" href="index.html" aria-label="Home">
+        <svg viewBox="0 0 40 40" aria-hidden="true"><rect width="40" height="40" rx="11" fill="#F0A81F"/><circle cx="15" cy="16" r="5.5" fill="#0E3B36"/><circle cx="26" cy="16" r="5.5" fill="#FAFBF7"/><circle cx="20.5" cy="26" r="5.5" fill="#8FB8A3"/></svg>
+        <span class="brand__text"><strong data-cfg="clinic">Bilawal Homoeopathic Clinic</strong><span data-cfg="tagline">Homoeopathic care</span></span>
+      </a>
+          <p>Gentle, individualised homoeopathic care for the whole family.</p>
+        </div>
+        <div>
+          <h4>Explore</h4>
+          <ul>
+            <li><a href="about.html">About and our doctors</a></li>
+            <li><a href="treatments.html">Treatments</a></li>
+            <li><a href="offers.html">Offers and camps</a></li>
+            <li><a href="reviews.html">Patient reviews</a></li>
+            <li><a href="blog.html">Health tips</a></li>
+            <li><a href="appointment.html">Book an appointment</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Visit</h4>
+          <ul class="info" style="gap:.7rem">
+            <li><i data-icon="pin"></i><span data-cfg="address">Clinic address</span></li>
+            <li><i data-icon="phone"></i><a data-cfg="phone" data-cfg-href="tel" href="#" dir="ltr">Phone</a></li>
+            <li><i data-icon="mail"></i><a data-cfg="email" data-cfg-href="mail" href="#">Email</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Clinic hours</h4>
+          <ul class="hours" data-hours></ul>
+        </div>
+      </div>
+      <div class="footer__legal">
+        <p>Homoeopathic treatment is complementary care. It does not replace emergency or surgical treatment. In an emergency, contact your local emergency service.</p>
+        <p>&copy; <span data-year>2026</span> <span data-cfg="clinic">Bilawal Homoeopathic Clinic</span>. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <a class="fab" data-cfg-href="wa" href="#" target="_blank" rel="noopener" aria-label="Chat on WhatsApp"><i data-icon="whatsapp"></i></a>
+
+  <script src="js/config.js"></script>
+  <script src="js/timings.js"></script>
+  <script src="js/offers.js"></script>
+  <script src="js/reviews.js"></script>
+  <script src="js/firebase.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

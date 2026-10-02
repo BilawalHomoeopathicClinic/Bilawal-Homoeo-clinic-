@@ -1,0 +1,241 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.gstatic.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com data:; img-src 'self' data:; connect-src 'self' https://*.googleapis.com https://www.gstatic.com; object-src 'none'; base-uri 'self'; form-action 'self'">
+  <meta name="referrer" content="no-referrer">
+  <title>Timings Manager | Bilawal Homoeopathic Clinic</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&family=Young+Serif&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    body { background: var(--mist); }
+    .adm { width: min(100% - 2rem, 58rem); margin: 0 auto; padding: 2.5rem 0 5rem; }
+    .adm h1 { font-size: var(--step-3); }
+    .adm__steps { background: #fff; border: 1px solid var(--line); border-radius: var(--r-m); padding: 1.2rem 1.4rem; margin-bottom: 1.4rem; }
+    .adm__steps ol { margin: .6rem 0 0 1.2rem; padding: 0; }
+    .adm .panel { margin-bottom: 1.4rem; }
+    .adm h2 { font-size: var(--step-2); }
+    .tm-row { display: grid; grid-template-columns: 7.5rem auto 1fr; gap: .8rem 1.2rem; align-items: center; padding: .8rem 0; border-top: 1px dashed var(--line); }
+    .tm-row:first-of-type { border-top: 0; }
+    .tm-row b { font-weight: 600; }
+    .tm-sessions { display: flex; flex-wrap: wrap; gap: .5rem 1.2rem; align-items: center; }
+    .tm-sess { display: inline-flex; gap: .4rem; align-items: center; }
+    .tm-sess input[type=time] { padding: .65rem .8rem; width: auto; }
+    .tm-check { display: inline-flex; gap: .45rem; align-items: center; font-weight: 500; cursor: pointer; }
+    .tm-check input { width: 1.1rem; height: 1.1rem; padding: 0; accent-color: var(--pine); }
+    .tm-days { display: flex; flex-wrap: wrap; gap: .4rem .9rem; }
+    .tm-doc { padding: 1.2rem 0; border-top: 1px dashed var(--line); display: grid; gap: .9rem; }
+    .tm-doc:first-of-type { border-top: 0; }
+    .tm-doc h3 { font-size: var(--step-1); margin: 0; }
+    .tm-out { display: grid; gap: .3rem; }
+    .tm-out input { width: 100%; }
+    .tm-bar { display: flex; flex-wrap: wrap; gap: .8rem 1.2rem; align-items: center; padding: 1rem 0 1.2rem; }
+    .adm__msg { font-size: var(--step--1); color: var(--pine-3); font-weight: 600; min-height: 1.4em; }
+    .adm .btn--sm { padding: .7rem 1.2rem; }
+    @media (max-width: 700px) { .tm-row { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+  <main class="adm">
+    <p><a href="admin.html" style="color:var(--pine-3);font-weight:600">&larr; All manager tools</a></p>
+    <h1>Timings manager</h1>
+    <div class="adm__steps">
+      <b>How this works</b>
+      <ol>
+        <li>Set the clinic's opening hours and tick the days each doctor is available.</li>
+        <li>Press <b>Download timings.js</b>.</li>
+        <li>Replace the file <code>js/timings.js</code> in the website folder with the downloaded one, and upload the website again.</li>
+      </ol>
+      The new times then show in the footer, on the Contact and Appointment pages and on each doctor's card.
+    </div>
+
+    <section class="panel">
+      <h2>Clinic opening hours</h2>
+      <div class="tm-bar">
+        <span style="font-weight:600">Same hours for every open day:</span>
+        <span class="tm-sess"><input type="time" id="bulk-from" value="10:00"> to <input type="time" id="bulk-to" value="18:00"></span>
+        <button class="btn btn--line btn--sm" type="button" id="bulk-apply">Apply to open days</button>
+      </div>
+      <div id="hours-rows"></div>
+      <p class="form__note">Tick "Second session" if the clinic closes in the middle of the day, for example open in the morning and again in the evening.</p>
+    </section>
+
+    <section class="panel">
+      <h2>Doctors' availability</h2>
+      <div id="doc-rows"></div>
+    </section>
+
+    <div class="tm-bar">
+      <button class="btn btn--pine" type="button" id="download">Download timings.js</button>
+      <button class="btn btn--line" type="button" id="copy">Copy file contents</button>
+      <span class="adm__msg" id="msg" role="status"></span>
+    </div>
+  </main>
+
+  <script src="js/doctors.js"></script>
+  <script src="js/timings.js"></script>
+  <script>
+    (function () {
+      var DAYS = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
+      var TIM = window.TIMINGS || { hours: [], doctors: {} };
+      var DOCS = window.DOCTORS || [];
+      var $ = function (id) { return document.getElementById(id); };
+      var esc = function (s) { return String(s == null ? "" : s).replace(/[&<>"']/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]; }); };
+
+      /* ---- time helpers ("14:30" <-> "2:30 pm") ---- */
+      function to12(v) {
+        if (!v) return "";
+        var p = v.split(":"), h = +p[0], m = p[1], ap = h >= 12 ? "pm" : "am";
+        h = h % 12 || 12;
+        return h + ":" + m + " " + ap;
+      }
+      function to24(h, m, ap) {
+        h = +h % 12;
+        if (ap.toLowerCase() === "pm") h += 12;
+        return (h < 10 ? "0" : "") + h + ":" + m;
+      }
+      var RANGE = /(\d{1,2}):(\d{2})\s*(am|pm)\s*[–-]\s*(\d{1,2}):(\d{2})\s*(am|pm)/gi;
+      function parseRanges(str) {
+        var out = [], m;
+        RANGE.lastIndex = 0;
+        while ((m = RANGE.exec(str || ""))) out.push([to24(m[1], m[2], m[3]), to24(m[4], m[5], m[6])]);
+        return out;
+      }
+      function rangesText(list) {
+        return list.filter(function (r) { return r[0] && r[1]; }).map(function (r) { return to12(r[0]) + " – " + to12(r[1]); }).join(" and ");
+      }
+
+      /* ---- clinic hours ---- */
+      var hoursBox = $("hours-rows");
+      function hourRow(day) {
+        var cur = (TIM.hours || []).filter(function (h) { return h.day === day; })[0];
+        var time = cur ? cur.time : "";
+        var closed = !time || /^closed$/i.test(time.trim());
+        var r = parseRanges(time);
+        var two = r.length > 1;
+        var d = document.createElement("div");
+        d.className = "tm-row"; d.setAttribute("data-day", day);
+        d.innerHTML =
+          "<b>" + day + "</b>" +
+          '<label class="tm-check"><input type="checkbox" data-role="open"' + (closed ? "" : " checked") + "> Open</label>" +
+          '<div class="tm-sessions">' +
+            '<span class="tm-sess"><input type="time" data-role="f1" value="' + (r[0] ? r[0][0] : "10:00") + '"> to <input type="time" data-role="t1" value="' + (r[0] ? r[0][1] : "18:00") + '"></span>' +
+            '<label class="tm-check"><input type="checkbox" data-role="two"' + (two ? " checked" : "") + '> Second session</label>' +
+            '<span class="tm-sess" data-role="s2"' + (two ? "" : " hidden") + '><input type="time" data-role="f2" value="' + (r[1] ? r[1][0] : "17:00") + '"> to <input type="time" data-role="t2" value="' + (r[1] ? r[1][1] : "20:00") + '"></span>' +
+          "</div>";
+        hoursBox.appendChild(d);
+        sync(d);
+        d.addEventListener("input", function () { sync(d); });
+        d.addEventListener("change", function () { sync(d); });
+      }
+      function sync(d) {
+        var open = d.querySelector('[data-role="open"]').checked;
+        var two = d.querySelector('[data-role="two"]').checked;
+        d.querySelector('[data-role="s2"]').hidden = !two || !open;
+        d.querySelector(".tm-sessions").style.opacity = open ? "1" : ".35";
+        d.querySelectorAll("input[type=time]").forEach(function (i) { i.disabled = !open; });
+        d.querySelector('[data-role="two"]').disabled = !open;
+      }
+      function readHours() {
+        return DAYS.map(function (day) {
+          var d = hoursBox.querySelector('[data-day="' + day + '"]');
+          var q = function (r) { return d.querySelector('[data-role="' + r + '"]').value; };
+          if (!d.querySelector('[data-role="open"]').checked) return { day: day, time: "Closed" };
+          var list = [[q("f1"), q("t1")]];
+          if (d.querySelector('[data-role="two"]').checked) list.push([q("f2"), q("t2")]);
+          return { day: day, time: rangesText(list) || "Closed" };
+        });
+      }
+      DAYS.forEach(hourRow);
+      $("bulk-apply").addEventListener("click", function () {
+        hoursBox.querySelectorAll(".tm-row").forEach(function (d) {
+          if (!d.querySelector('[data-role="open"]').checked) return;
+          d.querySelector('[data-role="f1"]').value = $("bulk-from").value;
+          d.querySelector('[data-role="t1"]').value = $("bulk-to").value;
+          d.querySelector('[data-role="two"]').checked = false;
+          sync(d);
+        });
+        $("msg").textContent = "Applied to every open day.";
+      });
+
+      /* ---- doctors ---- */
+      var docBox = $("doc-rows");
+      function daysPhrase(set) {
+        var n = set.length;
+        if (!n) return "";
+        if (n === 7) return "Every day";
+        if (n === 6) { var off = DAYS.filter(function (d) { return set.indexOf(d) < 0; })[0]; return "Every day except " + off; }
+        var idx = set.map(function (d) { return DAYS.indexOf(d); }).sort(function (a, b) { return a - b; });
+        var parts = [], i = 0;
+        while (i < idx.length) {
+          var j = i;
+          while (j + 1 < idx.length && idx[j + 1] === idx[j] + 1) j++;
+          if (j - i >= 2) parts.push(DAYS[idx[i]] + " to " + DAYS[idx[j]]);
+          else for (var k = i; k <= j; k++) parts.push(DAYS[idx[k]]);
+          i = j + 1;
+        }
+        return parts.length === 1 ? parts[0] : parts.slice(0, -1).join(", ") + " and " + parts[parts.length - 1];
+      }
+      function parseDays(text) {
+        var t = text || "", set = [];
+        var ex = /every day except\s+([A-Za-z]+)/i.exec(t);
+        if (ex) return DAYS.filter(function (d) { return d.toLowerCase() !== ex[1].toLowerCase(); });
+        if (/every day|daily/i.test(t)) return DAYS.slice();
+        var range = /(Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday)\s+to\s+(Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday)/i.exec(t);
+        if (range) { var a = DAYS.map(function (d) { return d.toLowerCase(); }), s = a.indexOf(range[1].toLowerCase()), e = a.indexOf(range[2].toLowerCase()); for (var i = s; i <= e; i++) set.push(DAYS[i]); }
+        DAYS.forEach(function (d) { if (new RegExp(d, "i").test(t) && set.indexOf(d) < 0) set.push(d); });
+        return set;
+      }
+      DOCS.forEach(function (doc) {
+        var cur = (TIM.doctors || {})[doc.id];
+        if (cur == null) cur = doc.timing || "";
+        var days = parseDays(cur), rng = parseRanges(cur)[0];
+        var box = document.createElement("div");
+        box.className = "tm-doc"; box.setAttribute("data-doc", doc.id);
+        box.innerHTML =
+          "<h3>" + esc(doc.name) + "</h3>" +
+          '<div class="tm-days">' + DAYS.map(function (d) { return '<label class="tm-check"><input type="checkbox" data-day="' + d + '"' + (days.indexOf(d) >= 0 ? " checked" : "") + "> " + d + "</label>"; }).join("") + "</div>" +
+          '<div class="tm-sessions"><span style="font-weight:600">Hours (optional):</span><span class="tm-sess"><input type="time" data-role="f" value="' + (rng ? rng[0] : "") + '"> to <input type="time" data-role="t" value="' + (rng ? rng[1] : "") + '"></span></div>' +
+          '<div class="tm-out"><label for="o-' + doc.id + '"><b>Shown on the website</b> <span style="color:var(--muted);font-weight:400">(updates when you change the days or hours, and you can edit it)</span></label><input id="o-' + doc.id + '" data-role="out" value="' + esc(cur) + '"></div>';
+        docBox.appendChild(box);
+        function rebuild() {
+          var set = DAYS.filter(function (d) { return box.querySelector('[data-day="' + d + '"]').checked; });
+          var f = box.querySelector('[data-role="f"]').value, t = box.querySelector('[data-role="t"]').value;
+          var txt = daysPhrase(set);
+          if (f && t) txt += (txt ? ", " : "") + to12(f) + " – " + to12(t);
+          box.querySelector('[data-role="out"]').value = txt;
+        }
+        box.querySelectorAll("input[data-day], input[type=time]").forEach(function (i) { i.addEventListener("change", rebuild); });
+      });
+      if (!DOCS.length) docBox.innerHTML = '<p class="form__note">No doctors found in js/doctors.js.</p>';
+
+      /* ---- output ---- */
+      function fileText() {
+        var docs = {};
+        document.querySelectorAll(".tm-doc").forEach(function (b) { docs[b.getAttribute("data-doc")] = b.querySelector('[data-role="out"]').value.trim(); });
+        return "/* Opening hours and doctors' availability. Edit with timings-admin.html, or by hand. */\nwindow.TIMINGS = " + JSON.stringify({ hours: readHours(), doctors: docs }, null, 2) + ";\n";
+      }
+      $("download").addEventListener("click", function () {
+        var blob = new Blob([fileText()], { type: "text/javascript" });
+        var a = document.createElement("a");
+        a.href = URL.createObjectURL(blob); a.download = "timings.js";
+        document.body.appendChild(a); a.click(); a.remove();
+        $("msg").textContent = "Downloaded. Replace js/timings.js in the website folder with this file.";
+      });
+      $("copy").addEventListener("click", function () {
+        (navigator.clipboard ? navigator.clipboard.writeText(fileText()) : Promise.reject()).then(
+          function () { $("msg").textContent = "Copied. Paste it over the contents of js/timings.js."; },
+          function () { $("msg").textContent = "Copy was blocked by the browser. Use Download instead."; }
+        );
+      });
+    })();
+  </script>
+  <script src="js/config.js"></script>
+  <script src="js/firebase.js"></script>
+  <script src="js/admin-gate.js"></script>
+</body>
+</html>

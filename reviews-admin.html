@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.gstatic.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com data:; img-src 'self' data:; connect-src 'self' https://*.googleapis.com https://www.gstatic.com; object-src 'none'; base-uri 'self'; form-action 'self'">
+  <meta name="referrer" content="no-referrer">
+  <title>Manage Reviews | Bilawal Homoeopathic Clinic</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&family=Young+Serif&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    body { background: var(--mist); }
+    .adm { width: min(100% - 2rem, 48rem); margin: 0 auto; padding: 2.5rem 0 5rem; }
+    .adm h1 { font-size: var(--step-3); }
+    .adm [hidden] { display: none !important; }
+    .rv-row { display: flex; gap: 1rem; align-items: flex-start; justify-content: space-between; padding: 1.1rem 1.3rem; background: #fff; border: 1px solid var(--line); border-radius: var(--r-m); }
+    .rv-row + .rv-row { margin-top: .8rem; }
+    .rv-row p { margin: .3rem 0 0; color: var(--muted); font-size: var(--step--1); overflow-wrap: anywhere; }
+    .rv-row small { color: var(--pine-3); font-weight: 600; }
+    .rv-row .btn { flex: none; padding: .65rem 1.2rem; }
+    .adm__bar { display: flex; justify-content: space-between; align-items: center; gap: 1rem; flex-wrap: wrap; margin-bottom: 1.4rem; }
+    .adm__msg { font-size: var(--step--1); color: var(--pine-3); font-weight: 600; min-height: 1.4em; }
+  </style>
+</head>
+<body>
+  <main class="adm">
+    <p><a href="admin.html" style="color:var(--pine-3);font-weight:600">&larr; All manager tools</a></p>
+    <h1>Manage reviews</h1>
+    <p class="adm__msg" id="msg" role="status"></p>
+
+    <div class="panel" id="off" hidden>
+      <h2 style="font-size:var(--step-2)">Live reviews are not switched on yet</h2>
+      <p>Add the Firebase settings to <code>js/config.js</code> first. The steps are in the private guide (Clinic-Private-Guide.md) on the clinic computer.</p>
+    </div>
+
+    <div class="panel" id="login" hidden>
+      <h2 style="font-size:var(--step-2)">Doctor sign in</h2>
+      <form class="form" id="login-form" novalidate>
+        <div class="field"><label for="em">Email</label><input id="em" type="email" autocomplete="username" required></div>
+        <div class="field"><label for="pw">Password</label><input id="pw" type="password" autocomplete="current-password" required></div>
+        <button class="btn btn--pine" type="submit">Sign in</button>
+        <p class="form__err" id="login-err" role="alert" hidden></p>
+      </form>
+    </div>
+
+    <section id="manage" hidden>
+      <div class="adm__bar">
+        <strong id="count"></strong>
+        <button class="btn btn--line btn--sm" id="out" type="button">Sign out</button>
+      </div>
+      <div id="list"></div>
+      <p class="form__note" style="margin-top:1.4rem">Deleting is permanent. Sample reviews written in <code>js/reviews.js</code> are removed by editing that file, not here.</p>
+    </section>
+  </main>
+
+  <script src="js/config.js"></script>
+  <script src="js/firebase.js"></script>
+  <script>
+    (function () {
+      var DB = window.CLINIC_DB;
+      var $ = function (id) { return document.getElementById(id); };
+      var esc = function (s) { return String(s == null ? "" : s).replace(/[&<>"']/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]; }); };
+      if (!DB.enabled) { $("off").hidden = false; return; }
+
+      function show(user) {
+        $("login").hidden = !!user;
+        $("manage").hidden = !user;
+        if (user) load();
+      }
+      function load() {
+        $("msg").textContent = "Loading reviews...";
+        DB.listReviews(200).then(function (rows) {
+          $("msg").textContent = "";
+          $("count").textContent = rows.length + (rows.length === 1 ? " live review" : " live reviews");
+          $("list").innerHTML = rows.length ? rows.map(function (r) {
+            var when = r.ms ? new Date(r.ms).toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" }) : "";
+            return '<div class="rv-row"><div><b>' + esc(r.name) + '</b> <small>' + "&#9733;".repeat(r.rating || 0) + (when ? " &nbsp;" + when : "") + "</small><p>" + esc(r.text) + '</p></div><button class="btn btn--line" type="button" data-del="' + esc(r.id) + '">Delete</button></div>';
+          }).join("") : '<p class="offers-empty">No live reviews yet.</p>';
+        }).catch(function () { $("msg").textContent = "Could not load reviews. Check your connection and Firebase settings."; });
+      }
+
+      $("login-form").addEventListener("submit", function (e) {
+        e.preventDefault();
+        var err = $("login-err"); err.hidden = true;
+        DB.signIn($("em").value.trim(), $("pw").value).catch(function () {
+          err.textContent = "Sign in failed. Check the email and password.";
+          err.hidden = false;
+        });
+      });
+      $("out").addEventListener("click", function () { DB.signOut(); });
+      $("list").addEventListener("click", function (e) {
+        var id = e.target.getAttribute && e.target.getAttribute("data-del");
+        if (!id || !confirm("Delete this review permanently?")) return;
+        e.target.disabled = true;
+        DB.deleteReview(id).then(load).catch(function () {
+          e.target.disabled = false;
+          $("msg").textContent = "Could not delete. Make sure you are signed in as the doctor.";
+        });
+      });
+      DB.onAuth(show);
+    })();
+  </script>
+</body>
+</html>

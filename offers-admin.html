@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.gstatic.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com data:; img-src 'self' data:; connect-src 'self' https://*.googleapis.com https://www.gstatic.com; object-src 'none'; base-uri 'self'; form-action 'self'">
+  <meta name="referrer" content="no-referrer">
+  <title>Offer Manager | Bilawal Homoeopathic Clinic</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&family=Young+Serif&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    body { background: var(--mist); }
+    .adm { width: min(100% - 2rem, 62rem); margin: 0 auto; padding: 2.5rem 0 5rem; }
+    .adm h1 { font-size: var(--step-3); }
+    .adm__grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.4rem; align-items: start; }
+    @media (max-width: 860px) { .adm__grid { grid-template-columns: 1fr; } }
+    .adm__list { display: grid; gap: .8rem; }
+    .adm__item { display: flex; gap: 1rem; align-items: center; justify-content: space-between; padding: 1rem 1.2rem; background: #fff; border: 1px solid var(--line); border-radius: var(--r-m); }
+    .adm__item small { display: block; color: var(--muted); }
+    .adm__item .st { font-size: .75rem; font-weight: 700; padding: .15rem .6rem; border-radius: 999px; background: var(--mist); color: var(--pine-3); }
+    .adm__item .st.exp { background: #f4dcd6; color: #8a2f1b; }
+    .adm__btns { display: flex; gap: .4rem; flex: none; }
+    .adm .btn--sm { padding: .5rem .9rem; }
+    .adm__steps { background: #fff; border: 1px solid var(--line); border-radius: var(--r-m); padding: 1.2rem 1.4rem; margin-bottom: 1.4rem; }
+    .adm__steps ol { margin: .6rem 0 0 1.2rem; padding: 0; }
+    .adm [hidden] { display: none !important; }
+  </style>
+</head>
+<body>
+  <main class="adm">
+    <p><a href="admin.html" style="color:var(--pine-3);font-weight:600">&larr; All manager tools</a></p>
+    <h1>Offer manager</h1>
+    <div class="adm__steps">
+      <b>How this works</b>
+      <ol>
+        <li>Add, edit or delete offers below.</li>
+        <li>Press <b>Download offers.js</b>.</li>
+        <li>Replace the file <code>js/offers.js</code> in the website folder with the downloaded one and upload the site again.</li>
+      </ol>
+      Expired offers disappear from the website by themselves after their end date.
+    </div>
+
+    <div class="adm__grid">
+      <section>
+        <h2 style="font-size:var(--step-2)">Your offers</h2>
+        <div class="adm__list" id="list"></div>
+        <p style="margin-top:1.2rem;display:flex;gap:.6rem;flex-wrap:wrap">
+          <button class="btn btn--pine btn--sm" id="download" type="button">Download offers.js</button>
+          <button class="btn btn--line btn--sm" id="copy" type="button">Copy file contents</button>
+        </p>
+        <p class="form__note" id="msg" role="status"></p>
+      </section>
+
+      <section class="panel">
+        <h2 style="font-size:var(--step-2)" id="form-title">Add an offer</h2>
+        <form class="form" id="f" novalidate>
+          <div class="field"><label for="type">Kind of offer</label>
+            <select id="type"><option value="discount">Percentage off for a patient category</option><option value="camp">Free camp</option></select></div>
+          <div class="field"><label for="picture">Picture on the offer card</label>
+            <select id="picture"><option value="">Automatic (camp picture for camps, remedies for other offers)</option><option value="camp">Free camp at the clinic</option><option value="children">Children</option><option value="seniors">Senior citizens</option><option value="women">Women</option><option value="general">Remedies (general)</option><option value="custom">My own picture (type its file name)</option><option value="none">No picture, plain colour</option></select>
+            <div id="pic-own" hidden style="margin-top:.6rem"><input id="picture-file" placeholder="e.g. img/offers/eid-camp.jpg" aria-label="File name of your own picture">
+              <p class="form__note" style="margin:.4rem 0 0">Save your picture as a JPG, about 1600 px wide, in the <code>img/offers</code> folder of the website, and type the same name here. Put the people or the main subject on the right side, because the offer text sits on the left.</p></div></div>
+          <div class="field"><label for="title">Title</label><input id="title" required placeholder="e.g. Senior citizens' care month"></div>
+          <div class="form__row">
+            <div class="field"><label for="audience">Who is it for?</label><input id="audience" required placeholder="e.g. Students, Senior citizens (60+)"></div>
+            <div class="field" id="pct-wrap"><label for="percent">Percent off</label><input id="percent" type="number" min="1" max="100" placeholder="20"></div>
+          </div>
+          <div class="field"><label for="description">Short description</label><textarea id="description" required style="min-height:5rem"></textarea></div>
+          <div class="form__row">
+            <div class="field"><label for="start">Shows from</label><input id="start" type="date"></div>
+            <div class="field"><label for="end">Ends on</label><input id="end" type="date" required></div>
+          </div>
+          <div id="camp-fields" hidden class="form">
+            <div class="form__row">
+              <div class="field"><label for="date">Camp date</label><input id="date" type="date"></div>
+              <div class="field"><label for="time">Camp time</label><input id="time" placeholder="10:00 am – 2:00 pm"></div>
+            </div>
+            <div class="field"><label for="venue">Venue</label><input id="venue" placeholder="Where is the camp?"></div>
+          </div>
+          <div class="field"><label for="terms">Small print <span style="font-weight:400;color:var(--muted)">(optional)</span></label><input id="terms" placeholder="e.g. Bring a student ID"></div>
+          <div style="display:flex;gap:.6rem;flex-wrap:wrap">
+            <button class="btn btn--pine" type="submit" id="save">Add offer</button>
+            <button class="btn btn--line" type="button" id="cancel" hidden>Cancel editing</button>
+          </div>
+        </form>
+      </section>
+    </div>
+  </main>
+
+  <script src="js/offers.js"></script>
+  <script>
+    (function () {
+      var offers = (window.OFFERS || []).map(function (o) { return Object.assign({}, o); });
+      var editing = -1;
+      var $ = function (id) { return document.getElementById(id); };
+      var fields = ["type", "picture", "title", "audience", "percent", "description", "start", "end", "date", "time", "venue", "terms"];
+      var today = new Date().toISOString().slice(0, 10);
+
+      function slug(s) { return s.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "").slice(0, 40) || "offer"; }
+      function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); }
+
+      function togglePic() { $("pic-own").hidden = $("picture").value !== "custom"; }
+      $("picture").addEventListener("change", togglePic);
+
+      function toggleKind() {
+        var camp = $("type").value === "camp";
+        $("camp-fields").hidden = !camp;
+        $("pct-wrap").hidden = camp;
+      }
+      $("type").addEventListener("change", toggleKind);
+
+      function render() {
+        var list = $("list");
+        if (!offers.length) { list.innerHTML = '<p class="form__note">No offers yet. Add one with the form.</p>'; return; }
+        list.innerHTML = offers.map(function (o, i) {
+          var expired = o.end && o.end < today;
+          var what = o.type === "camp" ? "Free camp" : o.percent + "% off";
+          return '<div class="adm__item"><div><b>' + esc(o.title) + '</b><small>' + esc(what) + " for " + esc(o.audience) + (o.end ? ", until " + esc(o.end) : "") + '</small></div>' +
+            '<div class="adm__btns"><span class="st' + (expired ? " exp" : "") + '">' + (expired ? "Expired" : "Active") + '</span>' +
+            '<button class="btn btn--line btn--sm" data-edit="' + i + '" type="button">Edit</button>' +
+            '<button class="btn btn--line btn--sm" data-del="' + i + '" type="button">Delete</button></div></div>';
+        }).join("");
+      }
+      $("list").addEventListener("click", function (e) {
+        var ed = e.target.getAttribute("data-edit"), del = e.target.getAttribute("data-del");
+        if (ed !== null) {
+          editing = +ed;
+          var o = offers[editing];
+          fields.forEach(function (f) { $(f).value = o[f] == null ? "" : o[f]; });
+          var pv = o.picture === undefined ? "" : (o.picture === "" ? "none" : o.picture);
+          var ready = ["camp", "children", "seniors", "women", "general", "none", ""];
+          if (ready.indexOf(pv) < 0) { $("picture").value = "custom"; $("picture-file").value = pv; } else { $("picture").value = pv; $("picture-file").value = ""; }
+          togglePic();
+          toggleKind();
+          $("form-title").textContent = "Edit offer";
+          $("save").textContent = "Save changes";
+          $("cancel").hidden = false;
+          $("f").scrollIntoView({ behavior: "smooth", block: "start" });
+        } else if (del !== null) {
+          if (confirm("Delete this offer?")) { offers.splice(+del, 1); reset(); render(); }
+        }
+      });
+      function reset() {
+        editing = -1;
+        $("f").reset();
+        toggleKind(); togglePic();
+        $("form-title").textContent = "Add an offer";
+        $("save").textContent = "Add offer";
+        $("cancel").hidden = true;
+      }
+      $("cancel").addEventListener("click", reset);
+
+      $("f").addEventListener("submit", function (e) {
+        e.preventDefault();
+        var camp = $("type").value === "camp";
+        if (!$("f").reportValidity()) return;
+        if (!camp && !$("percent").value) { $("percent").focus(); $("msg").textContent = "Enter the percent off."; return; }
+        var o = {
+          id: editing >= 0 ? offers[editing].id : slug($("title").value) + "-" + Date.now().toString(36).slice(-4),
+          type: $("type").value, title: $("title").value.trim(), audience: $("audience").value.trim()
+        };
+        var pk = $("picture").value;
+        if (pk === "custom") {
+          var pf = $("picture-file").value.trim();
+          if (!pf) { $("picture-file").focus(); $("msg").textContent = "Type the file name of your picture, or choose another picture option."; return; }
+          o.picture = pf.indexOf("/") < 0 ? "img/offers/" + pf : pf;
+        } else if (pk) o.picture = pk === "none" ? "" : pk;
+        if (!camp) o.percent = Number($("percent").value);
+        o.description = $("description").value.trim();
+        if ($("start").value) o.start = $("start").value;
+        if ($("end").value) o.end = $("end").value;
+        if (camp) { ["date", "time", "venue"].forEach(function (k) { if ($(k).value.trim()) o[k] = $(k).value.trim(); }); }
+        if ($("terms").value.trim()) o.terms = $("terms").value.trim();
+        if (editing >= 0) offers[editing] = o; else offers.push(o);
+        reset(); render();
+        $("msg").textContent = "Saved here. Now press Download offers.js to update the website.";
+      });
+
+      function fileText() {
+        return "/* Offers shown on the website. Edit with offers-admin.html, or by hand. */\nwindow.OFFERS = " + JSON.stringify(offers, null, 2) + ";\n";
+      }
+      $("download").addEventListener("click", function () {
+        var blob = new Blob([fileText()], { type: "text/javascript" });
+        var a = document.createElement("a");
+        a.href = URL.createObjectURL(blob);
+        a.download = "offers.js";
+        document.body.appendChild(a); a.click(); a.remove();
+        $("msg").textContent = "Downloaded. Replace js/offers.js in the website folder with this file.";
+      });
+      $("copy").addEventListener("click", function () {
+        (navigator.clipboard ? navigator.clipboard.writeText(fileText()) : Promise.reject()).then(
+          function () { $("msg").textContent = "Copied. Paste it over the contents of js/offers.js."; },
+          function () { $("msg").textContent = "Copy was blocked by the browser. Use Download instead."; }
+        );
+      });
+
+      render(); toggleKind();
+    })();
+  </script>
+  <script src="js/config.js"></script>
+  <script src="js/firebase.js"></script>
+  <script src="js/admin-gate.js"></script>
+</body>
+</html>
